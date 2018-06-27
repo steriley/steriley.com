@@ -32,6 +32,8 @@
     "node-sass": "^4.9.0",
     "nodemon": "1.17.5",
     "sass-loader": "^7.0.1",
+    "stylelint": "9.3.0",
+    "stylelint-config-standard": "18.2.0",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
@@ -41,11 +43,32 @@
     },
     "extends": [
       "plugin:vue/essential",
+      "plugin:vue/recommended",
+      "plugin:vue/strongly-recommended",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "vue/max-attributes-per-line": 0,
+      "vue/require-prop-types": 0,
+      "vue/html-closing-bracket-spacing": [
+        "error",
+        {
+          "startTag": "never",
+          "endTag": "never",
+          "selfClosingTag": "never"
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "no-empty-source": null,
+      "property-no-vendor-prefix": true,
+      "value-no-vendor-prefix": true
     }
   },
   "postcss": {
@@ -78,6 +101,13 @@
     ],
     "testMatch": [
       "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**.(js|vue)"
+    ],
+    "coverageReporters": [
+      "html",
+      "text"
     ]
   }
 }
