@@ -18,7 +18,8 @@
     "node-fetch": "2.1.2",
     "twitter": "1.7.1",
     "vue": "^2.5.16",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "webpack-bundle-analyzer": "2.13.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
