@@ -25,7 +25,7 @@ module.exports.latestPhotos = (userId, keys) => {
       if (!error) {
         const photos = result.map(photo => mapPhoto(photo));
 
-        return resolve({ instagram: photos });
+        return resolve(photos);
       }
 
       return reject(error);
