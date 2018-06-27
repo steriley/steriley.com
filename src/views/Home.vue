@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Twitter/>
     <h2 class="cursive">last.fm Recent Scrobbles</h2>
     <LastFm/>
   </div>
@@ -7,11 +8,13 @@
 
 <script>
 import LastFm from '@/components/LastFm.vue';
+import Twitter from '@/components/Twitter.vue';
 
 export default {
   name: 'Home',
   components: {
     LastFm,
+    Twitter,
   },
 };
 </script>

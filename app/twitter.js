@@ -15,6 +15,7 @@ function mapTweet(tweet) {
     retweet_count: tweet.retweet_count,
     favorite_count: tweet.retweeted_status.favorite_count,
     user: {
+      name: tweet.user.name,
       screen_name: tweet.user.screen_name,
       profile_image_url_https: tweet.user.profile_image_url_https,
     },

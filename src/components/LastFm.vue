@@ -86,7 +86,7 @@ export default {
 
 .track__date {
   bottom: 0;
-  font-size: 0.9em;
+  font-size: .9em;
   position: absolute;
   right: 0;
 }
@@ -96,7 +96,7 @@ export default {
   border: 0;
   bottom: 0;
   color: #fff;
-  font-size: 0.9em;
+  font-size: .9em;
   height: auto;
   left: 70px;
   outline: none;
