@@ -37,4 +37,5 @@ app.get('/api/lastfm', (req, res) => {
     .then(tracks => res.json(tracks));
 });
 
+// eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -38,11 +38,10 @@ function formatTracks(json) {
   }));
 }
 
-module.exports.recentlyPlayed = function (username, apiKey) {
-  return new Promise((resolve, reject) => {
+module.exports.recentlyPlayed = (username, apiKey) =>
+  new Promise((resolve, reject) => {
     fetch(apiUrl(username, apiKey))
       .then(res => res.json())
       .then(json => resolve(formatTracks(json)))
       .catch(err => reject(err));
   });
-};

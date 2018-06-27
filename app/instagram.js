@@ -13,7 +13,7 @@ function mapPhoto(photo) {
   };
 }
 
-module.exports.latestPhotos = function (userId, keys) {
+module.exports.latestPhotos = (userId, keys) => {
   ig.use({
     access_token: keys.access_token,
     client_id: keys.client_id,

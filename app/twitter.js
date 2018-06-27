@@ -21,7 +21,7 @@ function mapTweet(tweet) {
   };
 }
 
-module.exports.lastTweet = function (screenName, keys) {
+module.exports.lastTweet = (screenName, keys) => {
   const client = new Twitter({
     consumer_key: keys.consumer_key,
     consumer_secret: keys.consumer_secret,
