@@ -6,7 +6,9 @@
         <span class="track__artist">{{ track.artist }}</span>
         <span class="track__title">{{ track.title }}</span>
         <span :date-time="track.date.utc" class="track__date">{{ track.date.formatted }}</span>
-        <button class="track__video">Watch Video</button>
+        <button class="track__video" @click.prevent="loadVideo(track.artist, track.title)">
+          Watch Video
+        </button>
       </a>
     </li>
   </ol>
@@ -19,6 +21,7 @@ export default {
   data() {
     return {
       tracks: [],
+      displayVideo: false,
     };
   },
 
@@ -28,6 +31,12 @@ export default {
       .then((json) => {
         this.tracks = json;
       });
+  },
+
+  methods: {
+    loadVideo(artist, title) {
+      this.displayVideo = `${artist} ${title}`;
+    },
   },
 };
 </script>
