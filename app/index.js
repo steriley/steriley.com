@@ -4,6 +4,7 @@ const instagram = require('./instagram');
 const lastfm = require('./lastfm');
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 app.get('/api/twitter', (req, res) => {
   twitter
@@ -32,4 +33,4 @@ app.get('/api/lastfm', (req, res) => {
     .then(tracks => res.json(tracks));
 });
 
-app.listen(8080);
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
