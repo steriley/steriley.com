@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app/index.js",
-    "start:dev": "node -r dotenv/config app/index.js"
+    "start:dev": "nodemon -r dotenv/config app/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
   "devDependencies": {
     "eslint": "5.0.1",
     "eslint-config-airbnb-base": "13.0.0",
-    "eslint-plugin-import": "2.13.0"
+    "eslint-plugin-import": "2.13.0",
+    "nodemon": "1.17.5"
   },
   "eslintConfig": {
     "env": {
