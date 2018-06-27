@@ -31,7 +31,7 @@ function formatDate(obj) {
 function formatTracks(json) {
   return json.recenttracks.track.map(track => ({
     artist: track.artist['#text'],
-    track: track.name,
+    title: track.name,
     url: track.url,
     date: formatDate(track.date),
     artwork: track.image.filter(img => img.size === 'medium').pop()['#text'],
