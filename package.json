@@ -1,46 +1,83 @@
 {
-  "name": "steriley.com",
-  "version": "1.0.0",
-  "description": "personal homepage",
-  "main": "app/index.js",
+  "name": "steriley.git",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
     "start": "node app/index.js",
     "start:dev": "nodemon -r dotenv/config app/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/steriley/steriley.com.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/steriley/steriley.com#readme",
   "dependencies": {
     "date-fns": "1.29.0",
     "dotenv": "6.0.0",
     "express": "4.16.3",
     "instagram-node": "0.5.8",
     "node-fetch": "2.1.2",
-    "twitter": "1.7.1"
+    "twitter": "1.7.1",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "5.0.1",
-    "eslint-config-airbnb-base": "13.0.0",
-    "eslint-plugin-import": "2.13.0",
-    "nodemon": "1.17.5"
+    "@vue/cli-plugin-babel": "^3.0.0-beta.15",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
+    "@vue/cli-plugin-unit-jest": "^3.0.0-beta.15",
+    "@vue/cli-service": "^3.0.0-beta.15",
+    "@vue/eslint-config-airbnb": "^3.0.0-rc.3",
+    "@vue/test-utils": "^1.0.0-beta.16",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
+    "node-sass": "^4.9.0",
+    "nodemon": "1.17.5",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
+    "root": true,
     "env": {
-      "browser": true,
       "node": true
     },
-    "extends": "airbnb-base",
-    "rules": {
-      "func-names": [
-        "error",
-        "never"
-      ]
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
     }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"
+    ]
   }
 }
