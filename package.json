@@ -2,9 +2,10 @@
   "name": "steriley.com",
   "version": "1.0.0",
   "description": "personal homepage",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/index.js",
     "start:dev": "node -r dotenv/config app/index.js"
   },
   "repository": {
