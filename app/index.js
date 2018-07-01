@@ -1,16 +1,19 @@
 const express = require('express');
+const apicache = require('apicache');
+
 const twitter = require('./twitter');
 const instagram = require('./instagram');
 const lastfm = require('./lastfm');
 
 const app = express();
+const cache = apicache.middleware;
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
   res.json('hello world');
 });
 
-app.get('/api/twitter', (req, res) => {
+app.get('/api/twitter', cache('5 minutes'), (req, res) => {
   twitter
     .lastTweet('SteRiley', {
       consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -21,7 +24,7 @@ app.get('/api/twitter', (req, res) => {
     .then(tweet => res.json(tweet));
 });
 
-app.get('/api/instagram/:total?', (req, res) => {
+app.get('/api/instagram/:total?', cache('1 hour'), (req, res) => {
   instagram
     .latestPhotos(
       process.env.INSTAGRAM_USER_ID,
@@ -35,7 +38,7 @@ app.get('/api/instagram/:total?', (req, res) => {
     .then(photos => res.json(photos));
 });
 
-app.get('/api/lastfm/:total?', (req, res) => {
+app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
   lastfm
     .recentlyPlayed(process.env.LASTFM_USER_ID, process.env.LASTFM_CONSUMER_KEY, req.params.total)
     .then(tracks => res.json(tracks));
