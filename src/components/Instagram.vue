@@ -1,10 +1,21 @@
 <template>
-  <ul v-if="photos" class="photos">
-    <li v-for="photo in photos" :key="photo.link">
-      <a :href="photo.link">
-        <img :src="photo.images.standard_resolution.url" :alt="photo.caption.text">
-        <span class="likes">{{ photo.likes.count }}</span>
-        <span class="comments">{{ photo.comments.count }}</span>
+  <ul v-if="photos" class="photo-list">
+    <li v-for="photo in photos" :key="photo.link" class="photo-list__item">
+      <a :href="photo.link" class="photo">
+        <img :src="photo.images.standard_resolution.url" :alt="photo.caption.text"
+             class="photo__img">
+
+        <span class="meta">
+          <span class="meta__count">
+            {{ photo.likes.count }}
+          </span>
+        </span>
+
+        <span class="meta meta--comments">
+          <span class="meta__count">
+            {{ photo.comments.count }}
+          </span>
+        </span>
       </a>
     </li>
   </ul>
@@ -31,46 +42,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.photos {
+.photo-list {
   list-style-type: none;
   margin: 0 0 10px;
   padding: 0;
+  display: flex;
+  flex-flow: wrap;
+  max-width: 1200px;
 }
 
-.photos li {
-  float: left;
-  padding: 0 .25em .25em 0;
-  min-height: 90px;
-  min-width: 90px;
-  width: 14.2857%;
+.photo-list__item {
+  flex-basis: 14.2857%;
 }
 
-.photos a {
+.photo {
+  padding: .25rem;
   position: relative;
   display: block;
 }
 
-.photos img {
+.photo__img {
   display: block;
   width: 100%;
 }
 
-.photos a span.likes,
-.photos a span.comments {
+.meta {
+  align-items: center;
+  background-color: #f00;
+  bottom: .25rem;
+  display: flex;
+  justify-content: center;
+  opacity: .75;
+  padding: .75rem;
   position: absolute;
-  right: .5em;
-  bottom: .5em;
-  display: block;
-  width: 32px;
-  height: 32px;
-  background: transparent url(/assets/img/photo_love.png) no-repeat;
-  text-align: center;
-  font-size: 11px;
-  padding-top: 8px;
+  right: .25rem;
 }
 
-.photos a span.comments {
+.meta__count {
+  color: #fff;
+  position: absolute;
+}
+
+.meta--comments {
+  background-color: #fff;
+  left: .25rem;
   right: auto;
-  left: .5rem;
+
+  & .meta__count {
+    color: #000;
+  }
 }
 </style>

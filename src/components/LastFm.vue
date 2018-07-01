@@ -45,6 +45,7 @@ export default {
 .last-fm {
   list-style-type: none;
   margin: 0;
+  max-width: 310px;
   padding: 0;
 }
 
