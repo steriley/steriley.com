@@ -31,9 +31,10 @@ app.get('/api/instagram', (req, res) => {
     .then(photos => res.json(photos));
 });
 
-app.get('/api/lastfm', (req, res) => {
+app.get('/api/lastfm/:total?', (req, res) => {
+  console.log(req.params.total);
   lastfm
-    .recentlyPlayed(process.env.LASTFM_USER_ID, process.env.LASTFM_CONSUMER_KEY)
+    .recentlyPlayed(process.env.LASTFM_USER_ID, process.env.LASTFM_CONSUMER_KEY, req.params.total)
     .then(tracks => res.json(tracks));
 });
 

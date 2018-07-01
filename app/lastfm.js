@@ -38,9 +38,9 @@ function formatTracks(json) {
   }));
 }
 
-module.exports.recentlyPlayed = (username, apiKey) =>
+module.exports.recentlyPlayed = (username, apiKey, total) =>
   new Promise((resolve, reject) => {
-    fetch(apiUrl(username, apiKey))
+    fetch(apiUrl(username, apiKey, total))
       .then(res => res.json())
       .then(json => resolve(formatTracks(json)))
       .catch(err => reject(err));

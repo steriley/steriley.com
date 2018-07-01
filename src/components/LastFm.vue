@@ -31,7 +31,7 @@ export default {
   },
 
   mounted() {
-    fetch('/api/lastfm')
+    fetch('/api/lastfm/6')
       .then(data => data.json())
       .then((json) => {
         this.tracks = json;
