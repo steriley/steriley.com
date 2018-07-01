@@ -1,19 +1,18 @@
 <template>
   <ul v-if="photos" class="photo-list">
-    <li v-for="photo in photos" :key="photo.link" class="photo-list__item">
+    <li v-for="photo in photos" :key="photo.link" :data-date="photo.created_time_formatted"
+        class="photo-list__item">
       <a :href="photo.link" class="photo">
         <img :src="photo.images.standard_resolution.url" :alt="photo.caption.text"
              class="photo__img">
 
         <span class="meta">
+          <svg class="meta__icon" xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 100 100">
+            <path d="M29 32c-5 5-5 13 0 18l21 22 21-22c5-5 5-13 0-18-4-5-12-5-17
+                  0l-4 4-4-4c-5-5-13-5-17 0z"/>
+          </svg>
           <span class="meta__count">
             {{ photo.likes.count }}
-          </span>
-        </span>
-
-        <span class="meta meta--comments">
-          <span class="meta__count">
-            {{ photo.comments.count }}
           </span>
         </span>
       </a>
@@ -52,12 +51,53 @@ export default {
 }
 
 .photo-list__item {
-  flex-basis: 14.2857%;
+  flex-basis: calc(14.2857% - 1rem);
+  background-color: #fff;
+  padding-bottom: 2rem;
+  margin: .5rem;
+  box-shadow: rgba(0, 0, 0, .4) 2px 2px 1rem;
+  border-radius: 2px;
+  transform: rotate(-2deg) translate3d(0, 0, 0);
+  transition: transform .2s ease-in;
+
+  &:nth-child(even) {
+    transform: rotate(2deg);
+  }
+
+  &:nth-child(3n) {
+    transform: none;
+    position: relative;
+    top: -5px;
+  }
+
+  &:nth-child(5n) {
+    transform: none;
+    position: relative;
+    top: 5px;
+  }
+
+  &:nth-child(8n) {
+    position: relative;
+    top: 8px;
+    right: 5px;
+  }
+
+  &:hover {
+    transform: rotate(0) translate3d(0, -3%, 0);
+  }
+
+  &::after {
+    content: attr(data-date);
+    font-family: "Pacifico", cursive;
+    position: absolute;
+    bottom: .5rem;
+    left: .25rem;
+    color: rgba(0, 0, 0, .4);
+  }
 }
 
 .photo {
   padding: .25rem;
-  position: relative;
   display: block;
 }
 
@@ -68,18 +108,23 @@ export default {
 
 .meta {
   align-items: center;
-  background-color: #f00;
-  bottom: .25rem;
+  bottom: -.5rem;
   display: flex;
   justify-content: center;
   opacity: .75;
-  padding: .75rem;
   position: absolute;
-  right: .25rem;
+  right: 0;
+}
+
+.meta__icon {
+  fill: #f00;
+  width: 50px;
+  height: auto;
 }
 
 .meta__count {
   color: #fff;
+  font-size: 11px;
   position: absolute;
 }
 

@@ -1,9 +1,18 @@
 const ig = require('instagram-node').instagram();
+const format = require('date-fns/format');
+
+function formatDate(timestamp) {
+  const d = new Date(0);
+  const date = new Date(d.setUTCSeconds(timestamp));
+
+  return format(new Date(date), 'Do MMM YY');
+}
 
 function mapPhoto(photo) {
   return {
     images: photo.images,
     created_time: photo.created_time,
+    created_time_formatted: formatDate(photo.created_time),
     caption: photo.caption,
     comments: photo.comments,
     likes: photo.likes,
