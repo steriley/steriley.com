@@ -2,13 +2,18 @@
   <ol class="last-fm">
     <li v-for="(track, key) in tracks" :key="key" class="last-fm__track">
       <a :href="track.url" class="track">
-        <img :src="track.artwork" :alt="`${track.artist} - ${track.title}`" class="track__cover">
-        <span class="track__artist">{{ track.artist }}</span>
-        <span class="track__title">{{ track.title }}</span>
-        <span :date-time="track.date.utc" class="track__date">{{ track.date.formatted }}</span>
-        <button class="track__video" @click.prevent="loadVideo(track.artist, track.title)">
-          Watch Video
-        </button>
+        <div class="cover">
+          <img :src="track.artwork" :alt="`${track.artist} - ${track.title}`" class="track__cover">
+        </div>
+        <div class="details">
+          <span class="track__artist">{{ track.artist }}</span>
+          <span class="track__title">{{ track.title }}</span>
+          <span :date-time="track.date.utc" :class="{'track__date--now' : track.date.utc === 0}"
+                class="track__date">{{ track.date.formatted }}</span>
+          <button class="track__video" @click.prevent="loadVideo(track.artist, track.title)">
+            Watch Video
+          </button>
+        </div>
       </a>
     </li>
   </ol>
@@ -55,8 +60,8 @@ export default {
 }
 
 .track {
-  display: block;
-  height: 64px;
+  display: flex;
+  min-height: 64px;
   color: #000;
   text-decoration: none;
 
@@ -65,24 +70,22 @@ export default {
   }
 }
 
+.details {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
 .track__cover {
   background: transparent url(/assets/img/no_coverart.png) no-repeat left top;
-  clear: left;
   float: left;
-  height: 64px;
   margin-right: 5px;
-  overflow: hidden;
-  text-indent: -999em;
-  width: 64px;
 }
 
 .track__artist {
   font-weight: 700;
-}
-
-.track__title {
-  overflow: hidden;
-  height: 33px;
 }
 
 .track__date {
@@ -92,18 +95,25 @@ export default {
   right: 0;
 }
 
+.track__date--now {
+  background: url('/icon_eq.gif') no-repeat 0 50%;
+  padding-left: 1rem;
+}
+
 .track__video {
-  background: none;
+  background-color: transparent;
   border: 0;
-  bottom: 0;
   color: #fff;
   font-size: .9em;
   height: auto;
-  left: 70px;
   outline: none;
   padding: 0;
-  position: absolute;
   text-transform: lowercase;
   z-index: 10;
+  align-self: flex-start;
+    bottom: 0;
+  font-size: .9em;
+  position: absolute;
+  left: 0;
 }
 </style>
