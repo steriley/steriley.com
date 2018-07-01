@@ -21,13 +21,17 @@ app.get('/api/twitter', (req, res) => {
     .then(tweet => res.json(tweet));
 });
 
-app.get('/api/instagram', (req, res) => {
+app.get('/api/instagram/:total?', (req, res) => {
   instagram
-    .latestPhotos(process.env.INSTAGRAM_USER_ID, {
-      access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-      client_id: process.env.INSTAGRAM_CLIENT_ID,
-      client_secret: process.env.INSTAGRAM_CLIENT_SECRET,
-    })
+    .latestPhotos(
+      process.env.INSTAGRAM_USER_ID,
+      {
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+        client_id: process.env.INSTAGRAM_CLIENT_ID,
+        client_secret: process.env.INSTAGRAM_CLIENT_SECRET,
+      },
+      req.params.total,
+    )
     .then(photos => res.json(photos));
 });
 

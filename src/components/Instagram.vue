@@ -31,7 +31,7 @@ export default {
   },
 
   mounted() {
-    fetch('/api/instagram')
+    fetch('/api/instagram/14')
       .then(data => data.json())
       .then((json) => {
         this.photos = json;

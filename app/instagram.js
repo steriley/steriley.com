@@ -22,7 +22,7 @@ function mapPhoto(photo) {
   };
 }
 
-module.exports.latestPhotos = (userId, keys) => {
+module.exports.latestPhotos = (userId, keys, total = 4) => {
   ig.use({
     access_token: keys.access_token,
     client_id: keys.client_id,
@@ -30,7 +30,7 @@ module.exports.latestPhotos = (userId, keys) => {
   });
 
   return new Promise((resolve, reject) => {
-    ig.user_media_recent(userId, { count: 14 }, (error, result) => {
+    ig.user_media_recent(userId, { count: total }, (error, result) => {
       if (!error) {
         const photos = result.map(photo => mapPhoto(photo));
 
