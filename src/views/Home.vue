@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-
     <div class="header">
+      <a href="/" class="logo">
+        <img class="logo__img" src="/img/logo_steriley.png" alt="steriley.com">
+      </a>
+
       <Introduction>
         <Twitter/>
       </Introduction>
@@ -64,6 +67,16 @@ export default {
   z-index: 10;
 }
 
+.logo {
+  position: static;
+  margin: 2rem 0 .5rem;
+
+  @media screen and (min-width: 650px) {
+    position: absolute;
+    margin-top: .5rem;
+  }
+}
+
 $skyline-image-height: 140px;
 
 .header {
@@ -71,7 +84,7 @@ $skyline-image-height: 140px;
   background-size: cover;
   min-height: 700px;
   overflow: hidden;
-  padding: 0 .5rem;
+  padding: 1rem .5rem 0;
   position: relative;
 
   &::after {
