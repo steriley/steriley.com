@@ -3,7 +3,7 @@
     <li v-for="photo in photos" :key="photo.link" :data-date="photo.created_time_formatted"
         class="photo-list__item">
       <a :href="photo.link" class="photo">
-        <img :src="photo.images.standard_resolution.url" :alt="photo.caption.text"
+        <img v-lazy="photo.images.standard_resolution.url" :alt="photo.caption.text"
              class="photo__img">
 
         <span class="meta">
@@ -99,11 +99,30 @@ export default {
 .photo {
   padding: .25rem;
   display: block;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: #ddd;
+    top: .25rem;
+    left: .25rem;
+    width: calc(100% - .5rem);
+    padding-bottom: calc(100% - .5rem);
+    z-index: 0;
+  }
 }
 
 .photo__img {
   display: block;
   width: 100%;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+  transition: opacity .2s ease-in;
+
+  &[lazy=loaded] {
+    opacity: 1;
+  }
 }
 
 .meta {

@@ -67,6 +67,7 @@ $skyline-image-height: 140px;
   background-size: cover;
   min-height: $container-height;
   overflow: hidden;
+  padding: 0 2rem;
 
   &::after {
     background: transparent url(/img/bg_skyline2.png) 0 0;

@@ -19,6 +19,7 @@
     "node-fetch": "2.1.2",
     "twitter": "1.7.1",
     "vue": "^2.5.16",
+    "vue-lazyload": "1.2.6",
     "vue-router": "^3.0.1",
     "webpack-bundle-analyzer": "2.13.1"
   },
