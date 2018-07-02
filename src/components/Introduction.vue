@@ -1,22 +1,22 @@
 <template>
   <div class="inner">
     <h1 class="heavy-shadow">Stephen Riley</h1>
-    <h2 class="intro">
+    <div class="intro">
       Experienced Front-end Web Developer with extensive knowledge of W3C Standards based
       development of desktop &amp; mobile HTML5 and Sass based CSS with a sprinkle of JavaScript to
       bring it all together. Possessing a range of core Front-end skills developed while working in
       financial, media, marketing, e-learning and e-commerce environments.
       Located in Manchester, United Kingdom.
-    </h2>
-    <ul id="social-media" class="social-icons">
-      <li class="facebook"><a title="Facebook | Stephen Riley" href="http://www.facebook.com/steriley/">Facebook</a></li>
-      <li class="instagram"><a title="Instagr.am" href="http://instagram.com/steriley/">Instagr.am</a></li>
-      <li class="linkedin"><a title="Stephen Riley - LinkedIn" href="http://uk.linkedin.com/in/steriley228">LinkedIn</a></li>
-      <li class="pinterest"><a title="Pinterest" href="https://www.pinterest.com/riley6206/">Pinterest</a></li>
-      <li class="skype"><a title="Skype" href="skype:steriley?call">Skype</a></li>
-      <li class="twitter"><a title="SteRiley on Twitter" href="http://twitter.com/steriley/">Twitter</a></li>
-      <li class="youtube"><a title="YouTube - steriley's Channel" href="http://www.youtube.com/user/steriley">YouTube</a></li>
-    </ul>
+    </div>
+    <div id="social-media" class="container--flex">
+      <a class="social social--facebook" title="Facebook | Stephen Riley" href="http://www.facebook.com/steriley/">Facebook</a>
+      <a class="social social--instagram" title="Instagr.am" href="http://instagram.com/steriley/">Instagr.am</a>
+      <a class="social social--linkedin" title="Stephen Riley - LinkedIn" href="http://uk.linkedin.com/in/steriley228">LinkedIn</a>
+      <a class="social social--pintrest" title="Pinterest" href="https://www.pinterest.com/riley6206/">Pinterest</a>
+      <a class="social social--skype" title="Skype" href="skype:steriley?call">Skype</a>
+      <a class="social social--twitter" title="SteRiley on Twitter" href="http://twitter.com/steriley/">Twitter</a>
+      <a class="social social--youtube" title="YouTube - steriley's Channel" href="http://www.youtube.com/user/steriley">YouTube</a>
+    </div>
   </div>
 </template>
 
@@ -53,14 +53,57 @@
 }
 
 .intro {
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, .8);
+  font-size: 1.25rem;
   font-weight: 400;
+  margin-bottom: 1.5rem;
   padding: 0 2em;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, .8);
 }
 
-.social-icons {
+.container--flex {
   list-style-type: none;
   display: flex;
   justify-content: center;
+}
+
+.social {
+  background: transparent url(/img/social_icons.png) no-repeat 0 0;
+  display: block;
+  filter: none;
+  height: 65px;
+  outline: none;
+  position: relative;
+  text-indent: -999em;
+  transition: filter .5s;
+  width: 65px;
+  margin: 0 .25rem 1rem;
+
+  &:hover {
+    filter: grayscale(1);
+  }
+}
+
+.social--instagram {
+  background-position: -198px 0;
+}
+
+.social--linkedin {
+  background-position: -330px 0;
+}
+
+.social--pintrest {
+  background-position: -396px 0;
+}
+
+.social--skype {
+  background-position: -462px 0;
+}
+
+.social--twitter {
+  background-position: -528px 0;
+}
+
+.social--youtube {
+  background-position: -660px 0;
 }
 </style>
