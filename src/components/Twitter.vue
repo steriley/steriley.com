@@ -58,13 +58,14 @@ s {
 .tweet {
   background-color: rgba(0, 0, 0, .4);
   border-radius: .25em;
-  // bottom: 1.5em;
+  bottom: 1.5em;
   color: #fff;
   padding: .5em;
-  position: absolute;
+  position: static;
   right: 4em;
   text-align: left;
   z-index: 0;
+  max-width: 320px;
 }
 
 .tweet__avatar {
