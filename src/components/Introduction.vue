@@ -26,10 +26,11 @@
   background-color: rgba(0, 0, 0, .4);
   border-radius: 2px;
   color: #eee;
-  margin: 6rem 3rem 3em;
+  margin: 6rem auto;
   padding: .5em;
   position: relative;
   text-align: center;
+  max-width: 1100px;
 }
 
 .heavy-shadow {

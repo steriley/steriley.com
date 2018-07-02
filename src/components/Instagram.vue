@@ -46,8 +46,7 @@ export default {
   flex-flow: wrap;
   justify-content: center;
   list-style-type: none;
-  margin: 0 auto 2rem;
-  max-width: 1200px;
+  margin-bottom: 2rem;
   padding: 0;
 }
 
