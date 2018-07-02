@@ -1,8 +1,9 @@
 <template>
   <div class="home">
-    <Twitter/>
 
-    <Introduction/>
+    <Introduction>
+      <Twitter/>
+    </Introduction>
 
     <h2 class="cursive">last.fm Recent Scrobbles</h2>
     <LastFm/>

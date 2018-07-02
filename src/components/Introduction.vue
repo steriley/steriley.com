@@ -1,7 +1,7 @@
 <template>
-  <div class="inner">
+  <div class="introduction">
     <h1 class="heavy-shadow">Stephen Riley</h1>
-    <div class="intro">
+    <div class="bio">
       Experienced Front-end Web Developer with extensive knowledge of W3C Standards based
       development of desktop &amp; mobile HTML5 and Sass based CSS with a sprinkle of JavaScript to
       bring it all together. Possessing a range of core Front-end skills developed while working in
@@ -17,15 +17,16 @@
       <a class="social social--twitter" title="SteRiley on Twitter" href="http://twitter.com/steriley/">Twitter</a>
       <a class="social social--youtube" title="YouTube - steriley's Channel" href="http://www.youtube.com/user/steriley">YouTube</a>
     </div>
+    <slot/>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.inner {
+.introduction {
   background-color: rgba(0, 0, 0, .4);
   border-radius: 2px;
   color: #eee;
-  margin: 3em;
+  margin: 6rem 3rem 3em;
   padding: .5em;
   position: relative;
   text-align: center;
@@ -52,7 +53,7 @@
     0 20px 20px rgba(0, 0, 0, .15);
 }
 
-.intro {
+.bio {
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: 1.5rem;

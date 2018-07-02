@@ -55,17 +55,27 @@ s {
   text-decoration: none;
 }
 
+.latest-tweet {
+  max-width: 400px;
+  position: absolute;
+  right: 4em;
+  top: -5.5em;
+  z-index: 0;
+
+  &::after {
+    bottom: -1.5rem;
+    content: url('/img/twitter_bird.png');
+    position: absolute;
+    right: -3.5rem;
+  }
+}
+
 .tweet {
   background-color: rgba(0, 0, 0, .4);
   border-radius: .25em;
-  bottom: 1.5em;
   color: #fff;
   padding: .5em;
-  position: static;
-  right: 4em;
   text-align: left;
-  z-index: 0;
-  max-width: 320px;
 }
 
 .tweet__avatar {
