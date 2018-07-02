@@ -42,12 +42,13 @@ export default {
 
 <style lang="scss" scoped>
 .photo-list {
-  list-style-type: none;
-  margin: 0 0 10px;
-  padding: 0;
   display: flex;
   flex-flow: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0 auto 2rem;
   max-width: 1200px;
+  padding: 0;
 }
 
 .photo-list__item {
