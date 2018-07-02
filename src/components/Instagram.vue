@@ -47,11 +47,11 @@ export default {
   justify-content: center;
   list-style-type: none;
   margin-bottom: 2rem;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 .photo-list__item {
-  flex-basis: calc(14.2857% - 1rem);
+  flex-basis: calc(50% - 1rem);
   background-color: #fff;
   padding-bottom: 2rem;
   margin: .5rem;
@@ -59,6 +59,14 @@ export default {
   border-radius: 2px;
   transform: rotate(-2deg) translate3d(0, 0, 0);
   transition: transform .2s ease-in;
+
+  @media screen and (min-width: 650px) {
+    flex-basis: calc(25% - 1rem);
+  }
+
+  @media screen and (min-width: 1100px) {
+    flex-basis: calc(14.2857% - 1rem);
+  }
 
   &:nth-child(even) {
     transform: rotate(2deg);

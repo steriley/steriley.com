@@ -23,22 +23,23 @@
 
 <style lang="scss" scoped>
 .introduction {
-  background-color: rgba(0, 0, 0, .4);
-  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: .25rem;
   color: #eee;
-  margin: 6rem auto;
-  padding: .5em;
+  margin: 7rem auto;
+  padding: 1rem;
   position: relative;
-  text-align: center;
   max-width: 1100px;
+  z-index: 1;
 }
 
 .heavy-shadow {
   color: #fff;
   margin: 0 0 .25em 0;
-  font-size: 9em;
+  font-size: 8vmax;
   line-height: .9em;
   letter-spacing: -.05em;
+  text-align: center;
   text-transform: uppercase;
   text-shadow:
     0 1px 0 #ccc,
@@ -55,17 +56,17 @@
 }
 
 .bio {
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  padding: 0 2em;
+  font-size: 1rem;
+  margin: 0 auto 1.5rem;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, .8);
+  max-width: 680px;
 }
 
 .container--flex {
   list-style-type: none;
   display: flex;
   justify-content: center;
+  flex-flow: wrap;
 }
 
 .social {
@@ -77,7 +78,7 @@
   position: relative;
   text-indent: -999em;
   transition: filter .5s;
-  width: 65px;
+  min-width: 65px;
   margin: 0 .25rem 1rem;
 
   &:hover {

@@ -7,8 +7,13 @@
       </Introduction>
     </div>
 
-    <h2 class="cursive">last.fm Recent Scrobbles</h2>
-    <LastFm/>
+    <div class="container container--flex">
+      <div class="primary"/>
+      <div class="secondary">
+        <h2 class="cursive">last.fm Recent Scrobbles</h2>
+        <LastFm/>
+      </div>
+    </div>
 
     <div class="container">
       <h2 class="cursive">Latest from Instagram</h2>
@@ -52,6 +57,7 @@ export default {
   font-size: 2em;
   font-weight: normal;
   margin: .5em 0;
+  padding: 0 .5rem;
   position: relative;
   text-shadow: 1px 1px 0 #fff;
   text-transform: lowercase;
@@ -61,20 +67,19 @@ export default {
 $skyline-image-height: 140px;
 
 .header {
-  $container-height: 700px;
-
-  background: transparent url(/img/siloso.jpg) no-repeat 0 0 fixed;
+  background: transparent url(/img/siloso.jpg) no-repeat 50% 0 fixed;
   background-size: cover;
-  min-height: $container-height;
+  min-height: 700px;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 0 .5rem;
+  position: relative;
 
   &::after {
     background: transparent url(/img/bg_skyline2.png) 0 0;
     content: '';
     height: $skyline-image-height;
     position: absolute;
-    top: $container-height - $skyline-image-height;
+    bottom: 0;
     left: 0;
     width: 100%;
   }
@@ -83,6 +88,11 @@ $skyline-image-height: 140px;
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.container--flex {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .footer {

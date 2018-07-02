@@ -51,7 +51,7 @@ export default {
   list-style-type: none;
   margin: 0;
   max-width: 310px;
-  padding: 0;
+  padding: 0 .5rem;
 }
 
 .last-fm__track {
@@ -101,19 +101,18 @@ export default {
 }
 
 .track__video {
+  align-self: flex-start;
   background-color: transparent;
   border: 0;
+  bottom: 0;
   color: #fff;
   font-size: .9em;
   height: auto;
+  left: 0;
   outline: none;
   padding: 0;
+  position: absolute;
   text-transform: lowercase;
   z-index: 10;
-  align-self: flex-start;
-    bottom: 0;
-  font-size: .9em;
-  position: absolute;
-  left: 0;
 }
 </style>

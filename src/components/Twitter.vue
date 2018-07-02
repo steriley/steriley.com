@@ -58,20 +58,20 @@ s {
 .latest-tweet {
   max-width: 400px;
   position: absolute;
-  right: 4em;
-  top: -5.5em;
+  right: 0;
+  top: -6.5em;
   z-index: 0;
 
   &::after {
-    bottom: -1.5rem;
+    bottom: -2.5rem;
     content: url('/img/twitter_bird.png');
     position: absolute;
-    right: -3.5rem;
+    right: 0;
   }
 }
 
 .tweet {
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .5);
   border-radius: .25em;
   color: #fff;
   padding: .5em;
