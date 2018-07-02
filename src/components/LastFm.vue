@@ -96,7 +96,7 @@ export default {
 }
 
 .track__date--now {
-  background: url('/icon_eq.gif') no-repeat 0 50%;
+  background: url('/img/icon_eq.gif') no-repeat 0 50%;
   padding-left: 1rem;
 }
 
