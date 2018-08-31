@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test:watch": "vue-cli-service test:unit --watch",
     "test:unit": "vue-cli-service test:unit",
     "start": "node app/index.js",
     "start:dev": "nodemon -r dotenv/config app/index.js"
@@ -104,7 +105,7 @@
       "jest-serializer-vue"
     ],
     "testMatch": [
-      "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"
+      "<rootDir>/(tests/unit/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))"
     ],
     "collectCoverageFrom": [
       "<rootDir>/src/**.(js|vue)"
