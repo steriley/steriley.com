@@ -21,6 +21,13 @@
 export default {
   name: 'Twitter',
 
+  props: {
+    fetch: {
+      type: Function,
+      default: () => {},
+    },
+  },
+
   data() {
     return {
       tweet: null,
@@ -38,8 +45,7 @@ export default {
   },
 
   mounted() {
-    fetch('/api/twitter')
-      .then(data => data.json())
+    this.fetch('twitter')
       .then((json) => {
         this.tweet = json;
       });

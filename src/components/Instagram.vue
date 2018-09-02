@@ -24,6 +24,13 @@
 export default {
   name: 'Instagram',
 
+  props: {
+    fetch: {
+      type: Function,
+      default: () => {},
+    },
+  },
+
   data() {
     return {
       photos: null,
@@ -31,8 +38,7 @@ export default {
   },
 
   mounted() {
-    fetch('/api/instagram/14')
-      .then(data => data.json())
+    this.fetch('instagram/14')
       .then((json) => {
         this.photos = json;
       });

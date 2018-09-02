@@ -6,7 +6,7 @@
       </a>
 
       <Introduction>
-        <Twitter/>
+        <Twitter :fetch="fetch"/>
       </Introduction>
     </div>
 
@@ -14,13 +14,13 @@
       <div class="primary"/>
       <div class="secondary">
         <h2 class="cursive">last.fm Recent Scrobbles</h2>
-        <LastFm/>
+        <LastFm :fetch="fetch"/>
       </div>
     </div>
 
     <div class="container">
       <h2 class="cursive">Latest from Instagram</h2>
-      <Instagram/>
+      <Instagram :fetch="fetch"/>
     </div>
 
     <div class="footer">
@@ -47,6 +47,13 @@ export default {
   computed: {
     thisYear() {
       return new Date().getFullYear();
+    },
+  },
+
+  methods: {
+    fetch(endpoint) {
+      return fetch(`/api/${endpoint}`)
+        .then(data => data.json());
     },
   },
 };

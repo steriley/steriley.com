@@ -3,7 +3,7 @@
     <li v-for="(track, key) in tracks" :key="key" class="last-fm__track">
       <a :href="track.url" class="track">
         <div class="cover">
-          <img :src="track.artwork" :alt="`${track.artist} - ${track.title}`" class="track__cover">
+          <img :src="(track.artwork !== '') ? track.artwork : '/img/no-cover-art.png'" :alt="`${track.artist} - ${track.title}`" class="track__cover">
         </div>
         <div class="details">
           <span class="track__artist">{{ track.artist }}</span>
@@ -23,6 +23,13 @@
 export default {
   name: 'LastFm',
 
+  props: {
+    fetch: {
+      type: Function,
+      default: () => {},
+    },
+  },
+
   data() {
     return {
       tracks: [],
@@ -31,8 +38,7 @@ export default {
   },
 
   mounted() {
-    fetch('/api/lastfm/6')
-      .then(data => data.json())
+    this.fetch('lastfm/6')
       .then((json) => {
         this.tracks = json;
       });
@@ -79,7 +85,6 @@ export default {
 }
 
 .track__cover {
-  background: transparent url(/assets/img/no_coverart.png) no-repeat left top;
   float: left;
   margin-right: 5px;
 }
