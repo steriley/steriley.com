@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const dateFns = require('date-fns');
 
 function apiUrl(username, apiKey, totalTracks = 5) {
-  const url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
+  const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
   const params = `&user=${username}&limit=${totalTracks}&api_key=${apiKey}&format=json`;
 
   return `${url}${params}`;
