@@ -53,7 +53,8 @@ export default {
   methods: {
     fetch(endpoint) {
       return fetch(`/api/${endpoint}`)
-        .then(data => data.json());
+        .then(data => data.json())
+        .catch(err => console.info(err));
     },
   },
 };
