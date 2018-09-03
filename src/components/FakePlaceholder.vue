@@ -9,6 +9,9 @@
 </template>
 
 <style lang="scss" scoped>
+$size: 4rem;
+$margin: .5rem;
+
 .fake-container {
   display: flex;
 }
@@ -46,9 +49,6 @@
   width: 100%;
 }
 
-$size: 4rem;
-$margin: .5rem;
-
 .fake-image {
   flex-shrink: 0;
   height: $size;
@@ -64,5 +64,26 @@ $margin: .5rem;
 .fake-text {
   height: ($size - $margin) / 1.5;
   width: 100%;
+}
+
+.fake-container--column {
+  flex-direction: column;
+  padding: $margin;
+
+  .fake {
+    opacity: 1;
+  }
+
+  .fake-image {
+    width: 100%;
+    padding-bottom: 50%;
+    margin-right: 0;
+    margin-bottom: $margin;
+  }
+
+  .fake-text,
+  .fake-header {
+    display: none;
+  }
 }
 </style>

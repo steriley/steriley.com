@@ -11,8 +11,6 @@
 import FakePlaceholder from '@/components/FakePlaceholder.vue';
 import LastFmTrack from '@/components/LastFmTrack.vue';
 
-const tracksToDisplay = 6;
-
 export default {
   name: 'LastFm',
 
@@ -30,11 +28,11 @@ export default {
 
   data: () => ({
     displayVideo: false,
-    tracks: new Array(tracksToDisplay).fill(0),
+    tracks: new Array(6).fill(0),
   }),
 
   mounted() {
-    this.fetch(`lastfm/${tracksToDisplay}`)
+    this.fetch(`lastfm/${this.tracks.length}`)
       .then((json) => {
         this.tracks = json;
       });
@@ -52,8 +50,11 @@ export default {
 .last-fm {
   list-style-type: none;
   margin: 0;
-  max-width: 310px;
   padding: 0 .5rem;
+
+  @media screen and (min-width: 1024px) {
+    max-width: 310px;
+  }
 }
 
 .last-fm__track {

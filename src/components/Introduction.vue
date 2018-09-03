@@ -1,35 +1,41 @@
 <template>
-  <div class="introduction">
-    <h1 class="heavy-shadow">Stephen Riley</h1>
-    <div class="bio">
-      Experienced Front-end Web Developer with extensive knowledge of W3C Standards based
-      development of desktop &amp; mobile HTML5 and Sass based CSS with a sprinkle of JavaScript to
-      bring it all together. Possessing a range of core Front-end skills developed while working in
-      financial, media, marketing, e-learning and e-commerce environments.
-      Located in Manchester, United Kingdom.
-    </div>
-    <div id="social-media" class="container--flex">
-      <a class="social social--facebook" title="Facebook | Stephen Riley" href="http://www.facebook.com/steriley/">Facebook</a>
-      <a class="social social--instagram" title="Instagr.am" href="http://instagram.com/steriley/">Instagr.am</a>
-      <a class="social social--linkedin" title="Stephen Riley - LinkedIn" href="http://uk.linkedin.com/in/steriley228">LinkedIn</a>
-      <a class="social social--pintrest" title="Pinterest" href="https://www.pinterest.com/riley6206/">Pinterest</a>
-      <a class="social social--skype" title="Skype" href="skype:steriley?call">Skype</a>
-      <a class="social social--twitter" title="SteRiley on Twitter" href="http://twitter.com/steriley/">Twitter</a>
-      <a class="social social--youtube" title="YouTube - steriley's Channel" href="http://www.youtube.com/user/steriley">YouTube</a>
-    </div>
+  <div class="wrapper">
     <slot/>
+    <div class="introduction">
+      <h1 class="heavy-shadow">Stephen Riley</h1>
+      <div class="bio">
+        Experienced Front-end Web Developer with extensive knowledge of W3C Standards based
+        development of desktop &amp; mobile HTML5 and Sass based CSS with a sprinkle of JavaScript
+        to bring it all together. Possessing a range of core Front-end skills developed while
+        working in financial, media, marketing, e-learning and e-commerce environments.
+        Located in Manchester, United Kingdom.
+      </div>
+      <div id="social-media" class="container--flex">
+        <a class="social social--facebook" title="Facebook | Stephen Riley" href="http://www.facebook.com/steriley/">Facebook</a>
+        <a class="social social--instagram" title="Instagr.am" href="http://instagram.com/steriley/">Instagr.am</a>
+        <a class="social social--linkedin" title="Stephen Riley - LinkedIn" href="http://uk.linkedin.com/in/steriley228">LinkedIn</a>
+        <a class="social social--pintrest" title="Pinterest" href="https://www.pinterest.com/riley6206/">Pinterest</a>
+        <a class="social social--skype" title="Skype" href="skype:steriley?call">Skype</a>
+        <a class="social social--twitter" title="SteRiley on Twitter" href="http://twitter.com/steriley/">Twitter</a>
+        <a class="social social--youtube" title="YouTube - steriley's Channel" href="http://www.youtube.com/user/steriley">YouTube</a>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 3rem auto 7rem;
+}
+
 .introduction {
   background-color: rgba(0, 0, 0, .5);
   border-radius: .25rem;
   color: #eee;
-  margin: 7rem auto;
+  margin-top: 1rem;
   padding: 1rem;
-  position: relative;
-  max-width: 1100px;
   z-index: 1;
 }
 

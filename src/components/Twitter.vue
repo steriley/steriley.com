@@ -14,12 +14,19 @@
       </small>
       <p class="tweet__text">{{ tweet.text }}</p>
     </div>
+    <FakePlaceholder v-else/>
   </div>
 </template>
 
 <script>
+import FakePlaceholder from '@/components/FakePlaceholder.vue';
+
 export default {
   name: 'Twitter',
+
+  components: {
+    FakePlaceholder,
+  },
 
   props: {
     fetch: {
@@ -62,10 +69,11 @@ s {
 }
 
 .latest-tweet {
-  max-width: 400px;
-  position: absolute;
+  min-width: 100%;
+  max-width: 800px;
+  position: relative;
   right: 0;
-  top: -6.5em;
+  top: 0;
   z-index: 0;
 
   &::after {
@@ -73,6 +81,11 @@ s {
     content: url('/img/twitter_bird.png');
     position: absolute;
     right: 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 0 0 0 25%;
+    min-width: 75%;
   }
 }
 
@@ -82,6 +95,7 @@ s {
   color: #fff;
   padding: .5em;
   text-align: left;
+
 }
 
 .tweet__avatar {

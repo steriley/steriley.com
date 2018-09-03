@@ -76,10 +76,11 @@ export default {
 }
 
 .logo {
-  position: static;
+  position: relative;
   margin: 2rem 0 .5rem;
+  z-index: 2;
 
-  @media screen and (min-width: 650px) {
+  @media screen and (min-width: 1024px) {
     position: absolute;
     margin-top: .5rem;
   }
@@ -113,7 +114,10 @@ $skyline-image-height: 140px;
 
 .container--flex {
   display: flex;
-  justify-content: flex-end;
+
+  @media screen and (min-width: 650px) {
+    justify-content: flex-end;
+  }
 }
 
 .footer {

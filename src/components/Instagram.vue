@@ -2,7 +2,7 @@
   <ul v-if="photos" class="photo-list">
     <li v-for="photo in photos" :key="photo.link" :data-date="photo.created_time_formatted"
         class="photo-list__item">
-      <a :href="photo.link" class="photo">
+      <a v-if="photo" :href="photo.link" class="photo">
         <img v-lazy="photo.images.standard_resolution.url" :alt="photo.caption.text"
              class="photo__img">
 
@@ -16,13 +16,23 @@
           </span>
         </span>
       </a>
+      <FakePlaceholder
+        v-else
+        class="fake-container--column"
+      />
     </li>
   </ul>
 </template>
 
 <script>
+import FakePlaceholder from '@/components/FakePlaceholder.vue';
+
 export default {
   name: 'Instagram',
+
+  components: {
+    FakePlaceholder,
+  },
 
   props: {
     fetch: {
@@ -33,12 +43,12 @@ export default {
 
   data() {
     return {
-      photos: null,
+      photos: new Array(14).fill(0),
     };
   },
 
   mounted() {
-    this.fetch('instagram/14')
+    this.fetch(`instagram/${this.photos.length}`)
       .then((json) => {
         this.photos = json;
       });
