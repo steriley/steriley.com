@@ -13,15 +13,15 @@ app.get('/', (req, res) => {
   res.json('hello world');
 });
 
-app.get('/api/twitter', cache('5 minutes'), (req, res) => {
-  twitter
-    .lastTweet('SteRiley', {
-      consumer_key: process.env.TWITTER_CONSUMER_KEY,
-      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-      access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-      access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-    })
-    .then(tweet => res.json(tweet));
+app.get('/api/twitter', cache('5 minutes'), async (req, res) => {
+  const tweet = await twitter.lastTweet('SteRiley', {
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  });
+
+  res.json(tweet);
 });
 
 app.get('/api/instagram/:total?', cache('1 hour'), (req, res) => {
