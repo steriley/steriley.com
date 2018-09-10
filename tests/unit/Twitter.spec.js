@@ -2,11 +2,11 @@ const twitter = require('../../app/twitter');
 const mockTweets = require('../mocks/tweets');
 
 describe('twitter.js', () => {
-  it('returns a single tweet', () => {
+  it('returns a single tweet', async () => {
     twitter.lastTweet = jest.fn().mockImplementation(() =>
-      twitter.getTweet(mockTweets));
+      Promise.resolve(twitter.getTweet(mockTweets)));
 
-    const tweet = twitter.lastTweet('UserName', {});
+    const tweet = await twitter.lastTweet('UserName', {});
 
     expect(tweet).toEqual({
       created: {
