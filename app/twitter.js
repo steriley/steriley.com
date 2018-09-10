@@ -22,6 +22,14 @@ function mapTweet(tweet) {
   };
 }
 
+function getTweet(tweets) {
+  const lastNoneReply = tweets.filter(tweet => tweet.in_reply_to_user_id === null).shift();
+
+  return mapTweet(lastNoneReply);
+}
+
+module.exports.getTweet = getTweet;
+
 module.exports.lastTweet = (screenName, keys) => {
   const client = new Twitter({
     consumer_key: keys.consumer_key,
@@ -32,13 +40,11 @@ module.exports.lastTweet = (screenName, keys) => {
 
   return new Promise((resolve, reject) => {
     client.get('statuses/user_timeline', { screenName }, (error, tweets) => {
-      if (!error) {
-        const lastNoneReply = tweets.filter(tweet => tweet.in_reply_to_user_id === null).shift();
-
-        return resolve(mapTweet(lastNoneReply));
+      if (error) {
+        return reject(error);
       }
 
-      return reject(error);
+      return resolve(getTweet(tweets));
     });
   });
 };

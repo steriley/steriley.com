@@ -2,14 +2,11 @@ const twitter = require('../../app/twitter');
 const mockTweets = require('../mocks/tweets');
 
 describe('twitter.js', () => {
-  it.skip('returns a single tweet', () => {
-    const tweeter = twitter.get({
-      Twitter: {
-        get: jest.fn(() => tweeter.mapTweet(tweeter.getLastNoneReply(mockTweets))),
-      },
-    });
+  it('returns a single tweet', () => {
+    twitter.lastTweet = jest.fn().mockImplementation(() =>
+      twitter.getTweet(mockTweets));
 
-    const tweet = tweeter.getAllTweets();
+    const tweet = twitter.lastTweet('UserName', {});
 
     expect(tweet).toEqual({
       created: {
