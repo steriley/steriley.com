@@ -10,7 +10,7 @@ const cache = apicache.middleware;
 const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-  res.json('hello world');
+  res.json('hello world.');
 });
 
 app.get('/api/twitter', cache('5 minutes'), async (req, res) => {

@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && yarn run build:functions",
+    "build:functions": "netlify-lambda build src/lambda",
     "lint": "vue-cli-service lint",
     "test:watch": "vue-cli-service test:unit --watch",
     "test:unit": "vue-cli-service test:unit",
     "start": "node app/index.js",
-    "start:dev": "nodemon -r dotenv/config app/index.js"
+    "start:dev": "nodemon -r dotenv/config app/index.js",
+    "start:app": "npm-run-all --parallel start:dev serve start:server",
+    "start:server": "netlify-lambda serve src/lambda"
   },
   "dependencies": {
     "apicache": "1.2.1",
@@ -33,8 +36,10 @@
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
+    "netlify-lambda": "0.4.0",
     "node-sass": "^4.9.0",
     "nodemon": "1.17.5",
+    "npm-run-all": "4.1.3",
     "sass-loader": "^7.0.1",
     "stylelint": "9.3.0",
     "stylelint-config-standard": "18.2.0",
