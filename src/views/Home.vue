@@ -11,16 +11,14 @@
     </div>
 
     <div class="container container--flex">
-      <div class="primary"/>
+      <div class="primary">
+        <h2 class="cursive">Latest from Instagram</h2>
+        <Instagram :fetch="fetch"/>
+      </div>
       <div class="secondary">
         <h2 class="cursive">last.fm Recent Scrobbles</h2>
         <LastFm :fetch="fetch"/>
       </div>
-    </div>
-
-    <div class="container">
-      <h2 class="cursive">Latest from Instagram</h2>
-      <Instagram :fetch="fetch"/>
     </div>
 
     <div class="footer">
@@ -115,9 +113,19 @@ $skyline-image-height: 140px;
 
 .container--flex {
   display: flex;
+  flex-direction: column;
 
   @media screen and (min-width: 650px) {
-    justify-content: flex-end;
+    flex-direction: row;
+  }
+}
+
+.secondary {
+  min-width: 330px;
+  order: -1;
+
+  @media screen and (min-width: 650px) {
+    order: 0;
   }
 }
 

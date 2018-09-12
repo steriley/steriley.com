@@ -43,7 +43,7 @@ export default {
 
   data() {
     return {
-      photos: new Array(14).fill(0),
+      photos: new Array(8).fill(0),
     };
   },
 
@@ -121,8 +121,13 @@ export default {
 }
 
 .photo {
+  min-width: 120px;
   padding: .25rem;
   display: block;
+
+  @media screen and (min-width: 650px) {
+    min-width: 180px;
+  }
 
   &::before {
     content: '';
