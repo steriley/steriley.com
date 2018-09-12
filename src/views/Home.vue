@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import Raven from 'raven-js';
 import Introduction from '@/components/Introduction.vue';
 import LastFm from '@/components/LastFm.vue';
 import Twitter from '@/components/Twitter.vue';
@@ -54,7 +55,7 @@ export default {
     fetch(endpoint) {
       return fetch(`/api/${endpoint}`)
         .then(data => data.json())
-        .catch(err => console.info(err));
+        .catch(err => Raven.captureException(err));
     },
   },
 };

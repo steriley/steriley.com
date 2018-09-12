@@ -52,7 +52,8 @@ export default {
   },
 
   mounted() {
-    this.fetch('twitter')
+    fetch('/.netlify/functions/twitter')
+      .then(data => data.json())
       .then((json) => {
         this.tweet = json;
       });
