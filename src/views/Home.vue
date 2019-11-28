@@ -25,6 +25,8 @@
       </div>
     </div>
 
+    <ContactForm />
+
     <div class="footer">
       Copyright &copy; 2004 &ndash; {{ thisYear }} Stephen Riley
     </div>
@@ -36,6 +38,7 @@ import Introduction from '@/components/Introduction.vue';
 import LastFm from '@/components/LastFm.vue';
 import Twitter from '@/components/Twitter.vue';
 import Instagram from '@/components/Instagram.vue';
+import ContactForm from '@/components/ContactForm.vue';
 
 export default {
   name: 'Home',
@@ -44,6 +47,7 @@ export default {
     LastFm,
     Twitter,
     Instagram,
+    ContactForm,
   },
 
   computed: {
