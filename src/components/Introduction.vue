@@ -87,10 +87,10 @@
 }
 
 .bio {
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin: 0 auto 1.5rem;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
-  max-width: 680px;
+  max-width: 800px;
 }
 
 .container--flex {
