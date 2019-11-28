@@ -2,7 +2,7 @@
   <div class="latest-tweet">
     <div v-if="tweet" class="tweet">
       <a :href="tweetUrl" class="tweet__avatar">
-        <img :src="tweet.user.profile_image_url_https" :alt="tweet.user.name">
+        <img :src="tweet.user.profile_image_url_https" :alt="tweet.user.name" />
       </a>
       <a :href="userProfileUrl" class="tweet__username">
         <s>@</s>{{ tweet.user.screen_name }}
@@ -14,7 +14,7 @@
       </small>
       <p class="tweet__text">{{ tweet.text }}</p>
     </div>
-    <FakePlaceholder v-else/>
+    <FakePlaceholder v-else />
   </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
   mounted() {
     fetch('/.netlify/functions/twitter')
       .then(data => data.json())
-      .then((json) => {
+      .then(json => {
         this.tweet = json;
       });
   },
@@ -91,21 +91,20 @@ s {
 }
 
 .tweet {
-  background-color: rgba(0, 0, 0, .5);
-  border-radius: .25em;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.25em;
   color: #fff;
-  padding: .5em;
+  padding: 0.5em;
   text-align: left;
-
 }
 
 .tweet__avatar {
   float: left;
-  margin-right: .25em;
+  margin-right: 0.25em;
 }
 
 .tweet__username {
-  margin-right: .25em;
+  margin-right: 0.25em;
 }
 
 .tweet__text {

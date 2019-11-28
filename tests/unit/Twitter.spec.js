@@ -3,8 +3,9 @@ const mockTweets = require('../mocks/tweets');
 
 describe('twitter.js', () => {
   it('returns a single tweet', async () => {
-    twitter.lastTweet = jest.fn().mockImplementation(() =>
-      Promise.resolve(twitter.getTweet(mockTweets)));
+    twitter.lastTweet = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve(twitter.getTweet(mockTweets)));
 
     const tweet = await twitter.lastTweet('UserName', {});
 

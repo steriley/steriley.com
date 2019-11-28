@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const dateFns = require('date-fns');
+const { formatDistance } = require('date-fns');
 
 function apiUrl(username, apiKey, totalTracks = 5) {
   const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
@@ -19,7 +19,7 @@ function formatDate(obj) {
     const past = new Date(d.setUTCSeconds(obj.uts));
 
     date.utc = past.getTime();
-    date.formatted = dateFns.distanceInWords(new Date(), past, {
+    date.formatted = formatDistance(past, new Date(), {
       includeSeconds: true,
       addSuffix: true,
     });

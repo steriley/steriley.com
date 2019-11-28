@@ -1,23 +1,23 @@
 <template>
   <div class="fake-container">
-    <div class="fake fake-image"/>
+    <div class="fake fake-image" />
     <div class="fake-content">
-      <div class="fake fake-header"/>
-      <div class="fake fake-text"/>
+      <div class="fake fake-header" />
+      <div class="fake fake-text" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 $size: 4rem;
-$margin: .5rem;
+$margin: 0.5rem;
 
 .fake-container {
   display: flex;
 }
 
 .fake {
-  opacity: .3;
+  opacity: 0.3;
   animation-duration: 3s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
@@ -26,13 +26,12 @@ $margin: .5rem;
   background-color: #f2f2f2;
   background-repeat: no-repeat;
   background-size: 300px 300px;
-  background-image:
-    linear-gradient(
-      to left,
-      #f2f2f2 0%,
-      #ccc 50%,
-      #f2f2f2 100%
-    );
+  background-image: linear-gradient(
+    to left,
+    #f2f2f2 0%,
+    #ccc 50%,
+    #f2f2f2 100%
+  );
 }
 
 @keyframes placeholder-shimmer {

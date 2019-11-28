@@ -1,8 +1,8 @@
 <template>
   <ol class="last-fm">
     <li v-for="(track, key) in tracks" :key="key" class="last-fm__track">
-      <LastFmTrack v-if="track" :track="track"/>
-      <FakePlaceholder v-else/>
+      <LastFmTrack v-if="track" :track="track" />
+      <FakePlaceholder v-else />
     </li>
   </ol>
 </template>
@@ -32,10 +32,9 @@ export default {
   }),
 
   mounted() {
-    this.fetch(`lastfm/${this.tracks.length}`)
-      .then((json) => {
-        this.tracks = json;
-      });
+    this.fetch(`lastfm/${this.tracks.length}`).then(json => {
+      this.tracks = json;
+    });
   },
 
   methods: {
@@ -50,7 +49,7 @@ export default {
 .last-fm {
   list-style-type: none;
   margin: 0;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 
   @media screen and (min-width: 1024px) {
     max-width: 310px;

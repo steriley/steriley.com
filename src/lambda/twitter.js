@@ -1,5 +1,8 @@
 const Twitter = require('twitter');
-const dateFns = require('date-fns');
+const { format } = require('date-fns');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 function mapTweet(tweet) {
   const isoDate = tweet.created_at;
@@ -7,8 +10,8 @@ function mapTweet(tweet) {
   return {
     created: {
       iso: isoDate,
-      short: dateFns.format(new Date(isoDate), 'DD MMM'),
-      time: dateFns.format(new Date(isoDate), 'h:mm A - D MMM YY'),
+      short: format(new Date(isoDate), 'dd LLL'),
+      time: format(new Date(isoDate), 'p - d LLL yy'),
     },
     id_str: tweet.id_str,
     text: tweet.text,
@@ -23,11 +26,12 @@ function mapTweet(tweet) {
 }
 
 function getTweet(tweets) {
-  const lastNoneReply = tweets.filter(tweet => tweet.in_reply_to_user_id === null).shift();
+  const lastNoneReply = tweets
+    .filter(tweet => tweet.in_reply_to_user_id === null)
+    .shift();
 
   return mapTweet(lastNoneReply);
 }
-
 
 function lastTweet(screenName) {
   const client = new Twitter({

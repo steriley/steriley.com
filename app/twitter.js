@@ -23,7 +23,9 @@ function mapTweet(tweet) {
 }
 
 function getTweet(tweets) {
-  const lastNoneReply = tweets.filter(tweet => tweet.in_reply_to_user_id === null).shift();
+  const lastNoneReply = tweets
+    .filter(tweet => tweet.in_reply_to_user_id === null)
+    .shift();
 
   return mapTweet(lastNoneReply);
 }

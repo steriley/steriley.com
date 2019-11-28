@@ -40,7 +40,11 @@ app.get('/api/instagram/:total?', cache('1 hour'), (req, res) => {
 
 app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
   lastfm
-    .recentlyPlayed(process.env.LASTFM_USER_ID, process.env.LASTFM_CONSUMER_KEY, req.params.total)
+    .recentlyPlayed(
+      process.env.LASTFM_USER_ID,
+      process.env.LASTFM_CONSUMER_KEY,
+      req.params.total,
+    )
     .then(tracks => res.json(tracks));
 });
 

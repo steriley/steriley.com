@@ -5,7 +5,7 @@ function formatDate(timestamp) {
   const d = new Date(0);
   const date = new Date(d.setUTCSeconds(timestamp));
 
-  return format(new Date(date), 'Do MMM YY');
+  return format(new Date(date), 'do LLL yy');
 }
 
 function mapPhoto(photo) {

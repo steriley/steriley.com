@@ -1,3 +1,4 @@
 [build]
-  Functions = "functions"
+  command = "yarn build"
+  functions = "functions" #  netlify-lambda reads this
   publish = "dist"

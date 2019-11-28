@@ -2,22 +2,26 @@
   <div class="home">
     <div class="header">
       <a href="/" class="logo">
-        <img class="logo__img" src="/img/logo_steriley.png" alt="steriley.com">
+        <img
+          class="logo__img"
+          src="/img/logo_steriley.png"
+          alt="steriley.com"
+        />
       </a>
 
       <Introduction>
-        <Twitter :fetch="fetch"/>
+        <Twitter :fetch="fetch" />
       </Introduction>
     </div>
 
     <div class="container container--flex">
       <div class="primary">
         <h2 class="cursive">Latest from Instagram</h2>
-        <Instagram :fetch="fetch"/>
+        <Instagram :fetch="fetch" />
       </div>
       <div class="secondary">
         <h2 class="cursive">last.fm Recent Scrobbles</h2>
-        <LastFm :fetch="fetch"/>
+        <LastFm :fetch="fetch" />
       </div>
     </div>
 
@@ -28,7 +32,6 @@
 </template>
 
 <script>
-import Raven from 'raven-js';
 import Introduction from '@/components/Introduction.vue';
 import LastFm from '@/components/LastFm.vue';
 import Twitter from '@/components/Twitter.vue';
@@ -51,9 +54,7 @@ export default {
 
   methods: {
     fetch(endpoint) {
-      return fetch(`/api/${endpoint}`)
-        .then(data => data.json())
-        .catch(err => Raven.captureException(err));
+      return fetch(`/api/${endpoint}`).then(data => data.json());
     },
   },
 };
@@ -63,11 +64,11 @@ export default {
 .cursive {
   clear: both;
   color: #181f63;
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
   font-size: 2em;
   font-weight: normal;
-  margin: .5em 0;
-  padding: 0 .5rem;
+  margin: 0.5em 0;
+  padding: 0 0.5rem;
   position: relative;
   text-shadow: 1px 1px 0 #fff;
   text-transform: lowercase;
@@ -76,12 +77,12 @@ export default {
 
 .logo {
   position: relative;
-  margin: 2rem 0 .5rem;
+  margin: 2rem 0 0.5rem;
   z-index: 2;
 
   @media screen and (min-width: 1024px) {
     position: absolute;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }
 
@@ -92,7 +93,7 @@ $skyline-image-height: 140px;
   background-size: cover;
   min-height: 700px;
   overflow: hidden;
-  padding: 1rem .5rem 0;
+  padding: 1rem 0.5rem 0;
   position: relative;
 
   &::after {

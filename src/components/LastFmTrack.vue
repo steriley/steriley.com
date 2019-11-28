@@ -2,17 +2,24 @@
   <a :href="track.url" class="track">
     <div class="cover">
       <img
-        :src="(track.artwork !== '') ? track.artwork : '/img/no-cover-art.png'"
+        :src="track.artwork !== '' ? track.artwork : '/img/no-cover-art.png'"
         :alt="`${track.artist} - ${track.title}`"
         class="track__cover"
-      >
+      />
     </div>
     <div class="details">
       <span class="track__artist">{{ track.artist }}</span>
       <span class="track__title">{{ track.title }}</span>
-      <span :date-time="track.date.utc" :class="{'track__date--now' : track.date.utc === 0}"
-            class="track__date">{{ track.date.formatted }}</span>
-      <button class="track__video" @click.prevent="loadVideo(track.artist, track.title)">
+      <span
+        :date-time="track.date.utc"
+        :class="{ 'track__date--now': track.date.utc === 0 }"
+        class="track__date"
+        >{{ track.date.formatted }}</span
+      >
+      <button
+        class="track__video"
+        @click.prevent="loadVideo(track.artist, track.title)"
+      >
         Watch Video
       </button>
     </div>
@@ -67,7 +74,7 @@ export default {
 
 .track__date {
   bottom: 0;
-  font-size: .9em;
+  font-size: 0.9em;
   position: absolute;
   right: 0;
 }
@@ -83,7 +90,7 @@ export default {
   border: 0;
   bottom: 0;
   color: #fff;
-  font-size: .9em;
+  font-size: 0.9em;
   height: auto;
   left: 0;
   outline: none;
@@ -93,4 +100,3 @@ export default {
   z-index: 10;
 }
 </style>
-
