@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --report && yarn run build:functions",
+    "build": "vue-cli-service build --modern --report && yarn run build:functions",
     "build:functions": "netlify-lambda build src/lambda",
     "lint": "vue-cli-service lint",
     "test:watch": "vue-cli-service test:unit --watch",
@@ -15,9 +15,11 @@
     "start:server": "netlify-lambda serve src/lambda"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "@sentry/browser": "^5.9.1",
     "@sentry/integrations": "^5.8.0",
     "apicache": "^1.5.2",
+    "body-parser": "^1.19.0",
     "core-js": "^3.4.3",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",

@@ -9,5 +9,10 @@ module.exports = {
         pathRewrite: { '^/.netlify/functions': '' },
       },
     },
+
+    overlay: {
+      warnings: false,
+      errors: false,
+    },
   },
 };

@@ -1,13 +1,18 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const apicache = require('apicache');
 
-const twitter = require('./twitter');
+const mail = require('./mail');
 const instagram = require('./instagram');
 const lastfm = require('./lastfm');
+const twitter = require('./twitter');
 
 const app = express();
 const cache = apicache.middleware;
 const PORT = process.env.PORT || 5000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.json('hello world.');
@@ -46,6 +51,11 @@ app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
       req.params.total,
     )
     .then(tracks => res.json(tracks));
+});
+
+app.post('/api/contact', (req, res) => {
+  mail.send(req.body)
+    .then(response => res.json(response));
 });
 
 // eslint-disable-next-line no-console

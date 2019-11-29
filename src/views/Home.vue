@@ -16,11 +16,11 @@
 
     <div class="container container--flex">
       <div class="primary">
-        <h2 class="cursive">Latest from Instagram</h2>
+        <FancyHeader>Latest from Instagram</FancyHeader>
         <Instagram :fetch="fetch" />
       </div>
       <div class="secondary">
-        <h2 class="cursive">last.fm Recent Scrobbles</h2>
+        <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
         <LastFm :fetch="fetch" />
       </div>
     </div>
@@ -34,20 +34,22 @@
 </template>
 
 <script>
+import ContactForm from '@/components/ContactForm.vue';
+import FancyHeader from '@/components/FancyHeader.vue';
+import Instagram from '@/components/Instagram.vue';
 import Introduction from '@/components/Introduction.vue';
 import LastFm from '@/components/LastFm.vue';
 import Twitter from '@/components/Twitter.vue';
-import Instagram from '@/components/Instagram.vue';
-import ContactForm from '@/components/ContactForm.vue';
 
 export default {
   name: 'Home',
   components: {
+    ContactForm,
+    FancyHeader,
+    Instagram,
     Introduction,
     LastFm,
     Twitter,
-    Instagram,
-    ContactForm,
   },
 
   computed: {
@@ -65,20 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cursive {
-  clear: both;
-  color: #181f63;
-  font-family: 'Pacifico', cursive;
-  font-size: 2em;
-  font-weight: normal;
-  margin: 0.5em 0;
-  padding: 0 0.5rem;
-  position: relative;
-  text-shadow: 1px 1px 0 #fff;
-  text-transform: lowercase;
-  z-index: 10;
-}
-
 .logo {
   position: relative;
   margin: 2rem 0 0.5rem;
