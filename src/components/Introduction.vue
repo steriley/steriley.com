@@ -13,12 +13,6 @@
       </div>
       <div id="social-media" class="container--flex">
         <a
-          class="social social--facebook"
-          title="Facebook | Stephen Riley"
-          href="http://www.facebook.com/steriley/"
-          >Facebook</a
-        >
-        <a
           class="social social--instagram"
           title="Instagr.am"
           href="http://instagram.com/steriley/"
@@ -29,12 +23,6 @@
           title="Stephen Riley - LinkedIn"
           href="http://uk.linkedin.com/in/steriley228"
           >LinkedIn</a
-        >
-        <a
-          class="social social--pintrest"
-          title="Pinterest"
-          href="https://www.pinterest.com/riley6206/"
-          >Pinterest</a
         >
         <a class="social social--skype" title="Skype" href="skype:steriley?call"
           >Skype</a
