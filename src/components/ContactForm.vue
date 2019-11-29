@@ -1,30 +1,36 @@
 <template>
   <form action="/contact" method="post" class="form" @submit="submit">
     <FancyHeader>Get in touch...</FancyHeader>
-    <fieldset class="fieldset">
+    <fieldset v-if="sent" class="fieldset">
+      <p>Your message has been sent!</p>
+      <p @click="sent = !sent">
+        Forgot to say something? Send another message...
+      </p>
+    </fieldset>
+    <fieldset v-else class="fieldset">
       <input type="hidden" name="timestamp" :value="timestamp" />
 
-      <vInput v-model="name" label="Name" maxlength="30" required />
+      <vInput v-model="form.name" label="Name" maxlength="30" required />
 
       <vInput
-        v-model="email"
+        v-model="form.email"
         label="Email"
         maxlength="50"
         type="email"
         required
       />
 
-      <vInput v-model="subject" label="Subject" maxlength="40" />
+      <vInput v-model="form.subject" label="Subject" maxlength="40" />
 
       <vInput
-        v-model="message"
+        v-model="form.message"
         label="Message"
         maxlength="30"
         class="support"
       />
 
       <vInput
-        v-model="comments"
+        v-model="form.comments"
         type="textarea"
         label="Comments"
         cols="33"
@@ -32,7 +38,7 @@
         required
       />
 
-      <button type="submit">Send Message</button>
+      <button type="submit" :disabled="sending">Send Message</button>
     </fieldset>
   </form>
 </template>
@@ -48,11 +54,15 @@ export default {
   },
 
   data: () => ({
-    name: '',
-    email: '',
-    subject: '',
-    comments: '',
-    message: '',
+    form: {
+      name: '',
+      email: '',
+      subject: '',
+      comments: '',
+      message: '',
+    },
+    sent: false,
+    sending: false,
   }),
 
   computed: {
@@ -64,9 +74,11 @@ export default {
   methods: {
     submit(e) {
       const data = {
-        ...this.$data,
+        ...this.$data.form,
         timestamp: this.timestamp,
       };
+
+      this.sending = true;
 
       fetch('/api/contact', {
         method: 'post',
@@ -74,6 +86,9 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+      }).then(() => {
+        this.sending = false;
+        this.sent = true;
       });
 
       e.preventDefault();
@@ -91,6 +106,7 @@ export default {
 .fieldset {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
+  color: #fff;
   padding: 1rem;
   border: 0;
   margin: 0;
@@ -101,16 +117,32 @@ export default {
 }
 
 button[type='submit'] {
+  $button-color: #2196f3;
+  $text-color: #fff;
+
   appearance: none;
-  background-color: #2196f3;
+  background-color: $button-color;
   border-radius: 0.2em;
   border: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  color: #fff;
+  color: $text-color;
   cursor: pointer;
   font-size: 1rem;
+  outline: 0;
   padding: 1em 2em;
   transition: background-color 0.25s;
   width: 100%;
+
+  &:focus {
+    background-color: darken($button-color, 5%);
+  }
+
+  &:active {
+    background-color: darken($button-color, 10%);
+  }
+
+  &:disabled {
+    background-color: darken($button-color, 25%);
+    color: darken($text-color, 25%);
+  }
 }
 </style>
