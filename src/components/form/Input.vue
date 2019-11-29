@@ -86,6 +86,7 @@ label {
   color: #fff;
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
+  resize: vertical;
   outline: 0;
   padding: 0.75rem 0.5rem;
   transition: background-color 1s;
