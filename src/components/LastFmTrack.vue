@@ -16,10 +16,7 @@
         class="track__date"
         >{{ track.date.formatted }}</span
       >
-      <button
-        class="track__video"
-        @click.prevent="loadVideo(track.artist, track.title)"
-      >
+      <button class="track__video" @click.prevent="emitVideo">
         Watch Video
       </button>
     </div>
@@ -33,11 +30,19 @@ export default {
       type: Object,
       default: () => {},
     },
+
+    trackNumber: {
+      type: Number,
+      default: -1,
+    },
   },
 
   methods: {
-    loadVideo(artist, title) {
-      this.displayVideo = `${artist} ${title}`;
+    emitVideo() {
+      const trackNumber = this.trackNumber;
+      const { artist, title } = this.track;
+
+      this.$emit('display:video', { artist, title, trackNumber });
     },
   },
 };

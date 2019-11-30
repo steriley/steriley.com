@@ -1,8 +1,14 @@
 <template>
   <ol class="last-fm">
     <li v-for="(track, key) in tracks" :key="key" class="last-fm__track">
-      <LastFmTrack v-if="track" :track="track" />
+      <LastFmTrack
+        v-if="track"
+        :track="track"
+        :track-number="key"
+        @display:video="loadVideo"
+      />
       <FakePlaceholder v-else />
+      <YouTube v-if="displayVideo === key" :track="track" />
     </li>
   </ol>
 </template>
@@ -10,6 +16,7 @@
 <script>
 import FakePlaceholder from '@/components/FakePlaceholder.vue';
 import LastFmTrack from '@/components/LastFmTrack.vue';
+import YouTube from '@/components/YouTube.vue';
 
 export default {
   name: 'LastFm',
@@ -17,6 +24,7 @@ export default {
   components: {
     FakePlaceholder,
     LastFmTrack,
+    YouTube,
   },
 
   props: {
@@ -27,7 +35,7 @@ export default {
   },
 
   data: () => ({
-    displayVideo: false,
+    displayVideo: -1,
     tracks: new Array(6).fill(0),
   }),
 
@@ -38,8 +46,8 @@ export default {
   },
 
   methods: {
-    loadVideo(artist, title) {
-      this.displayVideo = `${artist} ${title}`;
+    loadVideo(trackObj) {
+      this.displayVideo = trackObj.trackNumber;
     },
   },
 };
