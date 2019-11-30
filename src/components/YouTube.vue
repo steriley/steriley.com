@@ -21,19 +21,18 @@ export default {
   }),
 
   mounted() {
-    if (!this.scriptAlreadyExists()) {
-      const tag = document.createElement('script');
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-
-      tag.src = this.scriptSrc;
-
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => this.initialisePlayer();
-      return true;
+    if (this.scriptAlreadyExists()) {
+      return this.initialisePlayer();
     }
 
-    return this.initialisePlayer();
+    const tag = document.createElement('script');
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+
+    tag.src = this.scriptSrc;
+
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => this.initialisePlayer();
   },
 
   methods: {
