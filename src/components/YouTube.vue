@@ -1,6 +1,11 @@
 <template>
   <div class="c-youtube">
     <div class="c-youtube__wrapper">
+      <div
+        v-if="!interacted"
+        :class="['c-youtube__cover', { playing: ready }]"
+        @click="interacted = true"
+      />
       <div id="ytplayer"></div>
     </div>
   </div>
@@ -18,11 +23,13 @@ export default {
     player: null,
     playerId: 'ytplayer',
     scriptSrc: 'https://www.youtube.com/iframe_api',
+    ready: false,
+    interacted: false,
   }),
 
   mounted() {
     if (this.scriptAlreadyExists()) {
-      return this.initialisePlayer();
+      this.initialisePlayer();
     }
 
     const tag = document.createElement('script');
@@ -37,17 +44,19 @@ export default {
 
   methods: {
     initialisePlayer() {
-      this.player = new YT.Player(this.playerId, {
-        height: '480',
-        width: '640',
-        rel: 0,
-        modestbranding: 1,
-        videoId: '9bZkp7q19f0',
-        events: {
-          onReady: this.onReady,
-          onStateChange: this.onStateChange,
-        },
-      });
+      if (this.player === null) {
+        this.player = new YT.Player(this.playerId, {
+          height: '480',
+          width: '640',
+          rel: 0,
+          modestbranding: 1,
+          videoId: '9bZkp7q19f0',
+          events: {
+            onReady: this.onReady,
+            onStateChange: this.onStateChange,
+          },
+        });
+      }
     },
 
     onReady() {
@@ -62,6 +71,16 @@ export default {
       if (event.data === 5) {
         this.player.playVideo();
       }
+
+      if (event.data === 1) {
+        setTimeout(() => {
+          this.ready = true;
+        }, 1000);
+      }
+    },
+
+    onPauseVideo() {
+      this.player.pauseVideo();
     },
 
     scriptAlreadyExists() {
@@ -78,7 +97,7 @@ export default {
 <style lang="scss">
 .c-youtube {
   margin-top: 1rem;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #000;
   height: 100%;
   width: 100%;
 
@@ -91,28 +110,23 @@ export default {
 .c-youtube__wrapper {
   border-radius: 0.3em;
   height: 175px;
+  position: relative;
   top: 50%;
   width: 100%;
 }
 
-.c-youtube__close {
-  background-color: #d5d4de;
-  border-radius: 50%;
-  color: #3a3a3a;
-  cursor: pointer;
-  font-size: 2em;
-  font-weight: 700;
-  height: 50px;
-  line-height: 1.75;
+.c-youtube__cover {
+  background-color: #000;
+  bottom: 0;
+  left: 0;
   position: absolute;
-  right: -25px;
-  text-align: center;
-  top: -25px;
-  width: 50px;
-  z-index: 100;
+  right: 0;
+  top: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
 
-  &:hover {
-    color: #000;
+  &.playing {
+    opacity: 0;
   }
 }
 </style>
