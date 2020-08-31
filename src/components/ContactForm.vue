@@ -24,7 +24,7 @@
 
       <vInput
         v-model="form.message"
-        label="Message"
+        label="Comments"
         maxlength="30"
         class="support"
       />
@@ -32,7 +32,7 @@
       <vInput
         v-model="form.comments"
         type="textarea"
-        label="Comments"
+        label="Message"
         cols="33"
         rows="5"
         required

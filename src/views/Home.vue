@@ -94,12 +94,8 @@ $skyline-image-height: 140px;
 
   @media screen and (min-width: 650px) {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
   }
-}
-
-.column {
-  padding: 0 2rem;
 }
 
 .secondary {

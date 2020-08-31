@@ -77,18 +77,24 @@ label {
   }
 }
 
+textarea.input {
+  min-height: 100px;
+  max-height: 500px;
+  width: calc(100% - 1rem);
+}
+
 .input {
   background-color: transparent;
+  border-radius: 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0;
-  display: block;
   color: #222;
+  display: block;
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  resize: vertical;
   outline: 0;
   padding: 0.75rem 0.5rem;
+  resize: vertical;
   transition: background-color 1s;
 
   &:focus {

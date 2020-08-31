@@ -45,7 +45,7 @@
 .heavy-shadow {
   color: #fff;
   margin: 0 0 0.25em 0;
-  font-size: 6rem;
+  font-size: 3rem;
   line-height: 0.9em;
   letter-spacing: -0.05em;
   text-align: center;
@@ -54,13 +54,21 @@
     0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
     0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);
+
+  @media screen and (min-width: 720px) {
+    font-size: 6rem;
+  }
 }
 
 .bio {
   color: #222;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 0 auto 1.5rem;
   max-width: 800px;
+
+  @media screen and (min-width: 720px) {
+    font-size: 1.5rem;
+  }
 }
 
 .container--flex {
