@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="intro-wrapper">
     <slot />
     <div class="introduction">
       <h1 class="heavy-shadow">Stephen Riley</h1>
@@ -18,31 +18,25 @@
           href="http://uk.linkedin.com/in/steriley228"
           >LinkedIn</a
         >
-        <a class="social social--skype" title="Skype" href="skype:steriley?call"
-          >Skype</a
-        >
-        <a
-          class="social social--youtube"
-          title="YouTube - steriley's Channel"
-          href="http://www.youtube.com/user/steriley"
-          >YouTube</a
-        >
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
+.intro-wrapper {
   position: relative;
   max-width: 1100px;
-  margin: 3rem auto 7rem;
+  margin: 1rem auto;
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 7rem;
+  }
 }
 
 .introduction {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem;
-  color: #eee;
   margin-top: 1rem;
   padding: 1rem;
   z-index: 1;
@@ -51,7 +45,7 @@
 .heavy-shadow {
   color: #fff;
   margin: 0 0 0.25em 0;
-  font-size: 8vmax;
+  font-size: 6rem;
   line-height: 0.9em;
   letter-spacing: -0.05em;
   text-align: center;
@@ -63,9 +57,9 @@
 }
 
 .bio {
+  color: #222;
   font-size: 1.5rem;
   margin: 0 auto 1.5rem;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
   max-width: 800px;
 }
 

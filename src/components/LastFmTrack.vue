@@ -94,7 +94,7 @@ export default {
   background-color: transparent;
   border: 0;
   bottom: 0;
-  color: #fff;
+  color: #003;
   font-size: 0.9em;
   height: auto;
   left: 0;

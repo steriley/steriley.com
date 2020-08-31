@@ -104,9 +104,9 @@ export default {
 }
 
 .fieldset {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.05);
   border-radius: 0.3rem;
-  color: #fff;
+  color: #222;
   padding: 1rem;
   border: 0;
   margin: 0;
@@ -117,7 +117,7 @@ export default {
 }
 
 button[type='submit'] {
-  $button-color: #2196f3;
+  $button-color: #003;
   $text-color: #fff;
 
   appearance: none;

@@ -57,7 +57,7 @@ export default {
 }
 
 label {
-  color: #fff;
+  color: #222;
   cursor: pointer;
   display: inline-flex;
   margin-bottom: 0.25rem;
@@ -65,7 +65,7 @@ label {
 
 .input:required + label {
   &::after {
-    background-color: #1a3c61;
+    background-color: rgba(0, 0, 0, 0.05);
     border-radius: 1em;
     content: 'Required';
     font-size: 0.6em;
@@ -80,10 +80,10 @@ label {
 .input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
   display: block;
-  color: #fff;
+  color: #222;
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
   resize: vertical;
@@ -92,8 +92,8 @@ label {
   transition: background-color 1s;
 
   &:focus {
-    background-color: darken(#57547c, 5%);
-    border-color: darken(#fff, 50%);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.5);
     transition: background-color 1s, border-color 0.5s;
   }
 }
