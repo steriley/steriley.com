@@ -1,9 +1,11 @@
-const twitter = require('../../app/twitter');
+import { it, describe, expect, vi } from 'vitest';
+
+const twitter = require('../../app/twitter.cjs');
 const mockTweets = require('../mocks/tweets');
 
 describe('twitter.js', () => {
   it('returns a single tweet', async () => {
-    twitter.lastTweet = jest
+    twitter.lastTweet = vi
       .fn()
       .mockImplementation(() => Promise.resolve(twitter.getTweet(mockTweets)));
 

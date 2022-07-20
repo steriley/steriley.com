@@ -8,11 +8,11 @@
       </p>
     </fieldset>
     <fieldset v-else class="fieldset">
-      <input type="hidden" name="timestamp" :value="timestamp" />
+      <input type="hidden" name="timestamp" :value="timestamp">
 
-      <vInput v-model="form.name" label="Name" maxlength="30" required />
+      <BaseInput v-model="form.name" label="Name" maxlength="30" required />
 
-      <vInput
+      <BaseInput
         v-model="form.email"
         label="Email"
         maxlength="50"
@@ -20,16 +20,16 @@
         required
       />
 
-      <vInput v-model="form.subject" label="Subject" maxlength="40" />
+      <BaseInput v-model="form.subject" label="Subject" maxlength="40" />
 
-      <vInput
+      <BaseInput
         v-model="form.message"
         label="Comments"
         maxlength="30"
         class="support"
       />
 
-      <vInput
+      <BaseInput
         v-model="form.comments"
         type="textarea"
         label="Message"
@@ -38,19 +38,21 @@
         required
       />
 
-      <button type="submit" :disabled="sending">Send Message</button>
+      <button type="submit" :disabled="sending">
+        Send Message
+      </button>
     </fieldset>
   </form>
 </template>
 
 <script>
-import FancyHeader from '@/components/FancyHeader.vue';
-import vInput from '@/components/form/Input.vue';
+import FancyHeader from './FancyHeader.vue';
+import BaseInput from './form/BaseInput.vue';
 
 export default {
   components: {
     FancyHeader,
-    vInput,
+    BaseInput,
   },
 
   data: () => ({
@@ -112,7 +114,7 @@ export default {
   margin: 0;
 }
 
-.support {
+:deep(.support) {
   display: none;
 }
 

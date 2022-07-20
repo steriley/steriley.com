@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import FakePlaceholder from '@/components/FakePlaceholder.vue';
-import LastFmTrack from '@/components/LastFmTrack.vue';
-import YouTube from '@/components/YouTube.vue';
+import FakePlaceholder from './FakePlaceholder.vue';
+import LastFmTrack from './LastFmTrack.vue';
+import YouTube from './YouTube.vue';
 
 export default {
   name: 'LastFm',

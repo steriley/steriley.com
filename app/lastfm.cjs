@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { formatDistance } = require('date-fns');
 
 function apiUrl(username, apiKey, totalTracks = 5) {

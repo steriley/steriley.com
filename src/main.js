@@ -1,21 +1,22 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import VueLazyload from 'vue-lazyload';
 import * as Sentry from '@sentry/browser';
-import * as Integrations from '@sentry/integrations';
+import { BrowserTracing } from "@sentry/tracing";
 
 import App from './App.vue';
 
-Vue.use(VueLazyload);
+const app = createApp(App);
 
-Vue.config.productionTip = false;
+Sentry.init({
+  app,
+  dsn: "https://7237bfe60af54442a795f5f706b1e469@o185486.ingest.sentry.io/1279887",
+  integrations: [
+    new BrowserTracing({
+      tracingOrigins: ["localhost", "steriley.com", /^\//],
+    }),
+  ],
+  tracesSampleRate: 0.25,
+});
 
-if (process.env.NODE_ENV !== 'development') {
-  Sentry.init({
-    dsn: 'https://7237bfe60af54442a795f5f706b1e469@sentry.io/1279887',
-    integrations: [new Integrations.Vue({ Vue, attachProps: true })],
-  });
-}
-
-new Vue({
-  render: h => h(App),
-}).$mount('#app');
+app.use(VueLazyload);
+app.mount('#app');

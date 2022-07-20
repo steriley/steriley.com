@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const apicache = require('apicache');
 
-const mail = require('./mail');
-const instagram = require('./instagram');
-const lastfm = require('./lastfm');
-const twitter = require('./twitter');
+const mail = require('./mail.cjs');
+const instagram = require('./instagram.cjs');
+const lastfm = require('./lastfm.cjs');
+const twitter = require('./twitter.cjs');
 
 const app = express();
 const cache = apicache.middleware;

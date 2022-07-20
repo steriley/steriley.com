@@ -7,8 +7,8 @@ function mapTweet(tweet) {
   return {
     created: {
       iso: isoDate,
-      short: dateFns.format(new Date(isoDate), 'DD MMM'),
-      time: dateFns.format(new Date(isoDate), 'h:mm A - D MMM YY'),
+      short: dateFns.format(new Date(isoDate), 'dd MMM'),
+      time: dateFns.format(new Date(isoDate), 'h:mm b - d MMM yy'),
     },
     id_str: tweet.id_str,
     text: tweet.text,
