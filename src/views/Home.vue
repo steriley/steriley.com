@@ -7,7 +7,7 @@
             class="logo__img"
             src="/img/logo_steriley.png"
             alt="steriley.com"
-          />
+          >
         </a>
 
         <Introduction />
@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import ContactForm from '@/components/ContactForm.vue';
-import FancyHeader from '@/components/FancyHeader.vue';
-import Introduction from '@/components/Introduction.vue';
-import LastFm from '@/components/LastFm.vue';
+import ContactForm from '../components/ContactForm.vue';
+import FancyHeader from '../components/FancyHeader.vue';
+import Introduction from '../components/Introduction.vue';
+import LastFm from '../components/LastFm.vue';
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     ContactForm,
     FancyHeader,
@@ -52,8 +52,16 @@ export default {
   },
 
   methods: {
-    fetch(endpoint) {
-      return fetch(`/api/${endpoint}`).then(data => data.json());
+    async fetch(endpoint) {
+      try {
+        let response = await fetch(`/api/${endpoint}`);
+
+        if (response) {
+          return await response.json();
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };

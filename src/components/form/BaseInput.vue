@@ -6,48 +6,36 @@
       :class="`input`"
       v-bind="$attrs"
       :type="type"
-      @input="inputEvent($event.target.value)"
+      @input="updateValue"
     />
     <label :for="identifier" class="l-required">{{ label }}:</label>
   </div>
 </template>
 
-<script>
-export default {
-  inheritAttrs: false,
+<script setup>
+import { computed } from 'vue';
 
-  props: {
+const props = defineProps({
+    modelValue: {
+      type: String,
+      default: ''
+    },
     label: {
       type: String,
-      required: true,
+      default: ''
     },
-
     type: {
       type: String,
-      default: 'text',
-    },
-  },
+      default: ''
+    }
+});
 
-  data: () => ({
-    input: '',
-  }),
+const emit = defineEmits(['update:modelValue']);
 
-  computed: {
-    inputOrTextArea() {
-      return this.type !== 'textarea' ? 'input' : 'textarea';
-    },
+const updateValue = event => emit('update:modelValue', event.target.value);
 
-    identifier() {
-      return this.label.toLowerCase().replace(/\s+/, '-');
-    },
-  },
-
-  methods: {
-    inputEvent(name) {
-      this.$emit('input', name);
-    },
-  },
-};
+const inputOrTextArea = computed(() => props.type !== 'textarea' ? 'input' : 'textarea');
+const identifier = computed(() => props.label.toLowerCase().replace(/\s+/, '-'));
 </script>
 
 <style lang="scss" scoped>

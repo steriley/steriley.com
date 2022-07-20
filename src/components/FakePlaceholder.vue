@@ -9,6 +9,8 @@
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+
 $size: 4rem;
 $margin: 0.5rem;
 
@@ -56,12 +58,12 @@ $margin: 0.5rem;
 }
 
 .fake-header {
-  height: ($size - $margin) / 3;
+  height: math.div($size - $margin, 3);
   margin-bottom: $margin;
 }
 
 .fake-text {
-  height: ($size - $margin) / 1.5;
+  height: math.div($size - $margin, 1.5);
   width: 100%;
 }
 

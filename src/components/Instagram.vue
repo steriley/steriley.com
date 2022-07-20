@@ -11,7 +11,7 @@
           v-lazy="photo.images.standard_resolution.url"
           :alt="photo.caption.text"
           class="photo__img"
-        />
+        >
 
         <span class="meta">
           <svg
