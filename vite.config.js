@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,6 +13,10 @@ export default defineConfig({
         target: 'http://localhost:9000',
         pathRewrite: { '^/.netlify/functions': '' },
       },
-    }
-  }
-})
+    },
+  },
+  test: {
+    environment: 'jsdom',
+    reporters: 'verbose',
+  },
+});
