@@ -34,6 +34,7 @@
     "@vitejs/plugin-vue": "3.0.1",
     "@vue/test-utils": "2.0.2",
     "eslint": "8.20.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-vue": "9.2.0",
     "jsdom": "20.0.0",
     "netlify-lambda": "2.0.15",
@@ -54,22 +55,15 @@
     },
     "extends": [
       "eslint:recommended",
-      "plugin:vue/vue3-recommended"
+      "plugin:vue/vue3-recommended",
+      "prettier"
     ],
-    "rules": {
-      "vue/max-attributes-per-line": 0,
-      "vue/require-prop-types": 0,
-      "semi": 1
-    },
+    "rules": {},
     "overrides": [
       {
         "files": [
-          "**/__tests__/*.{j,t}s?(x)",
           "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
+        ]
       }
     ]
   },
