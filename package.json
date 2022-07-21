@@ -9,7 +9,7 @@
     "lint": "eslint --fix",
     "preview": "vite preview",
     "serve": "vite",
-    "start": "node app/index.js",
+    "start": "node app/index.cjs",
     "start:app": "npm-run-all --parallel start:dev serve start:server",
     "start:dev": "nodemon -r dotenv/config app/index.cjs",
     "start:server": "netlify-lambda serve src/lambda",
