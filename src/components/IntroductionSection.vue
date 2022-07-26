@@ -67,6 +67,10 @@
   max-width: 800px;
 
   @media screen and (min-width: 720px) {
+    font-size: 1.25rem;
+  }
+
+  @media screen and (min-width: 1440px) {
     font-size: 1.5rem;
   }
 }
