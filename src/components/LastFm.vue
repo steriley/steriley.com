@@ -8,61 +8,36 @@
     >
       <LastFmTrack
         v-if="track"
-        :track="track"
+        v-bind="{ ...track }"
         :track-number="key"
         data-qa="lastfm-track"
-        @display:video="loadVideo"
       />
       <FakePlaceholder v-else data-qa="lastfm-placeholder" />
-      <YouTube
-        v-if="displayVideo === key"
-        data-qa="lastfm-youtube"
-        :track="track"
-      />
     </li>
   </ol>
 </template>
 
 <script>
+export const TRACKS_TO_DISPLAY = 6;
+</script>
+
+<script setup>
 import FakePlaceholder from './FakePlaceholder.vue';
 import LastFmTrack from './LastFmTrack.vue';
-import YouTube from './YouTube.vue';
+import { ref } from 'vue';
 
-export const TRACKS_TO_DISPLAY = 6;
-
-export default {
-  name: 'LastFm',
-
-  components: {
-    FakePlaceholder,
-    LastFmTrack,
-    YouTube,
+const props = defineProps({
+  fetch: {
+    type: Function,
+    required: true,
   },
+});
 
-  props: {
-    fetch: {
-      type: Function,
-      default: () => {},
-    },
-  },
+let tracks = ref(new Array(TRACKS_TO_DISPLAY).fill(0));
 
-  data: () => ({
-    displayVideo: -1,
-    tracks: new Array(TRACKS_TO_DISPLAY).fill(0),
-  }),
-
-  mounted() {
-    this.fetch(`lastfm/${TRACKS_TO_DISPLAY}`).then((json) => {
-      this.tracks = json;
-    });
-  },
-
-  methods: {
-    loadVideo(trackObj) {
-      this.displayVideo = trackObj.trackNumber;
-    },
-  },
-};
+props.fetch(`lastfm/${TRACKS_TO_DISPLAY}`).then((json) => {
+  tracks.value = json;
+});
 </script>
 
 <style scoped lang="scss">

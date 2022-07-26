@@ -66,25 +66,5 @@ describe('<LastFm />', () => {
         response.length,
       );
     });
-
-    describe('when the last.fm track emits a video event', () => {
-      let trackNumber = 0;
-
-      beforeEach(async () => {
-        await lastFm
-          .find('[data-qa="lastfm-track"]')
-          .trigger('display:video', { trackNumber });
-      });
-
-      it('should display a YouTube component', () => {
-        expect(
-          lastFm
-            .findAll('[data-qa="lastfm-item"]')
-            .at(trackNumber)
-            .find('[data-qa="lastfm-youtube"]')
-            .exists(),
-        ).toBe(true);
-      });
-    });
   });
 });

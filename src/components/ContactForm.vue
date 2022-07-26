@@ -59,58 +59,44 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import FancyHeader from './FancyHeader.vue';
 import BaseInput from './form/BaseInput.vue';
 
-export default {
-  components: {
-    FancyHeader,
-    BaseInput,
-  },
+import { reactive, ref, computed } from 'vue';
 
-  data: () => ({
-    form: {
-      name: '',
-      email: '',
-      subject: '',
-      comments: '',
-      message: '',
+const sent = ref(false);
+const sending = ref(false);
+const timestamp = computed(() => +new Date());
+const form = reactive({
+  name: '',
+  email: '',
+  subject: '',
+  comments: '',
+  message: '',
+});
+
+function submit(event) {
+  const data = {
+    ...form,
+    timestamp: timestamp.value,
+  };
+
+  sending.value = true;
+
+  fetch('/api/contact', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
     },
-    sent: false,
-    sending: false,
-  }),
+    body: JSON.stringify(data),
+  }).then(() => {
+    sending.value = false;
+    sent.value = true;
+  });
 
-  computed: {
-    timestamp() {
-      return +new Date();
-    },
-  },
-
-  methods: {
-    submit(e) {
-      const data = {
-        ...this.$data.form,
-        timestamp: this.timestamp,
-      };
-
-      this.sending = true;
-
-      fetch('/api/contact', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).then(() => {
-        this.sending = false;
-        this.sent = true;
-      });
-
-      e.preventDefault();
-    },
-  },
-};
+  event.preventDefault();
+}
 </script>
 
 <style lang="scss" scoped>

@@ -1,50 +1,52 @@
 <template>
-  <a :href="track.url" class="track">
+  <a :href="url" class="track">
     <div class="cover">
       <img
-        :src="track.artwork !== '' ? track.artwork : '/img/no-cover-art.png'"
-        :alt="`${track.artist} - ${track.title}`"
+        :src="artwork !== '' ? artwork : '/img/no-cover-art.png'"
+        :alt="`${artist} - ${title}`"
         class="track__cover"
       />
     </div>
     <div class="details">
-      <span class="track__artist">{{ track.artist }}</span>
-      <span class="track__title">{{ track.title }}</span>
+      <span class="track__artist">{{ artist }}</span>
+      <span class="track__title">{{ title }}</span>
       <span
-        :date-time="track.date.utc"
-        :class="{ 'track__date--now': track.date.utc === 0 }"
+        :date-time="date.utc"
+        :class="{ 'track__date--now': date.utc === 0 }"
         class="track__date"
-        >{{ track.date.formatted }}</span
+        >{{ date.formatted }}</span
       >
     </div>
   </a>
 </template>
 
-<script>
-export default {
-  props: {
-    track: {
-      type: Object,
-      default: () => {},
-    },
-
-    trackNumber: {
-      type: Number,
-      default: -1,
-    },
+<script setup>
+defineProps({
+  url: {
+    type: String,
+    default: '',
   },
-
-  emits: ['display:video'],
-
-  methods: {
-    emitVideo() {
-      const trackNumber = this.trackNumber;
-      const { artist, title } = this.track;
-
-      this.$emit('display:video', { artist, title, trackNumber });
-    },
+  artwork: {
+    type: String,
+    default: '',
   },
-};
+  artist: {
+    type: String,
+    default: '',
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+  date: {
+    type: Object,
+    default: () => ({}),
+  },
+  trackNumber: {
+    type: Number,
+    default: -1,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
