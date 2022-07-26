@@ -16,26 +16,30 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    modelValue: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: ''
-    }
+  modelValue: {
+    type: String,
+    default: '',
+  },
+  label: {
+    type: String,
+    default: '',
+  },
+  type: {
+    type: String,
+    default: '',
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
 
-const updateValue = event => emit('update:modelValue', event.target.value);
+const updateValue = (event) => emit('update:modelValue', event.target.value);
 
-const inputOrTextArea = computed(() => props.type !== 'textarea' ? 'input' : 'textarea');
-const identifier = computed(() => props.label.toLowerCase().replace(/\s+/, '-'));
+const inputOrTextArea = computed(() =>
+  props.type !== 'textarea' ? 'input' : 'textarea',
+);
+const identifier = computed(() =>
+  props.label.toLowerCase().replace(/\s+/, '-'),
+);
 </script>
 
 <style lang="scss" scoped>

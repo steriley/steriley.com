@@ -16,9 +16,6 @@
         class="track__date"
         >{{ track.date.formatted }}</span
       >
-      <button class="track__video" @click.prevent="emitVideo">
-        Watch Video
-      </button>
     </div>
   </a>
 </template>
@@ -36,6 +33,8 @@ export default {
       default: -1,
     },
   },
+
+  emits: ['display:video'],
 
   methods: {
     emitVideo() {
