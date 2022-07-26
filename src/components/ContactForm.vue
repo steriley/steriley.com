@@ -1,29 +1,42 @@
 <template>
   <form action="/contact" method="post" class="form" @submit="submit">
     <FancyHeader>Get in touch...</FancyHeader>
-    <fieldset v-if="sent" class="fieldset">
+    <fieldset v-if="sent" class="fieldset" data-qa="contact-sent">
       <p>Your message has been sent!</p>
-      <p @click="sent = !sent">
+      <p data-qa="contact-return" @click="sent = !sent">
         Forgot to say something? Send another message...
       </p>
     </fieldset>
-    <fieldset v-else class="fieldset">
-      <input type="hidden" name="timestamp" :value="timestamp">
+    <fieldset v-else class="fieldset" data-qa="contact-form">
+      <input type="hidden" name="timestamp" :value="timestamp" />
 
-      <BaseInput v-model="form.name" label="Name" maxlength="30" required />
+      <BaseInput
+        v-model="form.name"
+        data-qa="contact-name"
+        label="Name"
+        maxlength="30"
+        required
+      />
 
       <BaseInput
         v-model="form.email"
+        data-qa="contact-email"
         label="Email"
         maxlength="50"
         type="email"
         required
       />
 
-      <BaseInput v-model="form.subject" label="Subject" maxlength="40" />
+      <BaseInput
+        v-model="form.subject"
+        data-qa="contact-subject"
+        label="Subject"
+        maxlength="40"
+      />
 
       <BaseInput
         v-model="form.message"
+        data-qa="contact-comments"
         label="Comments"
         maxlength="30"
         class="support"
@@ -31,6 +44,7 @@
 
       <BaseInput
         v-model="form.comments"
+        data-qa="contact-message"
         type="textarea"
         label="Message"
         cols="33"
@@ -38,7 +52,7 @@
         required
       />
 
-      <button type="submit" :disabled="sending">
+      <button type="submit" data-qa="btn-submit" :disabled="sending">
         Send Message
       </button>
     </fieldset>

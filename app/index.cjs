@@ -40,8 +40,8 @@ app.get('/api/instagram/:total?', cache('1 hour'), (req, res) => {
       },
       req.params.total,
     )
-    .then(photos => res.json(photos))
-    .catch(e => res.json(e));
+    .then((photos) => res.json(photos))
+    .catch((e) => res.json(e));
 });
 
 app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
@@ -51,11 +51,16 @@ app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
       process.env.LASTFM_CONSUMER_KEY,
       req.params.total,
     )
-    .then(tracks => res.json(tracks));
+    .then((tracks) => res.json(tracks))
+    .catch(() => {
+      let error = 'Ensure LASTFM_USER_ID & LASTFM_CONSUMER_KEY are provided';
+      console.error(error);
+      res.status(500).json({ error });
+    });
 });
 
 app.post('/api/contact', (req, res) => {
-  mail.send(req.body).then(response => res.json(response));
+  mail.send(req.body).then((response) => res.json(response));
 });
 
 // eslint-disable-next-line no-console

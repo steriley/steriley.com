@@ -1,14 +1,24 @@
 <template>
   <ol class="last-fm">
-    <li v-for="(track, key) in tracks" :key="key" class="last-fm__track">
+    <li
+      v-for="(track, key) in tracks"
+      :key="key"
+      class="last-fm__track"
+      data-qa="lastfm-item"
+    >
       <LastFmTrack
         v-if="track"
         :track="track"
         :track-number="key"
+        data-qa="lastfm-track"
         @display:video="loadVideo"
       />
-      <FakePlaceholder v-else />
-      <YouTube v-if="displayVideo === key" :track="track" />
+      <FakePlaceholder v-else data-qa="lastfm-placeholder" />
+      <YouTube
+        v-if="displayVideo === key"
+        data-qa="lastfm-youtube"
+        :track="track"
+      />
     </li>
   </ol>
 </template>
@@ -17,6 +27,8 @@
 import FakePlaceholder from './FakePlaceholder.vue';
 import LastFmTrack from './LastFmTrack.vue';
 import YouTube from './YouTube.vue';
+
+export const TRACKS_TO_DISPLAY = 6;
 
 export default {
   name: 'LastFm',
@@ -36,11 +48,11 @@ export default {
 
   data: () => ({
     displayVideo: -1,
-    tracks: new Array(6).fill(0),
+    tracks: new Array(TRACKS_TO_DISPLAY).fill(0),
   }),
 
   mounted() {
-    this.fetch(`lastfm/${this.tracks.length}`).then(json => {
+    this.fetch(`lastfm/${TRACKS_TO_DISPLAY}`).then((json) => {
       this.tracks = json;
     });
   },

@@ -7,7 +7,7 @@
             class="logo__img"
             src="/img/logo_steriley.png"
             alt="steriley.com"
-          >
+          />
         </a>
 
         <Introduction />
@@ -24,16 +24,16 @@
       </div>
     </div>
 
-    <div class="footer">
+    <footer class="footer">
       Copyright &copy; 2004 &ndash; {{ thisYear }} Stephen Riley
-    </div>
+    </footer>
   </div>
 </template>
 
 <script>
 import ContactForm from '../components/ContactForm.vue';
 import FancyHeader from '../components/FancyHeader.vue';
-import Introduction from '../components/Introduction.vue';
+import Introduction from '../components/IntroductionSection.vue';
 import LastFm from '../components/LastFm.vue';
 
 export default {
@@ -82,8 +82,6 @@ export default {
     margin-top: 0.5rem;
   }
 }
-
-$skyline-image-height: 140px;
 
 .header {
   overflow: hidden;
