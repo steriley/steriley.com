@@ -10,7 +10,9 @@
           />
         </a>
 
-        <Introduction />
+        <Introduction>
+          <LatestTweet />
+        </Introduction>
       </div>
 
       <div class="container container--flex">
@@ -35,6 +37,7 @@ import ContactForm from '../components/ContactForm.vue';
 import FancyHeader from '../components/FancyHeader.vue';
 import Introduction from '../components/IntroductionSection.vue';
 import LastFm from '../components/LastFm.vue';
+import LatestTweet from '../components/Twitter.vue';
 
 export default {
   name: 'HomePage',
@@ -43,6 +46,7 @@ export default {
     FancyHeader,
     Introduction,
     LastFm,
+    LatestTweet,
   },
 
   computed: {

@@ -1,5 +1,5 @@
-const ig = require('instagram-node').instagram();
-const format = require('date-fns/format');
+import ig from 'instagram-node';
+import { format } from 'date-fns';
 
 function formatDate(timestamp) {
   const d = new Date(0);
@@ -22,7 +22,7 @@ function mapPhoto(photo) {
   };
 }
 
-module.exports.latestPhotos = (userId, keys, total = 4) => {
+export const latestPhotos = (userId, keys, total = 4) => {
   ig.use({
     access_token: keys.access_token,
     client_id: keys.client_id,
@@ -32,7 +32,7 @@ module.exports.latestPhotos = (userId, keys, total = 4) => {
   return new Promise((resolve, reject) => {
     ig.user_media_recent(userId, { count: total }, (error, result) => {
       if (!error) {
-        const photos = result.map(photo => mapPhoto(photo));
+        const photos = result.map((photo) => mapPhoto(photo));
 
         return resolve(photos);
       }

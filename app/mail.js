@@ -1,8 +1,8 @@
-const sgMail = require('@sendgrid/mail');
+import sgMail from '@sendgrid/mail';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-module.exports.send = obj =>
+export const send = (obj) =>
   new Promise((resolve, reject) => {
     const text = `${obj.comments}
       \n---------------------------------------------
@@ -26,7 +26,7 @@ module.exports.send = obj =>
       return sgMail
         .send(msg)
         .then(() => resolve(success))
-        .catch(error => reject(error));
+        .catch((error) => reject(error));
     }
 
     return resolve(success);
