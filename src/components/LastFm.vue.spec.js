@@ -1,6 +1,7 @@
 import { vi, it, describe, expect, beforeEach } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
 import LastFm, { TRACKS_TO_DISPLAY } from './LastFm.vue';
+import { nextTick } from 'vue';
 
 const mountWith = (options) => {
   return shallowMount(LastFm, options);
@@ -8,16 +9,13 @@ const mountWith = (options) => {
 
 describe('<LastFm />', () => {
   let lastFm;
-  let fetch;
 
   beforeEach(() => {
-    fetch = vi.fn().mockImplementationOnce(() => new Promise(vi.fn(), vi.fn()));
+    global.fetch = vi.fn(() => ({
+      json: vi.fn(() => new Promise((res) => res([]))),
+    }));
 
-    lastFm = mountWith({
-      propsData: {
-        fetch,
-      },
-    });
+    lastFm = mountWith();
   });
 
   it('should render the component', () => {
@@ -39,26 +37,23 @@ describe('<LastFm />', () => {
   });
 
   it('should make a fetch request to the endpoint', () => {
-    expect(fetch).toHaveBeenCalledWith(`lastfm/${TRACKS_TO_DISPLAY}`);
+    expect(global.fetch).toHaveBeenCalledWith(
+      `/api/lastfm/${TRACKS_TO_DISPLAY}`,
+    );
   });
 
   describe('when the endpoint fetches data', () => {
     let response;
 
-    beforeEach(() => {
+    beforeEach(async () => {
       response = [{}, {}, {}, {}, {}, {}];
 
-      fetch = vi
-        .fn()
-        .mockImplementationOnce(
-          () => new Promise((resolve) => resolve(response)),
-        );
+      global.fetch = vi.fn(() => ({
+        json: vi.fn(() => new Promise((res) => res(response))),
+      }));
 
-      lastFm = mountWith({
-        propsData: {
-          fetch,
-        },
-      });
+      lastFm = mountWith();
+      await nextTick();
     });
 
     it('should render the track components', () => {

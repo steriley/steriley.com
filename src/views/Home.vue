@@ -18,7 +18,7 @@
       <div class="container container--flex">
         <div class="primary column">
           <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
-          <LastFm :fetch="fetch" />
+          <LastFm />
         </div>
         <div class="secondary column">
           <ContactForm />
@@ -32,43 +32,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import ContactForm from '../components/ContactForm.vue';
 import FancyHeader from '../components/FancyHeader.vue';
 import Introduction from '../components/IntroductionSection.vue';
 import LastFm from '../components/LastFm.vue';
 import LatestTweet from '../components/Twitter.vue';
 
-export default {
-  name: 'HomePage',
-  components: {
-    ContactForm,
-    FancyHeader,
-    Introduction,
-    LastFm,
-    LatestTweet,
-  },
-
-  computed: {
-    thisYear() {
-      return new Date().getFullYear();
-    },
-  },
-
-  methods: {
-    async fetch(endpoint) {
-      try {
-        let response = await fetch(`/api/${endpoint}`);
-
-        if (response) {
-          return await response.json();
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
-};
+const thisYear = new Date().getFullYear();
 </script>
 
 <style lang="scss" scoped>
