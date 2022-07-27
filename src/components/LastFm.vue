@@ -24,19 +24,13 @@ export const TRACKS_TO_DISPLAY = 6;
 <script setup>
 import FakePlaceholder from './FakePlaceholder.vue';
 import LastFmTrack from './LastFmTrack.vue';
-import { ref } from 'vue';
-
-const props = defineProps({
-  fetch: {
-    type: Function,
-    required: true,
-  },
-});
+import { ref, onMounted } from 'vue';
 
 let tracks = ref(new Array(TRACKS_TO_DISPLAY).fill(0));
 
-props.fetch(`lastfm/${TRACKS_TO_DISPLAY}`).then((json) => {
-  tracks.value = json;
+onMounted(async () => {
+  let data = await fetch(`/api/lastfm/${TRACKS_TO_DISPLAY}`);
+  tracks.value = await data.json();
 });
 </script>
 
