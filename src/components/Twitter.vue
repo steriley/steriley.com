@@ -18,47 +18,30 @@
   </div>
 </template>
 
-<script>
-import FakePlaceholder from '@/components/FakePlaceholder.vue';
+<script setup>
+import FakePlaceholder from './FakePlaceholder.vue';
+import { ref, computed } from 'vue';
 
-export default {
-  name: 'Twitter',
-
-  components: {
-    FakePlaceholder,
+defineProps({
+  fetch: {
+    type: Function,
+    default: () => {},
   },
+});
 
-  props: {
-    fetch: {
-      type: Function,
-      default: () => {},
-    },
-  },
+const tweet = ref(null);
+const userProfileUrl = computed(
+  () => `https://twitter.com/${tweet.value.user.screen_name}`,
+);
+const tweetUrl = computed(
+  () => `${userProfileUrl.value}/status/${tweet.value.id_str}`,
+);
 
-  data() {
-    return {
-      tweet: null,
-    };
-  },
-
-  computed: {
-    userProfileUrl() {
-      return `http://twitter.com/#!/${this.tweet.user.screen_name}`;
-    },
-
-    tweetUrl() {
-      return `${this.userProfileUrl}/status/${this.tweet.id_str}`;
-    },
-  },
-
-  mounted() {
-    fetch('/.netlify/functions/twitter')
-      .then(data => data.json())
-      .then(json => {
-        this.tweet = json;
-      });
-  },
-};
+fetch('/api/twitter')
+  .then((data) => data.json())
+  .then((json) => {
+    tweet.value = json;
+  });
 </script>
 
 <style lang="scss" scoped>

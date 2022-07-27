@@ -1,5 +1,5 @@
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const { formatDistance } = require('date-fns');
+import fetch from 'node-fetch';
+import { formatDistance } from 'date-fns';
 
 function apiUrl(username, apiKey, totalTracks = 5) {
   const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
@@ -29,19 +29,19 @@ function formatDate(obj) {
 }
 
 function formatTracks(json) {
-  return json.recenttracks.track.map(track => ({
+  return json.recenttracks.track.map((track) => ({
     artist: track.artist['#text'],
     title: track.name,
     url: track.url,
     date: formatDate(track.date),
-    artwork: track.image.filter(img => img.size === 'medium').pop()['#text'],
+    artwork: track.image.filter((img) => img.size === 'medium').pop()['#text'],
   }));
 }
 
-module.exports.recentlyPlayed = (username, apiKey, total) =>
+export const recentlyPlayed = (username, apiKey, total) =>
   new Promise((resolve, reject) => {
     fetch(apiUrl(username, apiKey, total))
-      .then(res => res.json())
-      .then(json => resolve(formatTracks(json)))
-      .catch(err => reject(err));
+      .then((res) => res.json())
+      .then((json) => resolve(formatTracks(json)))
+      .catch((err) => reject(err));
   });
