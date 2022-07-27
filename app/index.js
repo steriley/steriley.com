@@ -4,7 +4,7 @@ import apicache from 'apicache';
 
 import { send } from './mail.js';
 import { latestPhotos } from './instagram.js';
-import { recentlyPlayed } from './lastfm.js';
+import { recentlyPlayed } from './lastfm/lastfm.js';
 import { lastTweet } from './twitter/twitter.js';
 
 const app = express();
