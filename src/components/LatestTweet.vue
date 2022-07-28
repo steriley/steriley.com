@@ -1,26 +1,26 @@
 <template>
   <div class="latest-tweet">
-    <div v-if="tweet" class="tweet">
-      <a :href="tweetUrl" class="tweet__avatar">
+    <div v-if="tweet" class="tweet" data-qa="tweet-latest">
+      <a :href="tweetUrl" class="tweet__avatar" data-qa="tweet-avatar">
         <img :src="tweet.user.profile_image_url_https" :alt="tweet.user.name" />
       </a>
-      <a :href="userProfileUrl" class="tweet__username">
+      <a :href="userProfileUrl" class="tweet__username" data-qa="tweet-author">
         <s>@</s>{{ tweet.user.screen_name }}
       </a>
-      <small class="tweet__time">
+      <small class="tweet__time" data-qa="tweet-time">
         <a :href="tweetUrl" :title="tweet.created.time">
           {{ tweet.created.short }}
         </a>
       </small>
-      <p class="tweet__text">{{ tweet.text }}</p>
+      <p class="tweet__text" data-qa="tweet-text">{{ tweet.text }}</p>
     </div>
-    <FakePlaceholder v-else />
+    <FakePlaceholder v-else data-qa="tweet-placeholder" />
   </div>
 </template>
 
 <script setup>
 import FakePlaceholder from './FakePlaceholder.vue';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 defineProps({
   fetch: {
@@ -37,11 +37,10 @@ const tweetUrl = computed(
   () => `${userProfileUrl.value}/status/${tweet.value.id_str}`,
 );
 
-fetch('/api/twitter')
-  .then((data) => data.json())
-  .then((json) => {
-    tweet.value = json;
-  });
+onMounted(async () => {
+  let data = await fetch('/api/twitter');
+  tweet.value = await data.json();
+});
 </script>
 
 <style lang="scss" scoped>
