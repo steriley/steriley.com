@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
-import HomePage from './Home.vue';
+import HomePage from './HomePage.vue';
 
 const mountWith = (options) => {
   return shallowMount(HomePage, options);

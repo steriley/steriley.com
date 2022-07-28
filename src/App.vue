@@ -1,11 +1,9 @@
 <template>
-  <div id="app" class="app">
-    <Home />
-  </div>
+  <HomePage />
 </template>
 
 <script setup>
-import Home from './views/Home.vue';
+import HomePage from './views/HomePage.vue';
 </script>
 
 <style lang="scss">
