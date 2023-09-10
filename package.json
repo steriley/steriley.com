@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build && yarn run build:functions",
+    "build": "vite build",
     "build:functions": "netlify-lambda build src/lambda",
     "lint": "eslint --fix",
     "preview": "vite preview",
