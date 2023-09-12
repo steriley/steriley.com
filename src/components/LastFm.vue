@@ -29,7 +29,7 @@ import { ref, onMounted } from 'vue';
 let tracks = ref(new Array(TRACKS_TO_DISPLAY).fill(0));
 
 onMounted(async () => {
-  let data = await fetch(`/api/lastfm/${TRACKS_TO_DISPLAY}`);
+  let data = await fetch(`/api/lastfm/?total=${TRACKS_TO_DISPLAY}`);
   tracks.value = await data.json();
 });
 </script>
