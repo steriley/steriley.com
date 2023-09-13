@@ -10,9 +10,7 @@
           />
         </a>
 
-        <Introduction>
-          <LatestTweet />
-        </Introduction>
+        <Introduction />
       </div>
 
       <div class="container container--flex">
