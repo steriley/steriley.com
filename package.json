@@ -15,6 +15,7 @@
     "@sendgrid/mail": "7.7.0",
     "@sentry/tracing": "7.7.0",
     "@sentry/vue": "7.7.0",
+    "@vercel/kv": "0.2.2",
     "apicache": "1.6.3",
     "body-parser": "1.20.0",
     "date-fns": "2.28.0",

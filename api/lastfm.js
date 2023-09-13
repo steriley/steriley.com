@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { formatDistance } from 'date-fns';
+import { kv } from '@vercel/kv';
 
 function apiUrl(username, apiKey, totalTracks = 5) {
   const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
@@ -39,7 +40,15 @@ function formatTracks(json) {
 }
 
 export default async function handler(request, response) {
+  const kvKey = 'lastfm';
+
   try {
+    const storedData = await kv.get(kvKey);
+
+    if (storedData) {
+      return response.json(storedData);
+    }
+
     const data = await fetch(
       apiUrl(
         process.env.LASTFM_USER_ID,
@@ -50,6 +59,8 @@ export default async function handler(request, response) {
     const json = await data.json();
 
     const tracks = formatTracks(json);
+
+    await kv.set(kvKey, tracks, { ex: 60 });
 
     response.json(tracks);
   } catch (error) {
