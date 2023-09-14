@@ -38,7 +38,7 @@ describe('<LastFm />', () => {
 
   it('should make a fetch request to the endpoint', () => {
     expect(global.fetch).toHaveBeenCalledWith(
-      `/api/lastfm/${TRACKS_TO_DISPLAY}`,
+      `/api/lastfm/?total=${TRACKS_TO_DISPLAY}`,
     );
   });
 

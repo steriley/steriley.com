@@ -39,9 +39,8 @@ function formatTracks(json) {
   }));
 }
 
+export const kvKey = 'lastfm';
 export default async function handler(request, response) {
-  const kvKey = 'lastfm';
-
   try {
     const storedData = await kv.get(kvKey);
 
@@ -63,6 +62,7 @@ export default async function handler(request, response) {
     await kv.set(kvKey, tracks, { ex: 60 });
 
     response.json(tracks);
+    return tracks;
   } catch (error) {
     let message = 'Ensure LASTFM_USER_ID & LASTFM_CONSUMER_KEY are provided';
     console.error(message);
