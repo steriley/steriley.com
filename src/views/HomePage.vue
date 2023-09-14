@@ -35,7 +35,6 @@ import ContactForm from '../components/ContactForm.vue';
 import FancyHeader from '../components/FancyHeader.vue';
 import Introduction from '../components/IntroductionSection.vue';
 import LastFm from '../components/LastFm.vue';
-import LatestTweet from '../components/LatestTweet.vue';
 
 const thisYear = new Date().getFullYear();
 </script>
