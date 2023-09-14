@@ -2,16 +2,22 @@
   <ul v-if="photos" class="photo-list">
     <li
       v-for="photo in photos"
-      :key="photo.link"
-      :data-date="photo.created_time_formatted"
+      :key="photo.shortcode"
+      :data-date="photo.taken_at"
       class="photo-list__item"
     >
-      <a v-if="photo" :href="photo.link" class="photo">
+      <a
+        v-if="photo"
+        :href="`https://www.instagram.com/p/${photo.shortcode}/`"
+        class="photo"
+      >
         <img
-          v-lazy="photo.images.standard_resolution.url"
-          :alt="photo.caption.text"
+          :src="photo.thumbnail_src"
+          loading="lazy"
+          :alt="photo.caption"
           class="photo__img"
-        >
+          cross-origin="anonymous"
+        />
 
         <span class="meta">
           <svg
@@ -25,7 +31,7 @@
                   0l-4 4-4-4c-5-5-13-5-17 0z"
             />
           </svg>
-          <span class="meta__count">{{ photo.likes.count }}</span>
+          <span class="meta__count">{{ photo.likes }}</span>
         </span>
       </a>
       <FakePlaceholder v-else class="fake-container--column" />
@@ -33,37 +39,16 @@
   </ul>
 </template>
 
-<script>
-import FakePlaceholder from '@/components/FakePlaceholder.vue';
+<script setup>
+import FakePlaceholder from './FakePlaceholder.vue';
+import { ref, onMounted } from 'vue';
 
-export default {
-  name: 'Instagram',
+const photos = ref(new Array(8).fill(0));
 
-  components: {
-    FakePlaceholder,
-  },
-
-  props: {
-    fetch: {
-      type: Function,
-      default: () => {},
-    },
-  },
-
-  data() {
-    return {
-      photos: new Array(8).fill(0),
-    };
-  },
-
-  mounted() {
-    this.fetch(`instagram/${this.photos.length}`)
-      .then(json => {
-        this.photos = json;
-      })
-      .catch(e => console.log(e));
-  },
-};
+onMounted(async () => {
+  let data = await fetch(`/api/instagram/`);
+  photos.value = await data.json();
+});
 </script>
 
 <style lang="scss" scoped>
