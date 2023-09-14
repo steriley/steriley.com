@@ -43,10 +43,10 @@ onMounted(async () => {
   @media screen and (min-width: 1024px) {
     max-width: 310px;
   }
-}
 
-.last-fm__track {
-  margin: 0 0 1em 0;
-  position: relative;
+  &__track {
+    margin: 0 0 1em 0;
+    position: relative;
+  }
 }
 </style>

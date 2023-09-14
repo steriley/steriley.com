@@ -56,6 +56,43 @@ defineProps({
   color: #000;
   text-decoration: none;
 
+  &__cover {
+    float: left;
+    margin-right: 5px;
+  }
+
+  &__artist {
+    font-weight: 700;
+  }
+
+  &__date {
+    bottom: 0;
+    font-size: 0.9em;
+    position: absolute;
+    right: 0;
+  }
+
+  &__date--now {
+    background: url('/img/icon_eq.gif') no-repeat 0 50%;
+    padding-left: 1rem;
+  }
+
+  &__video {
+    align-self: flex-start;
+    background-color: transparent;
+    border: 0;
+    bottom: 0;
+    color: #003;
+    font-size: 0.9em;
+    height: auto;
+    left: 0;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    text-transform: lowercase;
+    z-index: 10;
+  }
+
   span {
     display: block;
   }
@@ -67,42 +104,5 @@ defineProps({
   position: relative;
   width: 100%;
   padding-bottom: 1rem;
-}
-
-.track__cover {
-  float: left;
-  margin-right: 5px;
-}
-
-.track__artist {
-  font-weight: 700;
-}
-
-.track__date {
-  bottom: 0;
-  font-size: 0.9em;
-  position: absolute;
-  right: 0;
-}
-
-.track__date--now {
-  background: url('/img/icon_eq.gif') no-repeat 0 50%;
-  padding-left: 1rem;
-}
-
-.track__video {
-  align-self: flex-start;
-  background-color: transparent;
-  border: 0;
-  bottom: 0;
-  color: #003;
-  font-size: 0.9em;
-  height: auto;
-  left: 0;
-  outline: none;
-  padding: 0;
-  position: absolute;
-  text-transform: lowercase;
-  z-index: 10;
 }
 </style>

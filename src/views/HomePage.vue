@@ -10,7 +10,7 @@
           />
         </a>
 
-        <Introduction />
+        <IntroductionCopy />
       </div>
 
       <div class="container container--flex">
@@ -33,7 +33,7 @@
 <script setup>
 import ContactForm from '../components/ContactForm.vue';
 import FancyHeader from '../components/FancyHeader.vue';
-import Introduction from '../components/IntroductionSection.vue';
+import IntroductionCopy from '../components/IntroductionSection.vue';
 import LastFm from '../components/LastFm.vue';
 
 const thisYear = new Date().getFullYear();
