@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { formatDistance } from 'date-fns';
 
 function apiUrl(username, apiKey, totalTracks = 5) {
