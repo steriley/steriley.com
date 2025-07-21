@@ -1,64 +1,36 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import apicache from 'apicache';
+import { Hono } from 'hono';
+import { handle } from 'hono/vercel';
 
 import { send } from './mail.js';
-import { latestPhotos } from './instagram.js';
 import { recentlyPlayed } from './lastfm/lastfm.js';
-import { lastTweet } from './twitter/twitter.js';
 
-const app = express();
-const cache = apicache.middleware;
-const PORT = process.env.PORT || 5000;
+export const runtime = 'nodejs';
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const app = new Hono().basePath('/api');
 
-app.get('/', (req, res) => {
-  res.json('hello world.');
-});
-
-app.get('/api/twitter', cache('5 minutes'), async (req, res) => {
+app.get('/lastfm/:total?', async (c) => {
   try {
-    const tweets = await lastTweet('4324661');
+    const total = c.req.param('total');
+    const tracks = await recentlyPlayed(
+      process.env.LASTFM_USER_ID,
+      process.env.LASTFM_CONSUMER_KEY,
+      total,
+    );
 
-    res.json(tweets);
+    return c.json(tracks);
   } catch (error) {
+    const errorMessage = 'Ensure LASTFM_USER_ID & LASTFM_CONSUMER_KEY are provided';
     console.error(error);
-    res.status(500).send({ error });
+    return c.json({ error: errorMessage });
   }
 });
 
-app.get('/api/instagram/:total?', cache('1 hour'), (req, res) => {
-  latestPhotos(
-    process.env.INSTAGRAM_USER_ID,
-    {
-      access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-      client_id: process.env.INSTAGRAM_CLIENT_ID,
-      client_secret: process.env.INSTAGRAM_CLIENT_SECRET,
-    },
-    req.params.total,
-  )
-    .then((photos) => res.json(photos))
-    .catch((e) => res.json(e));
+app.post('/contact', async (c) => {
+  const body = await c.req.json()
+  const response = await send(body)
+
+  return c.json(response);
 });
 
-app.get('/api/lastfm/:total?', cache('3 minutes'), (req, res) => {
-  recentlyPlayed(
-    process.env.LASTFM_USER_ID,
-    process.env.LASTFM_CONSUMER_KEY,
-    req.params.total,
-  )
-    .then((tracks) => res.json(tracks))
-    .catch(() => {
-      let error = 'Ensure LASTFM_USER_ID & LASTFM_CONSUMER_KEY are provided';
-      console.error(error);
-      res.status(500).json({ error });
-    });
-});
-
-app.post('/api/contact', (req, res) => {
-  send(req.body).then((response) => res.json(response));
-});
-
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+export const GET = handle(app);
+export const POST = handle(app);

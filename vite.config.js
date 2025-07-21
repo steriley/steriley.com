@@ -9,6 +9,14 @@ export default defineConfig({
       '/api': 'http://localhost:3000',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['color-functions', 'global-builtin'],
+        api: 'modern-compiler',
+      },
+    },
+  },
   test: {
     environment: 'jsdom',
     reporters: 'verbose',

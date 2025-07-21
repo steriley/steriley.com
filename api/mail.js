@@ -1,33 +1,27 @@
-import sgMail from '@sendgrid/mail';
+import FormData from "form-data";
+import Mailgun from "mailgun.js";
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+export const send = async ({ comments = '', name = '', email = '', subject = '' }) => {
+  const mailgun = new Mailgun(FormData);
+  const mg = mailgun.client({ username: "api", key: process.env.MAILGUN_API_KEY });
 
-export const send = (obj) =>
-  new Promise((resolve, reject) => {
-    const text = `${obj.comments}
-      \n---------------------------------------------
-      \nMail sent by: ${obj.name}: ${obj.email} from steriley.com
-    `;
+  const text = `${comments}
+    \n---------------------------------------------
+    \nMail sent by: ${name}: ${email} from steriley.com
+  `;
 
-    const msg = {
-      to: process.env.SENDGRID_EMAIL,
-      from: process.env.SENDGRID_EMAIL,
-      subject: obj.subject,
-      text,
-      html: `<pre style="font-family:Arial;font-size:16px">${text}</pre>`,
-    };
+  const data = {
+    from: `${name} <${email}>`,
+    to: [`Stephen Riley <${process.env.EMAIL_ADDRESS}>`],
+    subject: subject,
+    text,
+  };
 
-    const { timestamp } = obj;
-    const now = +new Date();
-    const validTime = now - timestamp > 10000;
-    const success = { message: 'Your message has been sent!' };
-
-    if (validTime && obj.message === '') {
-      return sgMail
-        .send(msg)
-        .then(() => resolve(success))
-        .catch((error) => reject(error));
-    }
-
-    return resolve(success);
-  });
+  try {
+    await mg.messages.create(process.env.MAILGUN_DOMAIN, data);
+    return { message: "Your message has been sent!" };
+  } catch (error) {
+    console.error(error);
+    return { error: "Failed to send email." };
+  }
+}
