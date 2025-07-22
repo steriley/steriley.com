@@ -1,32 +1,32 @@
 import { it, describe, expect, vi, beforeEach } from 'vitest';
 import { recentlyPlayed } from './lastfm.js';
-import mockLastFm from './lastfm.mock.json';
-import fetch from 'node-fetch';
+import mockLastFm from './lastfm.mock.json' with { type: 'json' };
+import type { LastFmRequest } from './types.js';
 
-vi.mock('node-fetch', () => ({
-  default: vi.fn(
-    () =>
-      new Promise((res) =>
-        res({
-          json: vi.fn(() => mockLastFm),
-        }),
-      ),
+vi.stubGlobal(
+  'fetch',
+  vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockLastFm),
+    }),
   ),
-}));
+);
 
-describe('lastfm.js', () => {
-  let response;
-  let username = 'theUser';
-  let totalTracks = 10;
-  let apiKey = 'special-key';
+describe('LastFM', () => {
+  let response: any;
+  const mockParameters: LastFmRequest = {
+    username: 'theUser',
+    apiKey: 'special-key',
+    limit: '10',
+  };
 
   beforeEach(async () => {
-    response = await recentlyPlayed(username, apiKey, totalTracks);
+    response = await recentlyPlayed(mockParameters);
   });
 
   it('should call the correct endpoint', () => {
     expect(fetch).toHaveBeenCalledWith(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&limit=${totalTracks}&api_key=${apiKey}&format=json`,
+      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${mockParameters.username}&limit=${mockParameters.limit}&api_key=${mockParameters.apiKey}&format=json`,
     );
   });
 
@@ -63,11 +63,11 @@ describe('lastfm.js', () => {
         const date = new Date();
         vi.setSystemTime(date);
 
-        response = await recentlyPlayed();
+        response = await recentlyPlayed(mockParameters);
       });
 
       it('should display track time as Listening now', () => {
-        expect(trackWithoutDate.date).toBeUndefined();
+        expect(trackWithoutDate?.date).toBeUndefined();
         expect(response[0].date.formatted).toBe('Listening now');
       });
     });
@@ -76,14 +76,16 @@ describe('lastfm.js', () => {
       let trackWithDate = mockLastFm.recenttracks.track[1];
 
       beforeEach(async () => {
-        const date = new Date(0).setUTCSeconds(trackWithDate.date.uts);
+        const date = new Date(0).setUTCSeconds(
+          parseInt(trackWithDate?.date?.uts || '0'),
+        );
         vi.setSystemTime(date);
 
-        response = await recentlyPlayed();
+        response = await recentlyPlayed(mockParameters);
       });
 
       it('should display how long since track was played', () => {
-        expect(trackWithDate.date).toBeDefined();
+        expect(trackWithDate?.date).toBeDefined();
         expect(response[1].date.formatted).toBe('less than 5 seconds ago');
       });
     });

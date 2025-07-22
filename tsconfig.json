@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true
+  },
+  "exclude": ["dist", "node_modules"]
+}
