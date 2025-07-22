@@ -100,6 +100,8 @@ function submit(event) {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .form {
   margin: 0 auto;
   max-width: 500px;
@@ -135,16 +137,16 @@ button[type='submit'] {
   width: 100%;
 
   &:focus {
-    background-color: darken($button-color, 5%);
+    background-color: color.scale($button-color, $lightness: -5%);
   }
 
   &:active {
-    background-color: darken($button-color, 10%);
+    background-color: color.scale($button-color, $lightness: -10%);
   }
 
   &:disabled {
-    background-color: darken($button-color, 25%);
-    color: darken($text-color, 25%);
+    background-color: color.scale($button-color, $lightness: -25%);
+    color: color.scale($text-color, $lightness: -25%);
   }
 }
 </style>
