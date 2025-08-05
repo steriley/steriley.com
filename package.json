@@ -1,5 +1,6 @@
 {
   "name": "@steriley/steriley.com",
+  "license": "MIT",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
