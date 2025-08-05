@@ -7,7 +7,3 @@ CSS with a sprinkle of JavaScript to bring it all together.
 Possessing a range of core Front-end skills developed while working in financial,
 media, marketing, e-learning and e-commerce environments. Located in
 Manchester, United Kingdom.
-
-### Run application locally
-
-`yarn start:app`

@@ -1,8 +1,8 @@
 {
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
   "compilerOptions": {
-    "incremental": true,
-    "noUncheckedIndexedAccess": true,
-    "strict": true
-  },
-  "exclude": ["dist", "node_modules"]
+    "jsx": "preserve"
+  }
 }

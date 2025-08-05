@@ -1,0 +1,91 @@
+---
+import ContactForm from '../components/ContactForm.vue';
+import FancyHeader from '../components/FancyHeader.astro';
+import IntroductionSection from '../components/IntroductionSection.astro';
+import LastFm from '../components/LastFm.vue';
+import PageWrapper from '../PageWrapper.astro';
+
+const thisYear = new Date().getFullYear();
+---
+
+<PageWrapper>
+  <div class="home">
+    <div class="wrapper">
+      <div class="header">
+        <a href="/" class="logo">
+          <img class="logo__img" src="/logo_steriley.png" alt="steriley.com" />
+        </a>
+
+        <IntroductionSection />
+      </div>
+
+      <div class="container container--flex">
+        <div class="primary column">
+          <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
+          <LastFm client:load />
+        </div>
+        <div class="secondary column">
+          <FancyHeader>Get in touch...</FancyHeader>
+          <ContactForm client:load />
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Copyright &copy; 2004 &ndash; {thisYear} Stephen Riley
+    </footer>
+  </div>
+</PageWrapper>
+
+<style lang="scss">
+  .wrapper {
+    min-height: calc(100vh - 70px);
+  }
+
+  .logo {
+    position: relative;
+    margin: 2rem 0 0.5rem;
+    z-index: 2;
+
+    @media screen and (min-width: 1024px) {
+      position: absolute;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .header {
+    overflow: hidden;
+    padding: 1rem 0.5rem 0;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .container--flex {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 650px) {
+      flex-direction: row;
+      justify-content: space-around;
+    }
+  }
+
+  .secondary {
+    min-width: 330px;
+    order: -1;
+
+    @media screen and (min-width: 650px) {
+      order: 0;
+    }
+  }
+
+  .footer {
+    color: #222;
+    margin-top: 2rem;
+    text-align: center;
+  }
+</style>
