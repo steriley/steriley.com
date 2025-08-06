@@ -1,71 +1,63 @@
-<script setup>
+<script lang="ts" setup>
 import { computed } from 'vue';
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-  label: {
-    type: String,
-    default: '',
-  },
-  type: {
-    type: String,
-    default: '',
-  },
-});
+const model = defineModel();
 
-const emit = defineEmits(['update:modelValue']);
-
-const updateValue = (event) => emit('update:modelValue', event.target.value);
+const props = defineProps<{
+  label: string;
+  type?: string;
+}>();
 
 const inputOrTextArea = computed(() =>
-  props.type !== 'textarea' ? 'input' : 'textarea',
+  props.type === 'textarea' ? 'textarea' : 'input',
 );
 const identifier = computed(() =>
   props.label.toLowerCase().replace(/\s+/, '-'),
 );
+
+function onInput(event: Event) {
+  model.value = (event.target as HTMLInputElement).value;
+}
 </script>
 
 <template>
-  <div class="input-container">
+  <label
+    :for="identifier"
+    :class="['label', { 'label--required': $attrs.required === '' }]"
+  >
+    {{ label }}:
     <component
-      :is="inputOrTextArea"
       :id="identifier"
-      :class="`input`"
+      :is="inputOrTextArea"
+      :type
+      class="input"
       v-bind="$attrs"
-      :type="type"
-      @input="updateValue"
+      @input="onInput"
     />
-    <label :for="identifier" class="l-required">{{ label }}:</label>
-  </div>
+  </label>
 </template>
 
 <style lang="scss" scoped>
-.input-container {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-label {
+.label {
   color: #222;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 0.25rem;
-}
+  position: relative;
 
-.input:required + label {
-  &::after {
+  &--required::before {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 1em;
     content: 'Required';
     font-size: 0.6em;
+    line-height: 1.75;
     margin-left: 1em;
     padding: 0.3em 0.75em;
-    position: relative;
+    position: absolute;
+    right: 0;
     text-transform: uppercase;
-    line-height: 1.75;
+    top: 0;
   }
 }
 
@@ -83,7 +75,7 @@ textarea.input {
   color: #222;
   display: block;
   font-size: 1.25rem;
-  margin-bottom: 0.75rem;
+  margin: 0.25rem0.75rem 0;
   outline: 0;
   padding: 0.75rem 0.5rem;
   resize: vertical;

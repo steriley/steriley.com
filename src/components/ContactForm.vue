@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import BaseInput from './BaseInput.vue';
 import { computed, reactive, ref } from 'vue';
 
@@ -13,7 +13,7 @@ const form = reactive({
   message: '',
 });
 
-function submit(event) {
+async function submit(event: Event) {
   const data = {
     ...form,
     timestamp: timestamp.value,
@@ -21,23 +21,26 @@ function submit(event) {
 
   sending.value = true;
 
-  fetch('/api/contact', {
+  await fetch('/api/contact', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
-  }).then(() => {
-    sending.value = false;
-    sent.value = true;
   });
 
-  event.preventDefault();
+  sending.value = false;
+  sent.value = true;
 }
 </script>
 
 <template>
-  <form action="/api/contact" method="post" class="form" @submit="submit">
+  <form
+    action="/api/contact"
+    method="post"
+    class="form"
+    @submit.prevent="submit"
+  >
     <fieldset v-if="sent" class="fieldset" data-qa="contact-sent">
       <p>Your message has been sent!</p>
       <p data-qa="contact-return" @click="sent = !sent">
