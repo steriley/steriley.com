@@ -1,19 +1,18 @@
 import LastFmTrack from './LastFmTrack.vue';
-import { shallowMount } from '@vue/test-utils';
+import { type VueWrapper, shallowMount } from '@vue/test-utils';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-const mountWith = (options) => {
-  return shallowMount(LastFmTrack, options);
-};
+const mountWith = (options?: any): VueWrapper =>
+  shallowMount(LastFmTrack, options);
 
 describe('<LastFmTrack />', () => {
-  let lastFmTrack;
-  let artwork;
-  let artist;
-  let title;
-  let url;
-  let date;
-  let trackNumber;
+  let lastFmTrack: VueWrapper;
+  let artwork: string;
+  let artist: string;
+  let title: string;
+  let url: string;
+  let date: { utc: number; formatted: string };
+  let trackNumber: number;
 
   beforeEach(() => {
     artwork = 'TRACK_ARTWORK';
@@ -54,20 +53,22 @@ describe('<LastFmTrack />', () => {
   });
 
   it('should render track artist name', () => {
-    expect(lastFmTrack.find('.track__artist').text()).toBe(artist);
+    expect(lastFmTrack.find('.track__details__artist').text()).toBe(artist);
   });
 
   it('should render track title', () => {
-    expect(lastFmTrack.find('.track__title').text()).toBe(title);
+    expect(lastFmTrack.find('.track__details__title').text()).toBe(title);
   });
 
   it('should render date track was played', () => {
-    expect(lastFmTrack.find('.track__date').text()).toBe(date.formatted);
-    expect(lastFmTrack.find('.track__date').attributes('date-time')).toEqual(
-      date.utc.toString(),
+    expect(lastFmTrack.find('.track__details__date').text()).toBe(
+      date.formatted,
     );
-    expect(lastFmTrack.find('.track__date').classes()).toContain(
-      'track__date--now',
+    expect(
+      lastFmTrack.find('.track__details__date').attributes('date-time'),
+    ).toEqual(date.utc.toString());
+    expect(lastFmTrack.find('.track__details__date').classes()).toContain(
+      'track__details__date--now',
     );
   });
 
@@ -77,8 +78,8 @@ describe('<LastFmTrack />', () => {
     });
 
     it('should NOT have the now class', () => {
-      expect(lastFmTrack.find('.track__date').classes()).not.toContain(
-        'track__date--now',
+      expect(lastFmTrack.find('.track__details__date').classes()).not.toContain(
+        'track__details__date--now',
       );
     });
   });

@@ -1,21 +1,27 @@
 import LastFm from './LastFm.vue';
-import { shallowMount } from '@vue/test-utils';
+import { type VueWrapper, shallowMount } from '@vue/test-utils';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { nextTick } from 'vue';
 
-const mountWith = (options) => {
-  return shallowMount(LastFm, options);
-};
+const mountWith = (options?: any): VueWrapper => shallowMount(LastFm, options);
 
 describe('<LastFm />', () => {
-  let lastFm;
+  let lastFm: VueWrapper;
 
   beforeEach(() => {
-    global.fetch = vi.fn(() => ({
-      json: vi.fn(() => new Promise((res) => res([]))),
-    }));
-
-    lastFm = mountWith();
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve([]),
+        }),
+      ),
+    );
+    lastFm = mountWith({
+      stubs: {
+        LastFmTrack: true,
+      },
+    });
   });
 
   it('should render the component', () => {
@@ -41,14 +47,36 @@ describe('<LastFm />', () => {
   });
 
   describe('when the endpoint fetches data', () => {
-    let response;
+    const fakeTrack = {
+      url: 'TRACK_URL',
+      artwork: 'TRACK_ARTWORK',
+      artist: 'TRACK_ARTIST',
+      title: 'TRACK_TITLE',
+      date: {
+        utc: 0,
+        formatted: 'TRACK_FORMATTED_DATE',
+      },
+      trackNumber: 0,
+    };
+
+    const fakeResponse = [
+      fakeTrack,
+      fakeTrack,
+      fakeTrack,
+      fakeTrack,
+      fakeTrack,
+      fakeTrack,
+    ];
 
     beforeEach(async () => {
-      response = [{}, {}, {}, {}, {}, {}];
-
-      global.fetch = vi.fn(() => ({
-        json: vi.fn(() => new Promise((res) => res(response))),
-      }));
+      vi.stubGlobal(
+        'fetch',
+        vi.fn(() =>
+          Promise.resolve({
+            json: () => Promise.resolve(fakeResponse),
+          }),
+        ),
+      );
 
       lastFm = mountWith();
       await nextTick();
@@ -56,7 +84,7 @@ describe('<LastFm />', () => {
 
     it('should render the track components', () => {
       expect(lastFm.findAll('[data-qa="lastfm-track"]').length).toBe(
-        response.length,
+        fakeResponse.length,
       );
     });
   });

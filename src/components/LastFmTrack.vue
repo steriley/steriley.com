@@ -1,30 +1,15 @@
-<script setup>
-defineProps({
-  url: {
-    type: String,
-    default: '',
-  },
-  artwork: {
-    type: String,
-    default: '',
-  },
-  artist: {
-    type: String,
-    default: '',
-  },
-  title: {
-    type: String,
-    default: '',
-  },
+<script lang="ts" setup>
+defineProps<{
+  url: string;
+  artwork?: string;
+  artist: string;
+  title: string;
   date: {
-    type: Object,
-    default: () => ({}),
-  },
-  trackNumber: {
-    type: Number,
-    default: -1,
-  },
-});
+    utc: number;
+    formatted: string;
+  };
+  trackNumber: number;
+}>();
 </script>
 
 <template>
@@ -36,13 +21,15 @@ defineProps({
         class="track__cover"
       />
     </div>
-    <div class="details">
-      <span class="track__artist">{{ artist }}</span>
-      <span class="track__title">{{ title }}</span>
+    <div class="track__details">
+      <span class="track__details__artist">{{ artist }}</span>
+      <span class="track__details__title">{{ title }}</span>
       <span
         :date-time="date.utc"
-        :class="{ 'track__date--now': date.utc === 0 }"
-        class="track__date"
+        :class="[
+          'track__details__date',
+          { 'track__details__date--now': date.utc === 0 },
+        ]"
         >{{ date.formatted }}</span
       >
     </div>
@@ -56,53 +43,37 @@ defineProps({
   color: #000;
   text-decoration: none;
 
+  &__cover {
+    float: left;
+    margin-right: 5px;
+  }
+
   span {
     display: block;
   }
-}
 
-.details {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  padding-bottom: 1rem;
-}
+  &__details {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    padding-bottom: 1rem;
 
-.track__cover {
-  float: left;
-  margin-right: 5px;
-}
+    &__artist {
+      font-weight: 700;
+    }
 
-.track__artist {
-  font-weight: 700;
-}
+    &__date {
+      bottom: 0;
+      font-size: 0.9em;
+      position: absolute;
+      right: 0;
+    }
 
-.track__date {
-  bottom: 0;
-  font-size: 0.9em;
-  position: absolute;
-  right: 0;
-}
-
-.track__date--now {
-  background: url('/icon_eq.gif') no-repeat 0 50%;
-  padding-left: 1rem;
-}
-
-.track__video {
-  align-self: flex-start;
-  background-color: transparent;
-  border: 0;
-  bottom: 0;
-  color: #003;
-  font-size: 0.9em;
-  height: auto;
-  left: 0;
-  outline: none;
-  padding: 0;
-  position: absolute;
-  text-transform: lowercase;
-  z-index: 10;
+    &__date--now {
+      background: url('/icon_eq.gif') no-repeat 0 50%;
+      padding-left: 1rem;
+    }
+  }
 }
 </style>
