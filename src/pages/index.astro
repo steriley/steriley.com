@@ -20,11 +20,11 @@ const thisYear = new Date().getFullYear();
       </div>
 
       <div class="container container--flex">
-        <div class="primary column">
+        <div class="column column--primary">
           <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
           <LastFm client:load />
         </div>
-        <div class="secondary column">
+        <div class="column column--secondary">
           <FancyHeader>Get in touch...</FancyHeader>
           <ContactForm client:load />
         </div>
@@ -38,24 +38,23 @@ const thisYear = new Date().getFullYear();
 </PageWrapper>
 
 <style lang="scss">
-  .wrapper {
-    min-height: calc(100vh - 70px);
+  .home {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
   }
-
   .logo {
     position: relative;
-    margin: 2rem 0 0.5rem;
+    top: 0.5rem;
     z-index: 2;
 
     @media screen and (min-width: 1024px) {
       position: absolute;
-      margin-top: 0.5rem;
     }
   }
 
   .header {
     overflow: hidden;
-    padding: 1rem 0.5rem 0;
     position: relative;
   }
 
@@ -67,25 +66,30 @@ const thisYear = new Date().getFullYear();
   .container--flex {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    @media screen and (min-width: 650px) {
+    @media screen and (min-width: 900px) {
       flex-direction: row;
       justify-content: space-around;
     }
   }
 
-  .secondary {
-    min-width: 330px;
-    order: -1;
+  .column {
+    max-width: 500px;
 
-    @media screen and (min-width: 650px) {
-      order: 0;
+    &--secondary {
+      order: -1;
+
+      @media screen and (min-width: 900px) {
+        order: 0;
+      }
     }
   }
 
   .footer {
     color: #222;
-    margin-top: 2rem;
     text-align: center;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
   }
 </style>
