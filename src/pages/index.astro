@@ -5,6 +5,8 @@ import IntroductionSection from '../components/IntroductionSection.astro';
 import LastFm from '../components/LastFm.vue';
 import PageWrapper from '../PageWrapper.astro';
 
+import Analytics from '@vercel/analytics/astro'
+
 const thisYear = new Date().getFullYear();
 ---
 
@@ -35,6 +37,7 @@ const thisYear = new Date().getFullYear();
       Copyright &copy; 2004 &ndash; {thisYear} Stephen Riley
     </footer>
   </div>
+  <Analytics />
 </PageWrapper>
 
 <style lang="scss">
