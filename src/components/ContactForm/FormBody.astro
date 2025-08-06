@@ -1,0 +1,93 @@
+---
+import FormInput from './FormInput.astro';
+
+const timestamp = +new Date();
+---
+
+<form method="POST" id="contact-form">
+  <fieldset v-else class="fieldset" data-qa="contact-form">
+    <input type="hidden" name="timestamp" value={timestamp} />
+
+    <FormInput
+      value=""
+      data-qa="contact-name"
+      label="Name"
+      maxlength="30"
+      required
+    />
+
+    <FormInput
+      data-qa="contact-email"
+      label="Email"
+      maxlength="50"
+      type="email"
+      required
+      value=""
+    />
+
+    <FormInput
+      value=""
+      data-qa="contact-subject"
+      label="Subject"
+      maxlength="40"
+    />
+
+    <FormInput
+      data-qa="contact-comments"
+      label="Comments"
+      maxlength="30"
+      class="support"
+      value=""
+    />
+
+    <FormInput
+      data-qa="contact-message"
+      type="textarea"
+      label="Message"
+      cols="33"
+      rows="5"
+      required
+      value=""
+    />
+
+    <button type="submit" data-qa="btn-submit"> Send Message </button>
+  </fieldset>
+</form>
+
+<style lang="scss">
+  .fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  button[type='submit'] {
+    $button-color: #003;
+    $text-color: #fff;
+
+    appearance: none;
+    background-color: $button-color;
+    border-radius: 0.2em;
+    border: none;
+    color: $text-color;
+    cursor: pointer;
+    font-size: 1rem;
+    outline: 0;
+    padding: 1em 2em;
+    transition: opacity 0.25s;
+    align-self: flex-end;
+    opacity: 0.75;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    &:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+  }
+</style>

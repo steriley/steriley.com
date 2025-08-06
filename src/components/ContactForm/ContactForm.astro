@@ -1,0 +1,47 @@
+---
+import FormBody from './FormBody.astro';
+import FormSent from './FormSent.astro';
+
+async function submit(formData: FormData) {
+  const data: Record<string, string | File> = {};
+  const endpoint = new URL('/api/contact', Astro.url);
+
+  for (const [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+
+  await fetch(endpoint, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+}
+
+if (Astro.request.method === 'POST') {
+  try {
+    const data = await Astro.request.formData();
+    await submit(data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<div class="form">
+  {Astro.request.method === 'POST' ? <FormSent /> : <FormBody />}
+</div>
+
+<style lang="scss">
+  .form {
+    margin: 0 auto;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.3rem;
+    color: #222;
+    padding: 1rem;
+  }
+</style>

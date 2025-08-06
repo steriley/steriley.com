@@ -1,0 +1,104 @@
+---
+const {
+  label,
+  type = 'text',
+  required = false,
+  maxlength,
+  class: className,
+} = Astro.props;
+
+const inputOrTextArea = type === 'textarea' ? 'textarea' : 'input';
+const identifier = label.toLowerCase().replace(/\s+/, '-');
+const labelClasses = [
+  'label',
+  required ? 'label--required' : '',
+  className ? className : '',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<label for={identifier} class={labelClasses}>
+  {label}:
+
+  {
+    inputOrTextArea === 'textarea' ? (
+      <textarea
+        class="input"
+        cols={Astro.props.cols || 33}
+        id={identifier}
+        name={identifier}
+        required={required}
+        rows={Astro.props.rows || 5}
+      />
+    ) : (
+      <input
+        class="input"
+        id={identifier}
+        maxlength={maxlength}
+        name={identifier}
+        required={required}
+        type={type}
+        value={Astro.props.value || ''}
+      />
+    )
+  }
+</label>
+
+<style lang="scss">
+  .label {
+    color: #222;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    position: relative;
+
+    &--required::before {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 1em;
+      content: 'Required';
+      font-size: 0.6em;
+      line-height: 1.75;
+      margin-left: 1em;
+      padding: 0.3em 0.75em;
+      position: absolute;
+      right: 0;
+      text-transform: uppercase;
+      top: -0.25rem;
+    }
+  }
+
+  .support {
+    display: none;
+  }
+
+  textarea.input {
+    min-height: 100px;
+    max-height: 500px;
+    width: calc(100% - 1rem);
+  }
+
+  .input {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: #222;
+    display: block;
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0;
+    outline: 0;
+    padding: 0.75rem 0.5rem;
+    resize: vertical;
+    transition: background-color 1s;
+
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.5);
+      transition:
+        background-color 1s,
+        border-color 0.5s;
+    }
+  }
+</style>

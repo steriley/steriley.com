@@ -1,5 +1,5 @@
 ---
-import ContactForm from '../components/ContactForm.vue';
+import ContactForm from '../components/ContactForm/ContactForm.astro';
 import LoadingSkeleton from '../components/LoadingSkeleton.astro';
 import FancyHeader from '../components/FancyHeader.astro';
 import IntroductionSection from '../components/IntroductionSection.astro';
@@ -31,7 +31,7 @@ const thisYear = new Date().getFullYear();
         </div>
         <div class="column column--secondary">
           <FancyHeader>Get in touch...</FancyHeader>
-          <ContactForm client:load />
+          <ContactForm />
         </div>
       </div>
     </div>
@@ -66,23 +66,26 @@ const thisYear = new Date().getFullYear();
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 
     &--flex {
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 2rem;
 
       @media screen and (min-width: 900px) {
-        flex-direction: row;
+        align-items: flex-start;
         justify-content: space-around;
+        flex-direction: row;
       }
     }
   }
 
   .column {
     max-width: 500px;
+    width: 100%;
 
     &--secondary {
       order: -1;

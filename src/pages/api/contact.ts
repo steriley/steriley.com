@@ -3,8 +3,13 @@ import { getSecret } from 'astro:env/server';
 import FormData from 'form-data';
 import Mailgun from 'mailgun.js';
 
+const json = (obj: Record<string, any>) => new Response(JSON.stringify(obj));
+
 export const POST: APIRoute = async ({ params, request }) => {
-  const { name, email, subject, comments } = await request.json();
+  const { name, email, subject, message, comments } = await request.json();
+  const success = json({ message: 'Your message has been sent!' });
+
+  if (comments !== '') return success;
 
   const mailgun = new Mailgun(FormData);
   const mg = mailgun.client({
@@ -12,7 +17,7 @@ export const POST: APIRoute = async ({ params, request }) => {
     key: getSecret('MAILGUN_API_KEY')!,
   });
 
-  const text = `${comments}
+  const text = `${message}
     \n---------------------------------------------
     \nMail sent by: ${name}: ${email} from steriley.com
   `;
@@ -26,10 +31,8 @@ export const POST: APIRoute = async ({ params, request }) => {
 
   try {
     await mg.messages.create(getSecret('MAILGUN_DOMAIN')!, data);
-    return new Response(
-      JSON.stringify({ message: 'Your message has been sent!' }),
-    );
+    return success;
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to send email.' }));
+    return json({ error: 'Failed to send email.' });
   }
 };
