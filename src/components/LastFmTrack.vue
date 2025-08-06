@@ -68,6 +68,7 @@ defineProps<{
       font-size: 0.9em;
       position: absolute;
       right: 0;
+      color: #666;
     }
 
     &__date--now {

@@ -36,15 +36,12 @@ onMounted(async () => {
 .last-fm {
   list-style-type: none;
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0;
+  max-width: 400px;
 
-  @media screen and (min-width: 1024px) {
-    max-width: 310px;
+  &__track {
+    margin: 0 0 1em 0;
+    position: relative;
   }
-}
-
-.last-fm__track {
-  margin: 0 0 1em 0;
-  position: relative;
 }
 </style>
