@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import FakePlaceholder from './FakePlaceholder.vue';
 import LastFmTrack from './LastFmTrack.vue';
 import { onMounted, ref } from 'vue';
 
@@ -28,7 +27,7 @@ onMounted(async () => {
         :track-number="key"
         data-qa="lastfm-track"
       />
-      <FakePlaceholder v-else data-qa="lastfm-placeholder" />
+      <slot v-else data-qa="lastfm-placeholder" />
     </li>
   </ol>
 </template>

@@ -1,11 +1,12 @@
 ---
 import ContactForm from '../components/ContactForm.vue';
+import LoadingSkeleton from '../components/LoadingSkeleton.astro';
 import FancyHeader from '../components/FancyHeader.astro';
 import IntroductionSection from '../components/IntroductionSection.astro';
 import LastFm from '../components/LastFm.vue';
 import PageWrapper from '../PageWrapper.astro';
 
-import Analytics from '@vercel/analytics/astro'
+import Analytics from '@vercel/analytics/astro';
 
 const thisYear = new Date().getFullYear();
 ---
@@ -24,7 +25,9 @@ const thisYear = new Date().getFullYear();
       <div class="container container--flex">
         <div class="column column--primary">
           <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
-          <LastFm client:load />
+          <LastFm client:load>
+            <LoadingSkeleton />
+          </LastFm>
         </div>
         <div class="column column--secondary">
           <FancyHeader>Get in touch...</FancyHeader>
@@ -46,6 +49,7 @@ const thisYear = new Date().getFullYear();
     grid-template-rows: 1fr auto;
     height: 100vh;
   }
+
   .logo {
     position: relative;
     top: 0.5rem;
@@ -64,16 +68,16 @@ const thisYear = new Date().getFullYear();
   .container {
     max-width: 1200px;
     margin: 0 auto;
-  }
 
-  .container--flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    &--flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    @media screen and (min-width: 900px) {
-      flex-direction: row;
-      justify-content: space-around;
+      @media screen and (min-width: 900px) {
+        flex-direction: row;
+        justify-content: space-around;
+      }
     }
   }
 
