@@ -24,7 +24,7 @@ describe('LastFM', () => {
   let response: any;
 
   const mockParameters = {
-    limit: '10',
+    tracksDisplayed: '10',
   };
 
   beforeEach(async () => {
@@ -37,7 +37,7 @@ describe('LastFM', () => {
 
   it('should call the correct endpoint', () => {
     expect(fetch).toHaveBeenCalledWith(
-      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${MOCK_ENV_VARS.LASTFM_USER_ID}&limit=${mockParameters.limit}&api_key=${MOCK_ENV_VARS.LASTFM_CONSUMER_KEY}&format=json`,
+      `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${MOCK_ENV_VARS.LASTFM_USER_ID}&limit=${mockParameters.tracksDisplayed}&api_key=${MOCK_ENV_VARS.LASTFM_CONSUMER_KEY}&format=json`,
     );
   });
 

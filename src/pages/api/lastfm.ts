@@ -5,7 +5,7 @@ import { formatDistance } from 'date-fns';
 export type LastFmRequest = {
   username: string;
   apiKey: string;
-  limit?: string;
+  tracksDisplayed?: number;
 };
 
 type LastFmTrackDate = {
@@ -44,9 +44,15 @@ type LastFmRecentTracks = {
   };
 };
 
-function apiUrl({ username, apiKey, limit = '5' }: LastFmRequest) {
+const TRACKS_DISPLAYED = 6;
+
+function apiUrl({
+  username,
+  apiKey,
+  tracksDisplayed = TRACKS_DISPLAYED,
+}: LastFmRequest) {
   const url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks';
-  const params = `&user=${username}&limit=${limit}&api_key=${apiKey}&format=json`;
+  const params = `&user=${username}&limit=${tracksDisplayed}&api_key=${apiKey}&format=json`;
 
   return `${url}${params}`;
 }
@@ -71,6 +77,7 @@ function formatDate(timestamp: LastFmTrackDate | undefined) {
   return date;
 }
 
+
 function formatTracks({ recenttracks: { track } }: LastFmRecentTracks) {
   return track.map(({ artist, name, url, date, image }) => ({
     artist: artist['#text'],
@@ -84,11 +91,14 @@ function formatTracks({ recenttracks: { track } }: LastFmRecentTracks) {
 export const GET: APIRoute = async ({ params, request }) => {
   const apiKey = getSecret('LASTFM_CONSUMER_KEY')!;
   const username = getSecret('LASTFM_USER_ID')!;
-  const limit = params.limit || '6';
+  const trackParam = Number(params.tracksDisplayed);
+  const tracksDisplayed = isNaN(trackParam) ? TRACKS_DISPLAYED : trackParam;
 
-  const url = apiUrl({ username, apiKey, limit });
+  const url = apiUrl({ username, apiKey, tracksDisplayed });
   const data = await fetch(url);
   const json = (await data.json()) as LastFmRecentTracks;
+  const tracks = formatTracks(json).slice(0, tracksDisplayed);
 
-  return new Response(JSON.stringify(formatTracks(json)));
+
+  return new Response(JSON.stringify(tracks));
 };
