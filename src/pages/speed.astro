@@ -1,0 +1,317 @@
+---
+import PageWrapper from '../PageWrapper.astro';
+
+import Analytics from '@vercel/analytics/astro';
+---
+
+<PageWrapper>
+  <div class="reaction">
+    <div id="reaction-game">
+      <h1>Test Your Reaction Speed</h1>
+
+      <div id="scoreboard">
+        <table class="scoreboard today">
+          <caption>Daily Best Scores</caption>
+          <!--?php foreach($scoreboard['today'] as $score) : ?-->
+          <tr>
+            <td class="name"><!--?= $score--->name ?></td>
+            <td><!--?= number_format($score--->score, 3) ?></td>
+          </tr>
+          <!--?php endforeach; ?-->
+        </table>
+
+        <table class="scoreboard monthly">
+          <caption>Monthly Best Scores</caption>
+          <!--?php foreach($scoreboard['month'] as $score) : ?-->
+          <tr>
+            <td class="name"><!--?= $score--->name ?></td>
+            <td><!--?= number_format($score--->score, 3) ?></td>
+          </tr>
+          <!--?php endforeach; ?-->
+        </table>
+
+        <div id="play-count">
+          Games Played <span id="count"><!--?= $play_count ?--></span>
+        </div>
+
+        <button class="button" id="start-game">Play</button>
+      </div>
+
+      <div id="game-area" class="hidden">
+        <div id="click-ball"></div>
+
+        <div class="scores">
+          <span class="times">Round Times</span>
+          <ol id="score-list">
+            <li></li>
+            <li class="alt"></li>
+            <li></li>
+            <li class="alt"></li>
+            <li></li>
+          </ol>
+          <span class="avg">Average</span>
+          <div id="current-average">0.000</div>
+          <span class="beat">Time To Beat</span>
+          <div id="beat-time"><!--?= $scoreboard['beat'] ?--></div>
+        </div>
+
+        <div class="feedback"></div>
+        <button class="button hidden" id="start-over">Play Again</button>
+
+        <form method="post" action="" id="submit-score" class="hidden">
+          <fieldset>
+            <label for="name"
+              >Well done, you have a high score! Please enter your name below:</label
+            >
+            <input type="text" maxlength="15" id="name" value="" name="name" />
+            <input type="hidden" name="user_score" value="1" />
+            <input
+              id="form_submit"
+              class="button"
+              value="Submit"
+              type="submit"
+            />
+          </fieldset>
+        </form>
+      </div>
+
+      <p>
+        <strong>Instructions:</strong> Once you have started the test you will be
+        presented with a red dot in the center of the screen, after a random amount
+        of time the dot will change to yellow.
+      </p>
+      <p>
+        The objective is to click the dot as fast as possible when the colour
+        changes, after 5 attempts your average response time will be displayed
+        and if you're fast enough your score will be added to the leaderboard.
+      </p>
+      <p>
+        Try the test at different times of the day to see when your at your
+        quickest.
+      </p>
+    </div>
+  </div>
+  <script src="../scripts/speed.js"></script>
+  <Analytics />
+</PageWrapper>
+
+<style lang="scss">
+  .hidden {
+    display: none;
+  }
+
+  .reaction {
+    color: #333;
+    margin: 120px auto;
+    max-width: 770px;
+  }
+  .reaction h1 {
+    color: #006;
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    margin: 0.5em 0 0.5em 0;
+    text-shadow: 2px 2px 0 #b3b3ff;
+  }
+  .reaction .button {
+    background: linear-gradient(top, #2daebf, #155058);
+    border-color: #2daebf #155058 #155058 #1e7681;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 5px;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+    width: 100%;
+  }
+  .reaction .button:hover {
+    background: linear-gradient(top, #4bc4d4, #155058);
+  }
+  .reaction .button:active {
+    background: linear-gradient(bottom, #2daebf, #1e7681);
+    padding: 4px 0 6px;
+  }
+  #reaction-game {
+    margin: 0 auto;
+    min-height: 400px;
+    position: relative;
+    width: 430px;
+  }
+  #scoreboard {
+    position: relative;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .scoreboard {
+    background-color: #fff;
+    background-color: rgba(10, 0, 255, 0.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    float: left;
+    font-family: Arial, san-serif;
+    font-size: 10px;
+    margin-top: 10px;
+    width: 160px;
+  }
+  .scoreboard.monthly {
+    background: rgba(255, 0, 0, 0.25);
+    float: right;
+  }
+  .scoreboard caption {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .scoreboard td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1px 5px;
+  }
+  .scoreboard td.name {
+    color: #fff;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 120px;
+  }
+  .scoreboard tr:last-child td {
+    border: none;
+  }
+  #game-area {
+    min-height: 350px;
+    position: relative;
+    text-align: left;
+    width: 430px;
+  }
+  #game-area .scores {
+    float: right;
+    font-size: 0.9em;
+    text-align: center;
+  }
+  #game-area .scores span {
+    display: block;
+    font-weight: bold;
+  }
+  #game-area .feedback {
+    color: #cc3030;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 80px;
+    position: relative;
+    text-align: center;
+    text-shadow: 1px 1px 0 #000;
+    top: 250px;
+  }
+  div.speed-units {
+    margin: 0 auto;
+    width: 260px;
+  }
+  div.speed-units .left {
+    margin-right: 20px;
+  }
+  ol#score-list,
+  div#current-average,
+  div#beat-time {
+    display: inline-block;
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+  ol#score-list li,
+  div#current-average,
+  div#beat-time {
+    background-color: #7fe5ff;
+    border: 1px solid #999;
+    padding: 2px 5px;
+    list-style-position: inside;
+    width: 70px;
+  }
+  ol#score-list li {
+    text-align: left;
+    margin: 1px 0;
+    display: list-item;
+  }
+  ol#score-list li:nth-child(even) {
+    background-color: #7fffff;
+  }
+  div#current-average,
+  div#beat-time {
+    top: 160px;
+  }
+  div#beat-time {
+    top: 205px;
+  }
+  #click-ball {
+    background-color: #f00;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 20px;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    position: absolute;
+    top: 50%;
+    width: 20px;
+  }
+  #click-ball.active {
+    background-color: #ff0 !important;
+  }
+  #click-ball.last-ball {
+    border-radius: 50% !important;
+    height: 60px !important;
+    margin: -30px 0 0 -30px !important;
+    width: 60px !important;
+  }
+  button#start-over {
+    position: absolute;
+    bottom: 0;
+  }
+  #submit-score {
+    background-color: #59567d;
+    background-color: rgba(89, 86, 125, 0.9);
+    border-radius: 10px;
+    color: #fff;
+    left: 50%;
+    margin: -74px 0 0 -161px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    width: 75%;
+    z-index: 10;
+  }
+  #submit-score label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  div#play-count {
+    display: block;
+    font-size: 10px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 85px;
+    width: 100%;
+  }
+  div#play-count span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .unit-468x60 {
+    margin: 0 auto;
+    width: 468px;
+  }
+  .unit-120x600 {
+    float: left;
+    margin: -60px 50px 0 0;
+    width: 120px;
+  }
+  .unit-120x600.right {
+    float: right;
+    margin-left: 50px;
+    margin-right: 0;
+  }
+</style>
