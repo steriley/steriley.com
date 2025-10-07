@@ -1,0 +1,15 @@
+export const jokes = [
+  'BREAKING NEWS : A gang of dyslexic vigilantes have just beaten up Jimmy Somerville.',
+  'What did Margaret Thatcher and Jimmy Savile have in common? They both shafted miners in the 1980s.',
+  `Savile's last request was for his ashes to be put into an etch a sketch so that kids could continue to fiddle with his knob.`,
+  'What has Jimmy Savile and a tortoise got in common? They both want to get there before the hare does.',
+  'If he abused for all that time, how did they only find out now then, now then, now then?',
+  'The first time I realised I was ugly was when I was six: Jimmy Savile said he only saw me as a friend.',
+  `Haven't seen that Jimmy Savile run the London Marathon in a while. Is he sick?`,
+  'Tiger Woods. The greatest comeback since Jimmy Savile heard footsteps in the morgue.',
+  `It's Jimmy Savile, not Saville. There's only one L in paedophile.`,
+  `Jimmy Saville, Rolf Harris & Stuart Hall walk into an Irish bar. Barman says "Not Yew Tree again".`,
+  `Don't fancy one of those Jimmy Saville tracksuits, it's normal size tops but you need to squeeze into child size bottoms.`,
+  'Gary Glitter regrets not asking Jim to fix it instead of taking his computer to PC World.',
+  'When asked about his seminal moment during his TOTP years, Saville stated that it was in introducing Cream to The Small Faces.',
+];

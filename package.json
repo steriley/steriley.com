@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "github:trivago/prettier-plugin-sort-imports",
+    "@types/google.maps": "^3.58.1",
     "@vue/test-utils": "^2.4.6",
     "jsdom": "^26.1.0",
     "prettier": "^3.6.2",

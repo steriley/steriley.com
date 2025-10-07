@@ -1,0 +1,119 @@
+---
+import PageWrapper from '../PageWrapper.astro';
+
+import Analytics from '@vercel/analytics/astro';
+import JimmySavile from '../scripts/savile/img/icn_savile.png';
+---
+
+<meta property="og:title" content="Are you safe from Jimmy Savile?" />
+<meta
+  property="og:description"
+  content="Keep your distance from Britain's most prolific celebrity sex offender"
+/>
+<meta property="og:url" content="https://steriley.com/savile" />
+<meta property="og:image" content={JimmySavile.src} />
+
+<PageWrapper>
+  <h1 class="logo">
+    <a href="/" class="logo__link">SteRiley.com</a>
+  </h1>
+  <div class="map">
+    <div class="map__inner" id="map"></div>
+  </div>
+  <div class="details">
+    <h2 class="details__header">Are you safe from Savile?</h2>
+    <div class="details__inner">
+      <p>
+        Your distance from Savile:
+        <span class="details__inner__distance" id="distance">0</span> km
+      </p>
+      <p class="details__inner__advice" id="advice">
+        Searching for your location&hellip;
+      </p>
+    </div>
+  </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCxuvjOfyNI3dnk5nHGZ4PdaMAbC5_AwM&libraries=maps"
+    defer></script>
+  <script src="../scripts/savile/index.ts"></script>
+  <Analytics />
+</PageWrapper>
+
+<style lang="scss">
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .logo {
+    left: 0;
+    margin: 0.5rem;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+
+  .logo__link {
+    background: transparent url(../scripts/savile/img/logo_steriley_sm.svg)
+      no-repeat top left;
+    display: block;
+    height: 40px;
+    text-indent: -999em;
+    width: 100px;
+  }
+
+  .map {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  .map__inner {
+    height: 100%;
+  }
+
+  .details {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+  .details__header {
+    color: #003;
+    font-family: Pacifico, cursive;
+    font-size: 1.5em;
+    margin: 0 0 -1rem 0.5rem;
+    text-shadow: 1px 1px 0 #fff;
+  }
+
+  .details__inner {
+    background: rgba(64, 50, 16, 0.75);
+    color: #fff;
+    font-size: 0.75em;
+    padding: 1rem 0.75rem;
+    width: 100%;
+    text-shadow: 1px 1px 0 #000;
+  }
+
+  .details__inner__distance {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  .details__inner__advice {
+    color: #fc0;
+    font-weight: 700;
+  }
+</style>

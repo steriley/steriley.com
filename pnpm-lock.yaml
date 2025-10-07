@@ -39,6 +39,9 @@ importers:
       '@trivago/prettier-plugin-sort-imports':
         specifier: github:trivago/prettier-plugin-sort-imports
         version: https://codeload.github.com/trivago/prettier-plugin-sort-imports/tar.gz/f7b685c768f1a09a8dc64de77def897856d9e357(@vue/compiler-sfc@3.5.18)(prettier@3.6.2)
+      '@types/google.maps':
+        specifier: ^3.58.1
+        version: 3.58.1
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -826,6 +829,9 @@ packages:
 
   '@types/fontkit@2.0.8':
     resolution: {integrity: sha512-wN+8bYxIpJf+5oZdrdtaX04qUuWHcKxcDEgRS9Qm9ZClSHjzEn13SxUC+5eRM+4yXIeTYk8mTzLAWGF64847ew==}
+
+  '@types/google.maps@3.58.1':
+    resolution: {integrity: sha512-X9QTSvGJ0nCfMzYOnaVs/k6/4L+7F5uCS+4iUmkLEls6J9S/Phv+m/i3mDeyc49ZBgwab3EFO1HEoBY7k98EGQ==}
 
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
@@ -3526,6 +3532,8 @@ snapshots:
   '@types/fontkit@2.0.8':
     dependencies:
       '@types/node': 24.1.0
+
+  '@types/google.maps@3.58.1': {}
 
   '@types/hast@3.0.4':
     dependencies:
