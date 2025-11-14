@@ -77,7 +77,6 @@ function formatDate(timestamp: LastFmTrackDate | undefined) {
   return date;
 }
 
-
 function formatTracks({ recenttracks: { track } }: LastFmRecentTracks) {
   return track.map(({ artist, name, url, date, image }) => ({
     artist: artist['#text'],
@@ -97,8 +96,10 @@ export const GET: APIRoute = async ({ params, request }) => {
   const url = apiUrl({ username, apiKey, tracksDisplayed });
   const data = await fetch(url);
   const json = (await data.json()) as LastFmRecentTracks;
-  const tracks = formatTracks(json).slice(0, tracksDisplayed);
 
+  if (!json.recenttracks) return new Response('No data', { status: 500 });
+
+  const tracks = formatTracks(json).slice(0, tracksDisplayed);
 
   return new Response(JSON.stringify(tracks));
 };
