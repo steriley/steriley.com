@@ -1,9 +1,10 @@
 # Stephen Riley
 
-Experienced Front-end Web Developer with extensive knowledge of W3C
-Standards based development of desktop &amp; mobile HTML5 and Sass based
-CSS with a sprinkle of JavaScript to bring it all together.
+Experienced TypeScript Developer specialising in modern front-end and Node.js
+development, with a strong focus on scalable applications and AI integrations.
+Skilled in Vue, TypeScript, and full-stack development, along with experience
+building AI-powered solutions, including chatbots and automation tools.
 
-Possessing a range of core Front-end skills developed while working in financial,
-media, marketing, e-learning and e-commerce environments. Located in
-Manchester, United Kingdom.
+Background in delivering high-performance web applications across finance,
+media, e-commerce, and e-learning, with a passion for clean, maintainable code
+and intelligent system design. Based in Manchester, UK.
