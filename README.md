@@ -1,10 +1,15 @@
 # Stephen Riley
 
-Experienced TypeScript Developer specialising in modern front-end and Node.js
-development, with a strong focus on scalable applications and AI integrations.
-Skilled in Vue, TypeScript, and full-stack development, along with experience
-building AI-powered solutions, including chatbots and automation tools.
+I'm a TypeScript developer based in Manchester, UK, specialising in modern
+front-end and Node.js development. I focus on building scalable, high-performance
+applications with clean architecture and intelligent design.
 
-Background in delivering high-performance web applications across finance,
-media, e-commerce, and e-learning, with a passion for clean, maintainable code
-and intelligent system design. Based in Manchester, UK.
+With deep expertise in Vue, TypeScript, and full-stack development, I’ve
+delivered robust solutions across finance, media, e-commerce, and e-learning.
+My work often involves integrating AI technologies from chatbots to automation
+tools to create smarter, more responsive user experiences.
+
+I care deeply about writing maintainable code, designing systems that scale,
+and collaborating with teams to bring thoughtful products to life. Whether
+you're building something new or refining an existing platform, I bring clarity,
+precision, and a passion for solving real-world problems with elegant code.
