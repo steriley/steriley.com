@@ -20,7 +20,7 @@ async function submitScore(playerScore: number) {
       },
       body: JSON.stringify({ name, playerScore }),
     });
-  } catch (err) {
+  } catch {
     const fb = qs('div.feedback');
     if (fb) fb.innerHTML = 'An error occurred';
   } finally {
@@ -127,14 +127,6 @@ function startGame() {
 
 qs('#start-game')?.addEventListener('click', startGame);
 
-const gamesPlayed = document.getElementById('count');
-const eventSource = new EventSource('/api/speed/played');
-
-eventSource.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-  if (gamesPlayed) gamesPlayed.innerHTML = data;
-};
-
 function findHighestScore(scores: { name: string; score: number }[]) {
   let highest = -Infinity;
   for (const entry of scores) {
@@ -146,8 +138,8 @@ function findHighestScore(scores: { name: string; score: number }[]) {
 }
 
 function updateScoreboard(scoreboard: any) {
-  function writeScores(selector: string, key: string) {
-    qsa(`${selector} tr`).forEach((tr, i) => {
+  function writeScores(key: string) {
+    qsa(`#score-${key} tr`).forEach((tr, i) => {
       const nameTd = tr.querySelector('td.name');
       const scoreTd = tr.querySelector('td.score');
       if (nameTd && scoreTd && scoreboard.scores[key][i]) {
@@ -157,14 +149,14 @@ function updateScoreboard(scoreboard: any) {
     });
   }
 
-  writeScores('.scoreboard--today', 'today');
-  writeScores('.scoreboard--monthly', 'month');
+  writeScores('today');
+  writeScores('month');
 
   const beatTime = qs('#beat-time');
 
   const highestScore = scoreboard.scores.today.length
     ? findHighestScore(scoreboard.scores.today)
-    : findHighestScore(scoreboard.scores.month) || '0.000';
+    : findHighestScore(scoreboard.scores.month) || '1.000';
 
   if (beatTime) beatTime.textContent = highestScore;
 }
@@ -174,6 +166,14 @@ async function getScoreboard() {
   const scoreboard = await getScores.json();
 
   updateScoreboard(scoreboard);
+
+  const gamesPlayed = document.getElementById('count');
+  const eventSource = new EventSource('/api/speed/played');
+
+  eventSource.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (gamesPlayed) gamesPlayed.innerHTML = data;
+  };
 }
 
 getScoreboard();

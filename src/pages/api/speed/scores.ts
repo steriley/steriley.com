@@ -26,7 +26,6 @@ export const GET: APIRoute = async ({ request }) => {
       { name: 'Player 19', score: 0.22 },
       { name: 'Player 20', score: 0.225 },
     ],
-    beat: '10.000',
   };
 
   return new Response(JSON.stringify({ scores: scoreboard }), { status: 200 });

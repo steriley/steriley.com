@@ -11,7 +11,7 @@ const SCORES_TO_DISPLAY = 10;
     <h1 class="game__title">Test Your Reaction Speed</h1>
 
     <div id="scoreboard" class="scoreboards">
-      <table class="scoreboard scoreboard--today">
+      <table id="score-today" class="scoreboard scoreboard--today">
         <caption class="scoreboard__caption">Daily Best Scores</caption>
         {
           [...Array.from({ length: SCORES_TO_DISPLAY })].map(() => (
@@ -25,7 +25,7 @@ const SCORES_TO_DISPLAY = 10;
         }
       </table>
 
-      <table class="scoreboard scoreboard--monthly">
+      <table id="score-month" class="scoreboard scoreboard--monthly">
         <caption class="scoreboard__caption">Monthly Best Scores</caption>
         {
           [...Array.from({ length: SCORES_TO_DISPLAY })].map(() => (
