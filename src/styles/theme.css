@@ -1,0 +1,23 @@
+@theme {
+  --darkMode: class;
+
+  /* Colors */
+  --color-primary: #64FFDA;
+  --color-background-light: #F8F9FA;
+  --color-background-dark: #0A192F;
+  --color-text-light: #212529;
+  --color-text-dark: #CCD6F6;
+  --color-text-secondary-light: #495057;
+  --color-text-secondary-dark: #8892B0;
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #112240;
+
+  /* Fonts */
+  --font-display: "Inter", sans-serif;
+
+  /* Border Radius */
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}

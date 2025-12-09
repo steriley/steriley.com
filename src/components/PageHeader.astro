@@ -1,0 +1,45 @@
+---
+import ThemeSwitcher from './ThemeSwitcher.astro';
+---
+
+<header
+  class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-dark/80 px-6 py-4 shadow-md backdrop-blur-sm md:px-10 lg:px-20"
+>
+  <div class="flex items-center gap-3 text-primary relative w-50">
+    <img
+      src="/logo_steriley.png"
+      class="absolute -top-7"
+      alt="Ste Riley Logo"
+    />
+  </div>
+  <div class="flex items-center gap-8">
+    <nav class="hidden items-center gap-8 md:flex">
+      <a
+        class="text-sm font-medium text-text-secondary-dark transition-colors hover:text-primary"
+        href="#about">About</a
+      >
+      <a
+        class="text-sm font-medium text-text-secondary-dark transition-colors hover:text-primary"
+        href="#experience">Experience</a
+      >
+      <a
+        class="text-sm font-medium text-text-secondary-dark transition-colors hover:text-primary"
+        href="#portfolio">Portfolio</a
+      >
+      <a
+        class="text-sm font-medium text-text-secondary-dark transition-colors hover:text-primary"
+        href="#contact">Contact</a
+      >
+      <button
+        class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded h-9 px-4 border border-primary text-primary text-sm font-medium leading-normal tracking-[0.015em] transition-colors hover:bg-primary/10 gap-2"
+      >
+        <span class="truncate">Resume</span>
+        <span class="material-symbols-outlined !text-lg">download</span>
+      </button>
+    </nav>
+    <ThemeSwitcher />
+    <button class="md:hidden text-text-dark">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</header>

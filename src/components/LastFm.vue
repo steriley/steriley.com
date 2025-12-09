@@ -14,11 +14,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ol class="last-fm">
-    <li
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+    <div
+      class="group flex flex-col items-center text-center"
       v-for="(track, key) in tracks"
       :key="key"
-      class="last-fm__track"
       data-qa="lastfm-item"
     >
       <LastFmTrack
@@ -28,20 +28,6 @@ onMounted(async () => {
         data-qa="lastfm-track"
       />
       <slot v-else data-qa="lastfm-placeholder" />
-    </li>
-  </ol>
+    </div>
+  </div>
 </template>
-
-<style scoped lang="scss">
-.last-fm {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  max-width: 400px;
-
-  &__track {
-    margin: 0 0 1em 0;
-    position: relative;
-  }
-}
-</style>

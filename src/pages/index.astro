@@ -1,105 +1,54 @@
 ---
 import ContactForm from '../components/ContactForm/ContactForm.astro';
-import LoadingSkeleton from '../components/LoadingSkeleton.astro';
-import FancyHeader from '../components/FancyHeader.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 import IntroductionSection from '../components/IntroductionSection.astro';
 import LastFm from '../components/LastFm.vue';
 import PageWrapper from '../PageWrapper.astro';
+import PageHeader from '../components/PageHeader.astro';
 
 import Analytics from '@vercel/analytics/astro';
-
-const thisYear = new Date().getFullYear();
+import AboutMe from '../components/AboutMe.astro';
+import Experience from '../components/Experience.astro';
+import WebExperiments from '../components/WebExperiments.astro';
+import PageFooter from '../components/PageFooter.astro';
 ---
 
 <PageWrapper>
-  <div class="home">
-    <div class="wrapper">
-      <div class="header">
-        <a href="/" class="logo">
-          <img class="logo__img" src="/logo_steriley.png" alt="steriley.com" />
-        </a>
+  <div class="relative flex h-auto min-h-screen w-full flex-col">
+    <PageHeader />
 
-        <IntroductionSection />
-      </div>
-
-      <div class="container container--flex">
-        <div class="column column--primary">
-          <FancyHeader>last.fm Recent Scrobbles</FancyHeader>
-          <LastFm client:load>
-            <LoadingSkeleton />
-          </LastFm>
-        </div>
-        <div class="column column--secondary">
-          <FancyHeader>Get in touch...</FancyHeader>
+    <main class="flex h-full grow flex-col">
+      <div
+        class="mx-auto w-full max-w-5xl px-6 py-10 md:px-10 md:py-16 lg:py-24"
+      >
+        <section
+          class="flex min-h-[calc(100vh-80px)] flex-col justify-center py-20"
+          id="home"
+        >
+          <div class="flex flex-col gap-6">
+            <IntroductionSection />
+          </div>
+        </section>
+        <section class="py-20" id="about">
+          <AboutMe />
+        </section>
+        <section class="py-20" id="experience">
+          <Experience />
+        </section>
+        <section class="py-20" id="portfolio">
+          <WebExperiments />
+        </section>
+        <section class="py-20" id="lastfm">
+          <SectionHeader number="04" title="Recently Played" />
+          <LastFm client:load />
+        </section>
+        <section class="py-20 text-center" id="contact">
           <ContactForm />
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
 
-    <footer class="footer">
-      Copyright &copy; 2004 &ndash; {thisYear} Stephen Riley
-    </footer>
+    <PageFooter />
+    <Analytics />
   </div>
-  <Analytics />
 </PageWrapper>
-
-<style lang="scss">
-  .home {
-    display: grid;
-    grid-template-rows: 1fr auto;
-    height: 100vh;
-  }
-
-  .logo {
-    position: relative;
-    top: 0.5rem;
-    z-index: 2;
-
-    @media screen and (min-width: 1024px) {
-      position: absolute;
-    }
-  }
-
-  .header {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-
-    &--flex {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-
-      @media screen and (min-width: 900px) {
-        align-items: flex-start;
-        justify-content: space-around;
-        flex-direction: row;
-      }
-    }
-  }
-
-  .column {
-    max-width: 500px;
-    width: 100%;
-
-    &--secondary {
-      order: -1;
-
-      @media screen and (min-width: 900px) {
-        order: 0;
-      }
-    }
-  }
-
-  .footer {
-    color: #222;
-    text-align: center;
-    margin-top: 2rem;
-    padding-bottom: 1rem;
-  }
-</style>

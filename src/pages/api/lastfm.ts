@@ -77,14 +77,13 @@ function formatDate(timestamp: LastFmTrackDate | undefined) {
   return date;
 }
 
-
 function formatTracks({ recenttracks: { track } }: LastFmRecentTracks) {
   return track.map(({ artist, name, url, date, image }) => ({
     artist: artist['#text'],
     title: name,
     url: url,
     date: formatDate(date),
-    artwork: image.find((img) => img.size === 'medium')?.['#text'],
+    artwork: image.find((img) => img.size === 'large')?.['#text'],
   }));
 }
 
@@ -98,7 +97,6 @@ export const GET: APIRoute = async ({ params, request }) => {
   const data = await fetch(url);
   const json = (await data.json()) as LastFmRecentTracks;
   const tracks = formatTracks(json).slice(0, tracksDisplayed);
-
 
   return new Response(JSON.stringify(tracks));
 };

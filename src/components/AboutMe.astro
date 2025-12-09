@@ -1,0 +1,38 @@
+---
+import SectionHeader from './SectionHeader.astro';
+---
+
+<SectionHeader number="01" title="About Me" />
+
+<div class="grid grid-cols-1 gap-10 md:grid-cols-5">
+  <div class="md:col-span-3">
+    <p class="text-base font-normal leading-relaxed text-text-secondary-dark">
+      Hello! I’m Ste, a full-stack web engineer based in the UK with a strong
+      background in frontend development and a growing focus on AI-powered
+      experiences. I’ve spent years crafting interfaces, leading engineering
+      work, and recently diving deep into building agentic chatbots and
+      generative UI systems.<br /><br />
+      My journey into development has taken me from hands-on frontend engineering
+      to becoming a lead engineer, guiding projects, mentoring others, and shaping
+      how teams build modern web products. Over the last couple of years, I’ve had
+      the chance to work extensively with emerging AI tooling — from the Vercel AI
+      SDK to SkyBridge and MCP-UI — exploring how UI can adapt, generate, and evolve
+      in real time.<br /><br />
+      Today, I’m focused on creating smarter, more intuitive user experiences and
+      pushing the boundaries of what the modern web can do with AI at its core.
+    </p>
+  </div>
+  <div class="md:col-span-2 flex items-center justify-center">
+    <div class="relative w-56 h-56 group">
+      <div
+        class="absolute inset-0 rounded-lg bg-primary/20 transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"
+      >
+      </div>
+      <img
+        class="relative w-full h-full object-cover rounded-lg"
+        data-alt="A professional headshot of Stephen Riley"
+        src="/headshot.jpeg"
+      />
+    </div>
+  </div>
+</div>
