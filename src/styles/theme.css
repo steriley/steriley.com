@@ -1,23 +1,69 @@
+@import "tailwindcss";
+
 @theme {
-  --darkMode: class;
-
-  /* Colors */
-  --color-primary: #64FFDA;
-  --color-background-light: #F8F9FA;
-  --color-background-dark: #0A192F;
-  --color-text-light: #212529;
-  --color-text-dark: #CCD6F6;
-  --color-text-secondary-light: #495057;
-  --color-text-secondary-dark: #8892B0;
-  --color-surface-light: #FFFFFF;
+  /* Color Palette */
+  --color-primary: #64ffda;
+  --color-primary-dark: #000000;
+  
+  --color-background-light: #ffffff;
+  --color-background-dark: #0a192f;
+  
+  --color-text-light: #000000;
+  --color-text-dark: #ccd6f6;
+  
+  --color-text-secondary-light: #6b7280;
+  --color-text-secondary-dark: #8892b0;
+  
+  --color-surface-light: #f9fafb;
   --color-surface-dark: #112240;
-
-  /* Fonts */
-  --font-display: "Inter", sans-serif;
-
+  
+  /* Font Family */
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
   /* Border Radius */
-  --radius: 0.25rem;
+  --radius-DEFAULT: 0.25rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
   --radius-full: 9999px;
+  
+  /* Animations */
+  --ease-gradient-move: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease-sound-bar: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @keyframes sound-bar {
+    0%, 100% {
+      height: 4px;
+    }
+    25% {
+      height: 16px;
+    }
+    50% {
+      height: 8px;
+    }
+    75% {
+      height: 12px;
+    }
+  }
+  
+  /* Animation utilities */
+  --animate-sound-bar-1: sound-bar 1.2s var(--ease-sound-bar) infinite;
+  --animate-sound-bar-2: sound-bar 1.2s var(--ease-sound-bar) infinite 0.2s;
+  --animate-sound-bar-3: sound-bar 1.2s var(--ease-sound-bar) infinite 0.4s;
+}
+
+/* Theme switching variables */
+:root {
+  --bg: var(--color-background-light);
+  --text: var(--color-text-light);
+  --text-secondary: var(--color-text-secondary-light);
+  --surface: var(--color-surface-light);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: var(--color-background-dark);
+  --text: var(--color-text-dark);
+  --text-secondary: var(--color-text-secondary-dark);
+  --surface: var(--color-surface-dark);
+  color-scheme: dark;
 }

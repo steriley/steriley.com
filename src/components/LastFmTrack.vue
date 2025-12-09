@@ -27,7 +27,7 @@ defineProps<{
       :href="url"
       class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
     >
-      <span class="material-symbols-outlined text-white text-5xl"
+      <span class="material-symbols-outlined text-white text-5xl!"
         >play_circle</span
       >
     </a>
@@ -38,7 +38,7 @@ defineProps<{
     {{ title }}
   </h4>
   <p class="text-xs text-text-secondary-dark truncate w-full">{{ artist }}</p>
-  <span :date-time="date.utc" class="text-xs text-white w-full">{{
+  <span :date-time="date.utc" class="mt-1 w-full truncate text-[10px] text-text-secondary-dark/70">{{
     date.formatted
   }}</span>
 </template>

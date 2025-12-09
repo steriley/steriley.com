@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modern Personal Website</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#0A192F",
+                        "text-light": "#000000",
+                        "text-dark": "#CCD6F6",
+                        "text-secondary-light": "#6b7280",
+                        "text-secondary-dark": "#8892B0",
+                        "surface-light": "#F9FAFB",
+                        "surface-dark": "#112240",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 25%),
+                radial-gradient(circle at 75% 75%, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 25%);
+            background-size: 8rem 8rem;
+            animation: move-bg 100s linear infinite;
+        }
+        @keyframes move-bg {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 1000px 1000px;
+            }
+        }
+        .dark .animated-background {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="animated-background"></div>
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-background-light/80 px-6 py-4 shadow-sm backdrop-blur-sm dark:bg-background-dark/80 md:px-10 lg:px-20">
+<div class="flex items-center gap-3 text-primary dark:text-[#64FFDA]">
+<div class="size-6">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-text-light dark:text-white">Riley Sterle</h2>
+</div>
+<nav class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-medium text-text-secondary-light transition-colors hover:text-primary dark:text-text-secondary-dark dark:hover:text-[#64FFDA]" href="#about">About</a>
+<a class="text-sm font-medium text-text-secondary-light transition-colors hover:text-primary dark:text-text-secondary-dark dark:hover:text-[#64FFDA]" href="#experience">Experience</a>
+<a class="text-sm font-medium text-text-secondary-light transition-colors hover:text-primary dark:text-text-secondary-dark dark:hover:text-[#64FFDA]" href="#portfolio">Portfolio</a>
+<a class="text-sm font-medium text-text-secondary-light transition-colors hover:text-primary dark:text-text-secondary-dark dark:hover:text-[#64FFDA]" href="#contact">Contact</a>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded h-9 px-4 border border-primary dark:border-[#64FFDA] text-primary dark:text-[#64FFDA] text-sm font-medium leading-normal tracking-[0.015em] transition-colors hover:bg-primary/10 dark:hover:bg-[#64FFDA]/10">
+<span class="material-symbols-outlined !text-base">download</span>
+<span class="truncate">Resume</span>
+</button>
+<button class="relative inline-flex h-8 w-16 cursor-pointer items-center rounded-full bg-gray-200 transition-colors dark:bg-surface-dark">
+<span class="sr-only">Toggle dark mode</span>
+<span class="absolute left-1.5 flex items-center justify-center text-yellow-500 transition-opacity duration-300 dark:opacity-0">
+<span class="material-symbols-outlined !text-xl !leading-none" style="font-variation-settings: 'FILL' 1">light_mode</span>
+</span>
+<span class="absolute right-1.5 flex items-center justify-center text-text-dark opacity-0 transition-opacity duration-300 dark:opacity-100">
+<span class="material-symbols-outlined !text-xl !leading-none" style="font-variation-settings: 'FILL' 1">dark_mode</span>
+</span>
+<span class="inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform duration-300 dark:translate-x-8"></span>
+</button>
+</nav>
+<button class="md:hidden text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex h-full grow flex-col">
+<div class="mx-auto w-full max-w-5xl px-6 py-10 md:px-10 md:py-16 lg:py-24">
+<section class="flex min-h-[calc(100vh-80px)] flex-col justify-center py-20" id="home">
+<div class="flex flex-col gap-6">
+<p class="text-base font-medium text-primary dark:text-[#64FFDA]">Hi, my name is</p>
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-text-light dark:text-white sm:text-5xl md:text-7xl">
+                        Riley Sterle.
+                    </h1>
+<h2 class="text-4xl font-bold leading-tight tracking-[-0.033em] text-text-secondary-light dark:text-text-secondary-dark sm:text-5xl md:text-7xl">
+                        I build things for the web.
+                    </h2>
+<p class="max-w-xl text-base font-normal leading-relaxed text-text-secondary-light dark:text-text-secondary-dark">
+                        I am a designer and developer with a passion for creating beautiful, functional, and accessible digital experiences. With a focus on user-centric design, I am currently leading projects and building innovative products for a diverse range of clients.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-6">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded h-12 px-6 bg-primary dark:bg-[#64FFDA] text-background-light dark:text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105">
+<span class="truncate">View My Work</span>
+<span class="material-symbols-outlined !text-xl">arrow_right_alt</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-transparent border border-text-secondary-light dark:border-text-secondary-dark text-text-secondary-light dark:text-text-secondary-dark text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-text-secondary-light/10 dark:hover:bg-text-secondary-dark/10">
+<span class="truncate">Get In Touch</span>
+</button>
+</div>
+</div>
+</section>
+<section class="py-20" id="about">
+<div class="flex items-center gap-4 pb-8">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-[#64FFDA]">01.</h2>
+<h3 class="whitespace-nowrap text-2xl font-bold text-text-light dark:text-white">About Me</h3>
+<hr class="w-full border-t border-text-secondary-light/20 dark:border-text-secondary-dark/20"/>
+</div>
+<div class="grid grid-cols-1 gap-10 md:grid-cols-5">
+<div class="md:col-span-3">
+<p class="text-base font-normal leading-relaxed text-text-secondary-light dark:text-text-secondary-dark">
+                            Hello! I'm Riley, a full-stack developer based in the USA. I have a passion for creating beautiful and functional websites and applications. My journey into web development started back in 2010 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML &amp; CSS!
+                            <br/><br/>
+                            Fast-forward to today, and I’ve had the privilege of building software for an advertising agency, a start-up, a huge corporation, and a student-led design studio. My main focus these days is building products and leading projects for our clients at Upstatement.
+                        </p>
+</div>
+<div class="md:col-span-2 flex items-center justify-center">
+<div class="relative w-56 h-56 group">
+<div class="absolute inset-0 rounded-lg bg-primary/20 dark:bg-[#64FFDA]/20 transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+<img class="relative w-full h-full object-cover rounded-lg" data-alt="A professional headshot of Riley Sterle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn_AMaawrUI1itfqovuySBIkfPkfFhVRNbn5AWfKnQR5pXm4sXswvixY0BoMiJYnRW096YxR6WgwcC0scUS2wmi-S7dHEzIPzoAXp5vS06vCpKts0oyRq8bBjnJLGq8X35rNh7IFa-KGHClVp0QcZkLsKpT3tcGW9iwEjEAbB9IZO9DK7uwg9d70h_Ym-9A1NkX_9L0rtVBtbRplVGL5eMIVwDyUD8CCNiY25qbnURgE-6YtyQvFbOm5l_NmJ29QVSZYYl86cxFKg"/>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20" id="experience">
+<div class="flex items-center gap-4 pb-8">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-[#64FFDA]">02.</h2>
+<h3 class="whitespace-nowrap text-2xl font-bold text-text-light dark:text-white">Experience</h3>
+<hr class="w-full border-t border-text-secondary-light/20 dark:border-text-secondary-dark/20"/>
+</div>
+<div class="flex flex-col gap-6">
+<details class="group rounded-lg bg-surface-light p-6 shadow-sm dark:bg-surface-dark" open="">
+<summary class="flex cursor-pointer list-none items-center justify-between">
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-text-light dark:text-white">Lead Engineer <span class="text-primary dark:text-[#64FFDA]">@ Upstatement</span></h4>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">May 2018 - Present</p>
+</div>
+<div class="text-text-secondary-light transition-transform duration-300 group-open:rotate-180 dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</summary>
+<div class="mt-4 text-text-secondary-light dark:text-text-secondary-dark">
+<ul class="list-inside space-y-2 pl-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Deliver high-quality, robust production code for a diverse array of projects for clients including Harvard Business School, Everytown for Gun Safety, Pratt Institute, and more.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Work alongside creative directors to lead the research, development, and architecture of technical solutions to fulfill client requirements.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Provide leadership within engineering department through close collaboration, knowledge shares, and mentorship.
+                                </li>
+</ul>
+</div>
+</details>
+<details class="group rounded-lg bg-surface-light p-6 shadow-sm dark:bg-surface-dark">
+<summary class="flex cursor-pointer list-none items-center justify-between">
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-text-light dark:text-white">Software Engineer <span class="text-primary dark:text-[#64FFDA]">@ Scout</span></h4>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">January 2017 - December 2017</p>
+</div>
+<div class="text-text-secondary-light transition-transform duration-300 group-open:rotate-180 dark:text-text-secondary-dark">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</summary>
+<div class="mt-4 text-text-secondary-light dark:text-text-secondary-dark">
+<ul class="list-inside space-y-2 pl-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Engineered and maintained major features of Scout's customer-facing web app using ES6, Handlebars, and Sass.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Proposed and implemented scalable solutions to issues identified with cloud services and applications responsible for communicating with internal APIs.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined !text-lg text-primary dark:text-[#64FFDA]">chevron_right</span>Interfaced with clients on a weekly basis, providing technological expertise and support.
+                                </li>
+</ul>
+</div>
+</details>
+</div>
+</section>
+<section class="py-20" id="portfolio">
+<div class="flex items-center gap-4 pb-8">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-[#64FFDA]">03.</h2>
+<h3 class="whitespace-nowrap text-2xl font-bold text-text-light dark:text-white">Portfolio</h3>
+<hr class="w-full border-t border-text-secondary-light/20 dark:border-text-secondary-dark/20"/>
+</div>
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface-light shadow-md transition-all duration-300 hover:-translate-y-1 dark:bg-surface-dark">
+<img class="h-40 w-full object-cover" data-alt="Abstract data visualization dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLkahYiFxn61i6WxbodCH6Qn30RGl3Bx0uVRnCTdUx_qRcnY01NlI8CbO8BN2nAVHQUeH5YNNrENJhcB8ui2gFJj8hu6DfBS7Wp0UqN3YqLdivoQhDwet2l8LWLoY8CK97aHredhl5K2ytEO3LW3EG3sDoi9WnxxWTGN02_twmIz2iC1K38snFarCPcEZAM8tMHxvJWvjFSsOacvPE1KAWp2oMFk7fbiARZg5BfuBGrWQKTa4PewavkzFRAsAuV8ayKtA0AD3bFqo"/>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-bold text-text-light group-hover:text-primary dark:text-white dark:group-hover:text-[#64FFDA]">Project One Title</h4>
+<span class="material-symbols-outlined !text-xl text-text-secondary-light group-hover:text-primary dark:text-text-secondary-dark dark:group-hover:text-[#64FFDA]">open_in_new</span>
+</div>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">A short description of the project, outlining the problem, solution, and my role.</p>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">React</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Node.js</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">GraphQL</span>
+</div>
+</div>
+</div>
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface-light shadow-md transition-all duration-300 hover:-translate-y-1 dark:bg-surface-dark">
+<img class="h-40 w-full object-cover" data-alt="Code on a dark computer screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDecTWEkcFJGLfdxCP701rF9MpcJOlYYR5LJk4PJuf4iVSX8b0yG40XeblkFG3t_EifWhlntLL83mY2W-jCe9uHXuINGN4nJV9RV9EL7dh1i-E6GTzREY90j1-KUhiNbB0Lt57VuwDNLg_RKResemmjHof1EtQWoZWqXaWJ8RsOpZNKbFgOm-ZzPts941Lly2liILAtWWJJ5sNI2nad6t96amRsxa7gVmqVAB33QqQrQvCyoYhIxs5HnNtA5_kxZeK95kLXkpBskrE"/>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-bold text-text-light group-hover:text-primary dark:text-white dark:group-hover:text-[#64FFDA]">Project Two Title</h4>
+<span class="material-symbols-outlined !text-xl text-text-secondary-light group-hover:text-primary dark:text-text-secondary-dark dark:group-hover:text-[#64FFDA]">open_in_new</span>
+</div>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">A short description of the project, outlining the problem, solution, and my role.</p>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Vue.js</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Firebase</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Tailwind CSS</span>
+</div>
+</div>
+</div>
+<div class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface-light shadow-md transition-all duration-300 hover:-translate-y-1 dark:bg-surface-dark">
+<img class="h-40 w-full object-cover" data-alt="Laptop with code next to a coffee cup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDXMHDGQWS34u2Vtnm818oZpI3mbSS6d9X9y2BT5Kzi5ccDWEsGOfd4tRXNYm2LyBW-vHxgUk3y6QGMYhEQO0Hb2MYjFOib5HgBvRzc42wvbwhtbc1vn3vdeNh5wIKPEHB0KR7pQ6eaO6L79MDzVXkxKTd94DgxwinPR6y6KdHXjzmhceUZgApkSK0SFrm8wPa_0atY75hCCattA8tCa3pgvLZvfCz32eQWIpDwm55C1yOBnv-KNJFaeHwpRL8ydFsCB5FlCv05Q4"/>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-bold text-text-light group-hover:text-primary dark:text-white dark:group-hover:text-[#64FFDA]">Project Three Title</h4>
+<span class="material-symbols-outlined !text-xl text-text-secondary-light group-hover:text-primary dark:text-text-secondary-dark dark:group-hover:text-[#64FFDA]">open_in_new</span>
+</div>
+<p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">A short description of the project, outlining the problem, solution, and my role.</p>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Python</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">Django</span>
+<span class="rounded-full bg-primary/10 dark:bg-[#64FFDA]/10 px-2 py-1 text-xs font-semibold text-primary dark:text-[#64FFDA]">PostgreSQL</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20" id="last-fm">
+<div class="flex items-center gap-4 pb-8">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-[#64FFDA]">Last.fm Tunes</h2>
+<hr class="w-full border-t border-text-secondary-light/20 dark:border-text-secondary-dark/20"/>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4 rounded-lg bg-green-100 p-4 shadow-sm dark:bg-green-900/50">
+<div class="grid h-12 w-12 place-items-center">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+</div>
+<img class="h-12 w-12 rounded-md" data-alt="Album art for To Pimp a Butterfly by Kendrick Lamar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADBPeuCnfCKOW9tVjtuSaxWAMmiEcRhd7kcicLpQay-3fJHhPfP4Fmi9PsZKE3CRu2lC3a2ytuQQ-IW2Crbd5getucsnu2slfXAdZ3ypCvVHw6i0RupxDru2XTmkZM6S_4hxBgSP0yxS74fGHYZDbSr9vW2ilYGKCj3Ak8AXvyrbZdmJyUIaATZWq4Uqq7f1FDEo8AmSgeY3VGRXTsKuHPF1aTHq7vrILWu6DQh9M6I68oomM9NuLXIalQCYDkl2cEZvepbjxUjI4"/>
+<div class="flex-grow">
+<p class="font-bold text-text-light dark:text-white">To Pimp a Butterfly</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Kendrick Lamar</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-medium text-green-600 dark:text-green-400">Now Playing...</p>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'Abbey Road' by The Beatles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnvBMkzmPYa-AIAVQVwpdKLWUyqBKIvIT2CcMaRawP_DloOvSBeCenBhVuEZxUPmyzB6I5qO6B_fdfyTZNJT9Dien_qm2YHYtyIhOhL2AeGvXfkaCRylZQQri3DHC_TTOQDcQoRdsBu8m6XSyv9urnEFMEGGbdBiY00QF8rcf-69MDZnIp_r2Gaq8ZPnTWYeWZX5z9yK7wW4oHjCq8VXHRTK8tferVcp5dMTlKP6uQI8OS8DcH-LbzJollkipZ2ZutBG_sUCJKrt0"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">Abbey Road</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">The Beatles</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">2 hrs ago</p>
+</div>
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'Rumours' by Fleetwood Mac" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9XOF6Ij9Wijn51ecZxRLmDp8Saj6bziG7Eoas0qkNKjLCSgTdb-oU4SGwPPg_LPMxe3gSF393X7uVQOxi5wSKGNi_0cEGtEhfe-I_TR53mJvKAFLTecVjeF8h5wWobDo9W9MNZqBOwCFuhoom5bS19g4N3K1EJM-RWO1RgUr8FGyWvIs1p6WAVPLmyfAoTzOFBa7DdI4BdAXCmAOnnFOOJ4t6W7aVw6EjZ-rnmUycjd8HQGo5f5XLCg_8t9M6jfJARE0BdFCxFzQ"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">Rumours</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Fleetwood Mac</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">5 hrs ago</p>
+</div>
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'The Dark Side of the Moon' by Pink Floyd" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOr4i-uiqnng802RHbAYLE1n9aH2UjjhnPkciPVuuUkpLyBbYJpdRhulskbAu4GTq06BNYyj_qYPEXhIS-1fvTyucBBrId-j6-F5wJVKYmNPxM1l_3yBooicXZMVbxrAxdtD8o_afQ738ze8kSCmFmCYatfxtR-NcuztWL3OCoeAP_rJoIVzPTD5MmTU2if913eSqVIAI7_DQvpz7UeijdakCmrYBe-AGaEv9SBAnEejxwjtOLwqwkV9S30l3CnWG1YiLtN_7WQvQ"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">The Dark Side of the Moon</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Pink Floyd</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">1 day ago</p>
+</div>
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'Back to Black' by Amy Winehouse" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHHOhHOtz1fj3IeuhoK5m1SExhSa7ZAQoXrNcpy8IgPwFKN8dvtuhc-zSUKy8NAevX7fATK_b6QCUftMASuBjyr59frZQVO0WXb4hY51yLldT4gN_s4WaSGNPdDJm8l5nZh_2ayNl_QYsMv6qv8QBastkT5S4FAicSFGL6D8RnzRrZ8ljht6GGI4JZwNlHhgyh3LD2xkoMHMhthuVGHtIc4P7LNFm6xwSfv81LnuPLsKzhrB0HPTF1IJrXBtLQBuXOuYQ2lZQkbhY"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">Back to Black</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Amy Winehouse</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">2 days ago</p>
+</div>
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'OK Computer' by Radiohead" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfJxCrXze1NNNCpvm7mxihMcxj4YsHr73V4OJOU8oU1AQYAoowD7FrFIFzU39WxEoE9iZxNy6n4XPFH54cM-aFrhAgY6AYqP8dzKcy1AYeA-Ef5pcJUa72cSyUWnECMFpxq82e1J7hirKCZ77eCLTorpUajgU-MKfIfbmzfreCKdas5lFCes1RICr9EzPJ4JLcCBtNMEGJSwUQh76Jbxf62xbknkwQ-koUB2BY6E_emGVWXmsYnDOtNUpKiEwPuDIEBZSbvFkXV1I"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">OK Computer</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Radiohead</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">3 days ago</p>
+</div>
+<div class="flex items-center gap-4 rounded-lg bg-surface-light p-4 shadow-sm dark:bg-surface-dark">
+<img class="h-12 w-12 rounded-md" data-alt="Album art for 'Blonde' by Frank Ocean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcHS2bdw4t3GKOjQix3_L3_mFcL1K7me9q2APnHf-M1rbJUTyiF_XwgLFzBLPGEn1VeWZHCmjYYc9ls9XMxTfKPB2mo4QrMX5u0SuBe9jFaZesP2CrOrSZf8CaWqmDX98b4s_TfHS2FivJbvrUZ7ZPJfBBqlRi3NuvLZFY6FsbWpGuypUS7m9-OQhgw60BAtobpreAxB7drjeXxwqnOxVd9tQC7ZXw7nDvL7dnSyP5ayAkvPSvI2AV_dMQT-Ffo0KKsAkbroWgHRo"/>
+<div class="flex-grow">
+<p class="font-semibold text-text-light dark:text-white truncate">Blonde</p>
+<p class="text-sm text-text-secondary-light dark:text-text-secondary-dark truncate">Frank Ocean</p>
+</div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">5 days ago</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 text-center" id="contact">
+<div class="mx-auto max-w-lg">
+<h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary dark:text-[#64FFDA]">04. What's Next?</h2>
+<h3 class="mt-2 text-4xl font-bold text-text-light dark:text-white">Get In Touch</h3>
+<p class="mt-4 text-base text-text-secondary-light dark:text-text-secondary-dark">
+                        I'm currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open. I’ll try my best to get back to you!
+                    </p>
+<form class="mt-8 flex flex-col gap-4 text-left">
+<div class="flex flex-col gap-4 sm:flex-row">
+<input class="w-full flex-1 rounded border-none bg-surface-light px-4 py-3 text-text-light ring-1 ring-inset ring-gray-300 placeholder:text-text-secondary-light focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark dark:text-text-dark dark:ring-gray-600 dark:placeholder:text-text-secondary-dark dark:focus:ring-[#64FFDA]" placeholder="Name" type="text"/>
+<input class="w-full flex-1 rounded border-none bg-surface-light px-4 py-3 text-text-light ring-1 ring-inset ring-gray-300 placeholder:text-text-secondary-light focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark dark:text-text-dark dark:ring-gray-600 dark:placeholder:text-text-secondary-dark dark:focus:ring-[#64FFDA]" placeholder="Email" type="email"/>
+</div>
+<textarea class="w-full rounded border-none bg-surface-light px-4 py-3 text-text-light ring-1 ring-inset ring-gray-300 placeholder:text-text-secondary-light focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-surface-dark dark:text-text-dark dark:ring-gray-600 dark:placeholder:text-text-secondary-dark dark:focus:ring-[#64FFDA]" placeholder="Message" rows="5"></textarea>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center self-center gap-2 overflow-hidden rounded h-12 px-6 mt-4 bg-primary dark:bg-[#64FFDA] text-background-light dark:text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105" type="submit">
+<span class="truncate">Send Message</span>
+<span class="material-symbols-outlined !text-xl">send</span>
+</button>
+</form>
+</div>
+</section>
+</div>
+</main>
+<footer class="text-center text-sm text-text-secondary-light dark:text-text-secondary-dark py-6 px-6">
+<p>Designed &amp; Built by Riley Sterle</p>
+<div class="mt-4 flex items-center justify-center gap-6">
+<a class="transition-colors hover:text-primary dark:hover:text-[#64FFDA]" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+</a>
+<a class="transition-colors hover:text-primary dark:hover:text-[#64FFDA]" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+</a>
+<a class="transition-colors hover:text-primary dark:hover:text-[#64FFDA]" href="#">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+</a>
+</div>
+</footer>
+</div>
+</body></html>
