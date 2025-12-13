@@ -2,19 +2,19 @@
 import SocialLinks from './SocialLinks.astro';
 ---
 
-<p class="text-base font-medium text-primary">Hi, my name is</p>
+<p class="text-base font-medium dark:text-primary">Hi, my name is</p>
 <h1
-  class="text-4xl font-black leading-tight tracking-[-0.033em] text-white sm:text-5xl md:text-7xl"
+  class="text-4xl font-black leading-tight tracking-[-0.033em] text-primary sm:text-5xl md:text-7xl"
 >
   Stephen Riley
 </h1>
 <h2
-  class="text-4xl font-bold leading-tight tracking-[-0.033em] text-text-secondary-dark sm:text-5xl md:text-7xl"
+  class="text-4xl font-bold leading-tight tracking-[-0.033em] text-secondary sm:text-5xl md:text-7xl"
 >
   I build things for the web.
 </h2>
 <p
-  class="max-w-xl text-base font-normal leading-relaxed text-text-secondary-dark"
+  class="max-w-xl text-base font-normal leading-relaxed text-secondary"
 >
   Experienced TypeScript Developer specialising in modern front-end and Node.js
   development, with a strong focus on scalable applications and AI integrations.
@@ -24,18 +24,20 @@ import SocialLinks from './SocialLinks.astro';
   media, e-commerce, and e-learning, with a passion for clean, maintainable code
   and intelligent system design. Based in Manchester, UK.
 </p>
+
 <SocialLinks class="pt-4" />
+
 <div class="flex flex-wrap gap-4 pt-6">
   <a
     href="#portfolio"
-    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-primary text-background-dark text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105 gap-2"
+    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-primary text-background text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105 gap-2"
   >
     <span class="truncate">View My Work</span>
     <span class="material-symbols-outlined">arrow_forward</span>
   </a>
   <a
     href="#contact"
-    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-transparent border border-text-secondary-dark text-text-secondary-dark text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-text-secondary-dark/10"
+    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded h-12 px-6 bg-transparent border border-text-secondary-dark text-secondary text-base font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-text-secondary-dark/10"
   >
     <span class="truncate">Get In Touch</span>
   </a>

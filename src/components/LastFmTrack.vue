@@ -33,12 +33,12 @@ defineProps<{
     </a>
   </div>
   <h4
-    class="mt-3 font-bold text-sm text-white group-hover:text-primary truncate w-full"
+    class="mt-3 font-bold text-sm text-primary group-hover:text-secondary truncate w-full"
   >
     {{ title }}
   </h4>
-  <p class="text-xs text-text-secondary-dark truncate w-full">{{ artist }}</p>
-  <span :date-time="date.utc" class="mt-1 w-full truncate text-[10px] text-text-secondary-dark/70">{{
+  <p class="text-xs text-secondary truncate w-full">{{ artist }}</p>
+  <span :date-time="date.utc" class="mt-1 w-full truncate text-[10px] text-secondary/70">{{
     date.formatted
   }}</span>
 </template>

@@ -29,7 +29,7 @@ const displayedTracks = computed(() => tracks.value.filter(t => t.date?.utc !== 
       <div class="grow overflow-hidden">
         <p class="text-sm text-primary">Now Listening</p>
         <h4 class="truncate font-bold text-white">{{ listeningNow.title }}</h4>
-        <p class="truncate text-sm text-text-secondary-dark">{{ listeningNow.artist }}</p>
+        <p class="truncate text-sm text-secondary">{{ listeningNow.artist }}</p>
       </div>
       <div class="flex h-4 items-end gap-1">
         <span class="w-1 animate-sound-bar-1 rounded-full bg-primary"></span>
