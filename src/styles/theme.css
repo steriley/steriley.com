@@ -5,20 +5,9 @@
   --color-primary: #000;
   --color-secondary: #6b7280;
   --color-background: #fff;
+  --color-surface: #f9fafb;
 
-  --color-primary-dark: #000000;
   
-  --color-background-light: #ffffff;
-  --color-background-dark: #0a192f;
-  
-  --color-text-light: #000000;
-  --color-text-dark: #ccd6f6;
-  
-  --color-text-secondary-light: #6b7280;
-  --color-text-secondary-dark: #8892b0;
-  
-  --color-surface-light: #f9fafb;
-  --color-surface-dark: #112240;
 
   
   /* Font Family */
@@ -57,10 +46,8 @@
 
 
 .dark {
-  --text: var(--color-text-dark);
-  --surface: var(--color-surface-dark);
-
   --color-primary: #fff;
   --color-secondary: #8892b0;
   --color-background: #0a192f;
+  --color-surface: #112240;
 }
