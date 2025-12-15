@@ -1,6 +1,4 @@
 ---
-import SectionHeader from './SectionHeader.astro';
-
 const projects = [
   {
     title: 'Project One Title',
@@ -31,8 +29,6 @@ const projects = [
   },
 ]
 ---
-
-<SectionHeader number="03" title="Web Experiments" />
 
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {projects.map(({ title, description, imageUrl, technologies }) => (
