@@ -98,7 +98,10 @@ export const GET: APIRoute = async ({ params, request }) => {
   const json = (await data.json()) as LastFmRecentTracks;
   const allTracks = formatTracks(json);
   const hasListeningNow = allTracks.some((t) => t.date.utc === 0);
-  const tracks = allTracks.slice(0, hasListeningNow ? tracksDisplayed + 1 : tracksDisplayed);
+  const tracks = allTracks.slice(
+    0,
+    hasListeningNow ? tracksDisplayed + 1 : tracksDisplayed,
+  );
 
   return new Response(JSON.stringify(tracks));
 };

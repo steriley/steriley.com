@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import LastFmTrack from './LastFmTrack.vue';
-import { onMounted, ref, computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const TRACKS_TO_DISPLAY = 6;
 
@@ -12,12 +12,19 @@ onMounted(async () => {
   tracks.value = await data.json();
 });
 
-const listeningNow = computed(() => tracks.value.find((t: any) => t.date?.utc === 0));
-const displayedTracks = computed(() => tracks.value.filter(t => t.date?.utc !== 0));
+const listeningNow = computed(() =>
+  tracks.value.find((t: any) => t.date?.utc === 0),
+);
+const displayedTracks = computed(() =>
+  tracks.value.filter((t) => t.date?.utc !== 0),
+);
 </script>
 
 <template>
-  <div v-if="listeningNow" class="mb-8 rounded-lg border border-primary/20 bg-surface-dark p-4">
+  <div
+    v-if="listeningNow"
+    class="mb-8 rounded-lg border border-primary/20 bg-surface-dark p-4"
+  >
     <div class="flex items-center gap-4">
       <div class="relative size-16 shrink-0">
         <img

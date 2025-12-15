@@ -34,28 +34,31 @@ const experience = [
 ---
 
 <div class="flex flex-col gap-6">
-  { experience.map(({ title, company, date, details }, index) => (
-    <details class="group rounded-lg bg-surface p-6 shadow-sm" open={ index === 0 }>
-      <summary class="flex cursor-pointer list-none items-center justify-between">
-        <div class="flex flex-col">
-          <h4 class="text-lg font-bold text-primary">
-            { title } <span class="text-primary">@ { company }</span>
-          </h4>
-          <p class="text-sm text-secondary">{ date }</p>
+  {
+    experience.map(({ title, company, date, details }, index) => (
+      <details
+        class="group rounded-lg bg-surface p-6 shadow-sm"
+        open={index === 0}
+      >
+        <summary class="flex cursor-pointer list-none items-center justify-between">
+          <div class="flex flex-col">
+            <h4 class="text-lg font-bold text-primary">
+              {title} <span class="text-primary">@ {company}</span>
+            </h4>
+            <p class="text-sm text-secondary">{date}</p>
+          </div>
+          <div class="text-secondary transition-transform duration-300 group-open:rotate-180">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+        </summary>
+        <div class="mt-4 text-secondary">
+          <ul class="list-inside list-disc space-y-2 pl-2">
+            {details.map((detail) => (
+              <li>{detail}</li>
+            ))}
+          </ul>
         </div>
-        <div
-          class="text-secondary transition-transform duration-300 group-open:rotate-180"
-        >
-          <span class="material-symbols-outlined">expand_more</span>
-        </div>
-      </summary>
-      <div class="mt-4 text-secondary">
-        <ul class="list-inside list-disc space-y-2 pl-2">
-          { details.map(detail => (
-            <li>{ detail }</li>
-          )) }
-        </ul>
-      </div>
-    </details>
-  )) }
+      </details>
+    ))
+  }
 </div>

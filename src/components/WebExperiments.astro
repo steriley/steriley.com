@@ -27,43 +27,37 @@ const projects = [
     altText: 'Backend server architecture diagram',
     technologies: ['Python', 'Django', 'PostgreSQL'],
   },
-]
+];
 ---
 
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-  {projects.map(({ title, description, imageUrl, technologies }) => (
-    <div
-      class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface shadow-md transition-all duration-300 hover:-translate-y-1"
-    >
-      <div class="relative h-40 w-full">
-        <img
-          class="h-full w-full object-cover"
-          data-alt="{altText}"
-          src={imageUrl}
-        />
-        <div
-          class="absolute inset-0 bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        >
+  {
+    projects.map(({ title, description, imageUrl, technologies }) => (
+      <div class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface shadow-md transition-all duration-300 hover:-translate-y-1">
+        <div class="relative h-40 w-full">
+          <img
+            class="h-full w-full object-cover"
+            data-alt="{altText}"
+            src={imageUrl}
+          />
+          <div class="absolute inset-0 bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div class="flex flex-1 flex-col p-6">
+          <div class="flex-1">
+            <h4 class="text-lg font-bold text-primary group-hover:text-secondary">
+              {title}
+            </h4>
+            <p class="mt-2 text-sm text-secondary">{description}</p>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {technologies.map((tech) => (
+              <span class="rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-      <div class="flex flex-1 flex-col p-6">
-        <div class="flex-1">
-          <h4 class="text-lg font-bold text-primary group-hover:text-secondary">
-            {title}
-          </h4>
-          <p class="mt-2 text-sm text-secondary">
-            {description}
-          </p>
-        </div>
-        <div class="mt-4 flex flex-wrap gap-2">
-          {technologies.map((tech) => (
-            <span
-              class="rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary"
-              >{tech}</span
-            >
-          ))}
-        </div>
-      </div>
-    </div>
-  ))}
+    ))
+  }
 </div>

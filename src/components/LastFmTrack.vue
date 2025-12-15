@@ -38,7 +38,9 @@ defineProps<{
     {{ title }}
   </h4>
   <p class="text-xs text-secondary truncate w-full">{{ artist }}</p>
-  <span :date-time="date.utc" class="mt-1 w-full truncate text-[10px] text-secondary/70">{{
-    date.formatted
-  }}</span>
+  <span
+    :date-time="date.utc"
+    class="mt-1 w-full truncate text-[10px] text-secondary/70"
+    >{{ date.formatted }}</span
+  >
 </template>
