@@ -1,27 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color Palette */
   --color-primary: #000;
   --color-secondary: #6b7280;
   --color-background: #fff;
   --color-surface: #f9fafb;
 
-  
-
-  
-  /* Font Family */
   --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-  
-  /* Border Radius */
-  --radius-DEFAULT: 0.25rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-full: 9999px;
-  
-  /* Animations */
-  --ease-gradient-move: cubic-bezier(0.4, 0, 0.6, 1);
-  --ease-sound-bar: cubic-bezier(0.4, 0, 0.2, 1);
   
   @keyframes sound-bar {
     0%, 100% {
@@ -38,7 +23,7 @@
     }
   }
   
-  /* Animation utilities */
+  --ease-sound-bar: cubic-bezier(0.4, 0, 0.2, 1);
   --animate-sound-bar-1: sound-bar 1.2s var(--ease-sound-bar) infinite;
   --animate-sound-bar-2: sound-bar 1.2s var(--ease-sound-bar) infinite 0.2s;
   --animate-sound-bar-3: sound-bar 1.2s var(--ease-sound-bar) infinite 0.4s;
