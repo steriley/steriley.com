@@ -2,23 +2,21 @@
 import ThemeSwitcher from './ThemeSwitcher.astro';
 ---
 
+<ThemeSwitcher />
 <header
   class="sticky top-0 z-50 flex flex-col items-center justify-between whitespace-nowrap bg-background/80 px-6 py-4 shadow-md backdrop-blur-sm md:flex-row md:px-10 lg:px-20"
 >
   <div class="flex w-full items-center justify-between md:w-auto">
-    <div class="flex items-center gap-3 text-primary relative w-50 mr-2">
+    <div class="relative w-50 mx-2 md:mx-0 md:mr-2">
       <img
         src="/logo_steriley.png"
-        class="absolute scale-75 -top-7 lg:scale-100 lg:-top-7"
+        class="w-32 md:w-auto absolute -top-4 md:-top-7"
         alt="Ste Riley Logo"
       />
     </div>
-    <div class="flex items-center gap-4 md:gap-8">
-      <ThemeSwitcher />
-      <button class="md:hidden text-text-dark" id="mobile-menu-toggle">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
-    </div>
+    <button class="md:hidden" id="mobile-menu-toggle">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
   </div>
   <nav
     class="hidden w-full flex-col items-center gap-4 pt-4 md:w-auto md:flex md:flex-row md:gap-8 md:pt-0"
