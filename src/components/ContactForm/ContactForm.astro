@@ -2,6 +2,8 @@
 import FormBody from './FormBody.astro';
 import FormSent from './FormSent.astro';
 
+const { number, title } = Astro.props;
+
 async function submit(formData: FormData) {
   const data: Record<string, string | File> = {};
   const endpoint = new URL('/api/contact', Astro.url);
@@ -32,7 +34,13 @@ if (Astro.request.method === 'POST') {
 ---
 
 <div class="form">
-  {Astro.request.method === 'POST' ? <FormSent /> : <FormBody />}
+  {
+    Astro.request.method === 'POST' ? (
+      <FormSent />
+    ) : (
+      <FormBody number={number} title={title} />
+    )
+  }
 </div>
 
 <style lang="scss">

@@ -5,6 +5,7 @@ const {
   required = false,
   maxlength,
   class: className,
+  placeholder,
 } = Astro.props;
 
 const inputOrTextArea = type === 'textarea' ? 'textarea' : 'input';
@@ -18,87 +19,33 @@ const labelClasses = [
   .join(' ');
 ---
 
-<label for={identifier} class={labelClasses}>
-  {label}:
-
+<label for={identifier} class="relative block text-primary w-full">
   {
     inputOrTextArea === 'textarea' ? (
       <textarea
-        class="input"
+        class="peer w-full rounded border-none bg-surface px-4 py-3 text-primary ring-1 ring-inset ring-gray-600 placeholder:text-transparent placeholder-shown:placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-primary"
         cols={Astro.props.cols || 33}
         id={identifier}
         name={identifier}
         required={required}
         rows={Astro.props.rows || 5}
+        placeholder={placeholder}
       />
     ) : (
       <input
-        class="input"
+        class="peer w-full flex-1 rounded border-none bg-surface px-4 py-3 text-primary ring-1 ring-inset ring-gray-600 placeholder:text-transparent placeholder-shown:placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-primary"
         id={identifier}
         maxlength={maxlength}
         name={identifier}
         required={required}
         type={type}
         value={Astro.props.value || ''}
+        placeholder={placeholder}
       />
     )
   }
+  <span
+    class="pointer-events-none absolute left-0 top-2 origin-left -translate-y-8 scale-75 opacity-100 transition-all duration-200 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:opacity-0"
+    >{label}</span
+  >
 </label>
-
-<style lang="scss">
-  .label {
-    color: #222;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.5rem;
-    position: relative;
-
-    &--required::before {
-      background-color: rgba(0, 0, 0, 0.05);
-      border-radius: 1em;
-      content: 'Required';
-      font-size: 0.6em;
-      line-height: 1.75;
-      margin-left: 1em;
-      padding: 0.3em 0.75em;
-      position: absolute;
-      right: 0;
-      text-transform: uppercase;
-      top: -0.25rem;
-    }
-  }
-
-  .support {
-    display: none;
-  }
-
-  textarea.input {
-    min-height: 100px;
-    max-height: 500px;
-    width: calc(100% - 1rem);
-  }
-
-  .input {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    color: #222;
-    display: block;
-    font-size: 1.25rem;
-    margin: 0.25rem 0 0;
-    outline: 0;
-    padding: 0.75rem 0.5rem;
-    resize: vertical;
-    transition: background-color 1s;
-
-    &:focus {
-      background-color: rgba(0, 0, 0, 0.05);
-      border-color: rgba(0, 0, 0, 0.5);
-      transition:
-        background-color 1s,
-        border-color 0.5s;
-    }
-  }
-</style>

@@ -1,37 +1,28 @@
 ---
 import FormInput from './FormInput.astro';
 
-const timestamp = +new Date();
+const { number, title } = Astro.props;
 ---
 
 <div class="mx-auto max-w-lg">
   <h2 class="text-2xl font-bold leading-tight tracking-[-0.015em] text-primary">
-    05. What's Next?
+    {number}. {title}
   </h2>
   <h3 class="mt-2 text-4xl font-bold text-primary">Get In Touch</h3>
   <p class="mt-4 text-base text-secondary">
     Whether you have a question or just want to say hi, my inbox is always open.
     I’ll try my best to get back to you!
   </p>
-  <form class="mt-8 flex flex-col gap-4 text-left">
+  <form class="mt-8 flex flex-col gap-8 text-left">
     <div class="flex flex-col gap-4 sm:flex-row">
-      <input
-        class="w-full flex-1 rounded border-none bg-surface px-4 py-3 text-primary ring-1 ring-inset ring-gray-600 placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-primary"
-        placeholder="Name"
-        type="text"
-      />
-      <input
-        class="w-full flex-1 rounded border-none bg-surface px-4 py-3 text-primary ring-1 ring-inset ring-gray-600 placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-primary"
-        placeholder="Email"
-        type="email"
-      />
+      <FormInput label="Name" placeholder="Name" type="text" />
+      <FormInput label="Email" placeholder="Email" type="email" />
     </div>
-    <textarea
-      class="w-full rounded border-none bg-surface px-4 py-3 text-primary ring-1 ring-inset ring-gray-600 placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-primary"
-      placeholder="Message"
-      rows="5"></textarea>
+
+    <FormInput label="Message" placeholder="Message" type="textarea" rows="5" />
+
     <button
-      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center self-center overflow-hidden rounded h-12 px-6 mt-4 bg-primary text-primary text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105 gap-2"
+      class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center self-center overflow-hidden rounded h-12 px-6 -mt-4 bg-primary text-primary text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105 gap-2"
       type="submit"
     >
       <span class="truncate">Send Message</span>
