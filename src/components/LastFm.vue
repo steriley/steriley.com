@@ -23,7 +23,7 @@ const displayedTracks = computed(() =>
 <template>
   <div
     v-if="listeningNow"
-    class="mb-8 rounded-lg border border-primary/20 bg-surface-dark p-4"
+    class="mb-8 rounded-lg  bg-surface shadow-md p-4"
   >
     <div class="flex items-center gap-4">
       <div class="relative size-16 shrink-0">
@@ -35,19 +35,19 @@ const displayedTracks = computed(() =>
       </div>
       <div class="grow overflow-hidden">
         <p class="text-sm text-primary">Now Listening</p>
-        <h4 class="truncate font-bold text-white">{{ listeningNow.title }}</h4>
+        <h4 class="truncate font-bold text-primary">{{ listeningNow.title }}</h4>
         <p class="truncate text-sm text-secondary">{{ listeningNow.artist }}</p>
       </div>
       <div class="flex h-4 items-end gap-1">
-        <span class="w-1 animate-sound-bar-1 rounded-full bg-primary"></span>
-        <span class="w-1 animate-sound-bar-2 rounded-full bg-primary"></span>
-        <span class="w-1 animate-sound-bar-3 rounded-full bg-primary"></span>
+        <span class="w-1 animate-sound-bar-1 rounded-full bg-orange-500"></span>
+        <span class="w-1 animate-sound-bar-2 rounded-full bg-orange-500"></span>
+        <span class="w-1 animate-sound-bar-3 rounded-full bg-orange-500"></span>
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-6 gap-4">
     <div
-      class="group flex flex-col items-center text-center"
+      class="group flex min-w-0 items-center gap-3 text-left md:flex-col md:text-center"
       v-for="(track, key) in displayedTracks"
       :key="key"
       data-qa="lastfm-item"
