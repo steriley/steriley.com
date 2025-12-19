@@ -28,6 +28,27 @@
   --animate-sound-bar-1: sound-bar 1.2s var(--ease-sound-bar) infinite;
   --animate-sound-bar-2: sound-bar 1.2s var(--ease-sound-bar) infinite 0.2s;
   --animate-sound-bar-3: sound-bar 1.2s var(--ease-sound-bar) infinite 0.4s;
+
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+      clip-path: inset(100% 0 0 0);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  --animate-reveal: reveal-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-in: fade-in 1s ease-out forwards;
 }
 
 .dark {
@@ -35,4 +56,8 @@
   --color-secondary: #8892b0;
   --color-background: #0a192f;
   --color-surface: #112240;
+}
+
+.animate-reveal, .animate-fade-in {
+  opacity: 0;
 }
