@@ -21,7 +21,7 @@
     "@astrojs/vercel": "^10.0.8",
     "@astrojs/vue": "^6.0.1",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^6.4.7",
+    "astro": "^7.1.0",
     "date-fns": "^4.4.0",
     "form-data": "^4.0.6",
     "mailgun.js": "^13.2.0",
