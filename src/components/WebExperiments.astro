@@ -1,13 +1,12 @@
 ---
 const projects = [
   {
-    title: 'Project One Title',
+    title: 'PSSA Club League Scores',
     description:
-      'A short description of the project, outlining the problem, solution, and my role.',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDLkahYiFxn61i6WxbodCH6Qn30RGl3Bx0uVRnCTdUx_qRcnY01NlI8CbO8BN2nAVHQUeH5YNNrENJhcB8ui2gFJj8hu6DfBS7Wp0UqN3YqLdivoQhDwet2l8LWLoY8CK97aHredhl5K2ytEO3LW3EG3sDoi9WnxxWTGN02_twmIz2iC1K38snFarCPcEZAM8tMHxvJWvjFSsOacvPE1KAWp2oMFk7fbiARZg5BfuBGrWQKTa4PewavkzFRAsAuV8ayKtA0AD3bFqo',
-    altText: 'Abstract data visualization dashboard',
-    technologies: ['React', 'Node.js', 'GraphQL'],
+      'A full-stack scoreboard for the PSSA, making competition results and seasonal scores easy to browse, compare, and manage.',
+    imageUrl: '/pssa-club-league-scores.jpeg',
+    altText: 'PSSA Club League Scores competition results table',
+    technologies: ['Vue', 'TypeScript', 'Vite', 'Express', 'MongoDB', 'Vercel'],
   },
   {
     title: 'Project Two Title',
@@ -32,12 +31,12 @@ const projects = [
 
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {
-    projects.map(({ title, description, imageUrl, technologies }) => (
+    projects.map(({ title, description, imageUrl, altText, technologies }) => (
       <div class="group flex cursor-pointer flex-col overflow-hidden rounded-lg bg-surface shadow-md transition-all duration-300 hover:-translate-y-1">
         <div class="relative h-40 w-full">
           <img
             class="h-full w-full object-cover"
-            data-alt="{altText}"
+            alt={altText}
             src={imageUrl}
           />
           <div class="absolute inset-0 bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
