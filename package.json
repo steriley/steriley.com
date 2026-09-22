@@ -3,6 +3,7 @@
   "license": "MIT",
   "type": "module",
   "version": "1.0.0",
+  "packageManager": "pnpm@12.5.1",
   "scripts": {
     "astro": "astro",
     "build": "astro build",
