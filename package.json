@@ -23,7 +23,7 @@
     "vue": "^3.5.42"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "github:trivago/prettier-plugin-sort-imports",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@vue/test-utils": "^2.5.0",
     "jsdom": "^30.0.1",
     "prettier": "^3.9.6",

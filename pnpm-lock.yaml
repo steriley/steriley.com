@@ -28,7 +28,7 @@ importers:
         version: 4.0.6
       mailgun.js:
         specifier: ^14.0.1
-        version: 14.0.1
+        version: 14.0.1(debug@4.4.3)
       sass:
         specifier: ^1.104.1
         version: 1.104.1
@@ -37,8 +37,8 @@ importers:
         version: 3.5.42
     devDependencies:
       '@trivago/prettier-plugin-sort-imports':
-        specifier: github:trivago/prettier-plugin-sort-imports
-        version: https://codeload.github.com/trivago/prettier-plugin-sort-imports/tar.gz/d9c690fdbfe46334ec2bfb86a75ebde43c6a0fc6(@vue/compiler-sfc@3.5.42)(prettier@3.9.6)
+        specifier: ^6.0.2
+        version: 6.0.2(@vue/compiler-sfc@3.5.42)(prettier@3.9.6)
       '@vue/test-utils':
         specifier: ^2.5.0
         version: 2.5.0(@vue/compiler-dom@3.5.42)(@vue/server-renderer@3.5.42)(vue@3.5.42)
@@ -974,9 +974,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@trivago/prettier-plugin-sort-imports@https://codeload.github.com/trivago/prettier-plugin-sort-imports/tar.gz/d9c690fdbfe46334ec2bfb86a75ebde43c6a0fc6':
-    resolution: {tarball: https://codeload.github.com/trivago/prettier-plugin-sort-imports/tar.gz/d9c690fdbfe46334ec2bfb86a75ebde43c6a0fc6}
-    version: 6.0.2
+  '@trivago/prettier-plugin-sort-imports@6.0.2':
+    resolution: {integrity: sha512-3DgfkukFyC/sE/VuYjaUUWoFfuVjPK55vOFDsxD56XXynFMCZDYFogH2l/hDfOsQAm1myoU/1xByJ3tWqtulXA==}
     engines: {node: '>= 20'}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
@@ -2507,6 +2506,7 @@ packages:
     engines: {node: '>=v14.21.3'}
     peerDependencies:
       vite: ^6.0.0 || ^7.0.0 || ^8.0.0
+      vue: '*'
 
   vite-plugin-vue-inspector@6.0.0:
     resolution: {integrity: sha512-OpyITJLgZNibxlrik1EmRtvXHDjLRxNPsWkGFTERZs2LgMEdG4W0WoFt5GIgp3a3jRou+eJR8U1zOBk/XQgEbw==}
@@ -3536,7 +3536,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@trivago/prettier-plugin-sort-imports@https://codeload.github.com/trivago/prettier-plugin-sort-imports/tar.gz/d9c690fdbfe46334ec2bfb86a75ebde43c6a0fc6(@vue/compiler-sfc@3.5.42)(prettier@3.9.6)':
+  '@trivago/prettier-plugin-sort-imports@6.0.2(@vue/compiler-sfc@3.5.42)(prettier@3.9.6)':
     dependencies:
       '@babel/generator': 7.29.8
       '@babel/parser': 7.29.8
@@ -3938,9 +3938,9 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.20.0:
+  axios@1.20.0(debug@4.4.3):
     dependencies:
-      follow-redirects: 1.16.0
+      follow-redirects: 1.16.0(debug@4.4.3)
       form-data: 4.0.6
       https-proxy-agent: 5.0.1
       proxy-from-env: 2.1.0
@@ -4263,7 +4263,9 @@ snapshots:
 
   flattie@1.1.1: {}
 
-  follow-redirects@1.16.0: {}
+  follow-redirects@1.16.0(debug@4.4.3):
+    optionalDependencies:
+      debug: 4.4.3
 
   fontace@0.4.1:
     dependencies:
@@ -4558,9 +4560,9 @@ snapshots:
       '@babel/types': 7.29.8
       source-map-js: 1.2.1
 
-  mailgun.js@14.0.1:
+  mailgun.js@14.0.1(debug@4.4.3):
     dependencies:
-      axios: 1.20.0
+      axios: 1.20.0(debug@4.4.3)
       base-64: 1.0.0
       url-join: 4.0.1
     transitivePeerDependencies:
@@ -5137,10 +5139,10 @@ snapshots:
       vite: 8.3.0(esbuild@0.28.2)(sass@1.104.1)
       vite-plugin-inspect: 11.4.1(vite@8.3.0(esbuild@0.28.2)(sass@1.104.1))
       vite-plugin-vue-inspector: 6.0.0(vite@8.3.0(esbuild@0.28.2)(sass@1.104.1))
+      vue: 3.5.42
     transitivePeerDependencies:
       - '@nuxt/kit'
       - supports-color
-      - vue
 
   vite-plugin-vue-inspector@6.0.0(vite@8.3.0(esbuild@0.28.2)(sass@1.104.1)):
     dependencies:
